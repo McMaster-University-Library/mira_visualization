@@ -125,8 +125,8 @@ d3.csv("mira_members.csv").then(function(mira_members) {
                     .duration(200)
                     .style("opacity", .9);
                 tooltip.html(
-                    d.first_name+ " "+d.last_name +
-                    "<br/>Department: "  + d.faculty2 +
+                    "<span class='tooltipName'>"+d.first_name+ " "+d.last_name +
+                    "</span><br/>Department: "  + d.faculty2 +
                     "<br>MIRA projects (pull projects)<br>" +
                     '<br><a href= "https://mira.mcmaster.ca/team/bio/'+
                     d.first_name.toLowerCase() + '-'+d.last_name.toLowerCase() +
