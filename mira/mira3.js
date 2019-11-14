@@ -100,14 +100,6 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             else {return mira_members }
         });
 
-        if (faculty=="All") {
-            const gDots = g.selectAll("g.dot").data(mira_members);
-        } else {
-            const gDots = g.selectAll("g.dot").data(mira_members.filter(function (d) {
-                return d.faculty2 == faculty;
-            }));
-        }
-
         var gData = gDots.enter().append('g')
             .attr("id", function (d) {
                 return d.macid;
