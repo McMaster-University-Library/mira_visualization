@@ -92,10 +92,21 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         .style("opacity", 0);
 
     function update(faculty, mira_members) {
-        const gDots = g.selectAll("g.dot")
-            .data(mira_members.filter(function (d) {
+
+        const gDots = g.selectAll("g.dot").data(function (d) {
+            if (faculty!="All") return mira_members.filter(function (d) {
+                return d.faculty2 == faculty;
+            });
+            else {return mira_members }
+        });
+
+        if (faculty=="All") {
+            const gDots = g.selectAll("g.dot").data(mira_members);
+        } else {
+            const gDots = g.selectAll("g.dot").data(mira_members.filter(function (d) {
                 return d.faculty2 == faculty;
             }));
+        }
 
         var gData = gDots.enter().append('g')
             .attr("id", function (d) {
@@ -144,6 +155,9 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         gData.append("text").text(function (d) {
             return d.first_name + " " + d.last_name;
         })
+            .attr("class", function (d) {
+                return "dotText " + d.primary_faculty;
+            })
             .attr("x", function (d) {
                 return x(d.x_value);
             })
@@ -153,23 +167,18 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         gDots.exit().remove();
     }
 
-    function removePoints(faculty, mira_members) {
-        g.selectAll("g.dot")
-            .data(mira_members.filter(function (d) {
-                return d.faculty2 != faculty;
-            }))
-            .exit()
-            .remove();
-    }
-
     // Event listener for faculty filter
     d3.select("#facultyFilter").on("change", function (d) {
         var faculty = d3.select(this).property("value")
+        d3.selectAll(".dot").style("opacity",0)
+        d3.selectAll(".dotText").style("opacity",0)
+        d3.selectAll("."+faculty).style("opacity",1)
+
         // run the update function with this selected option
         update(faculty, mira_members)
-        //  removePoints(faculty)
     })
 
+    update("All", mira_members)
 });
 
 function padExtent(e, p) {
