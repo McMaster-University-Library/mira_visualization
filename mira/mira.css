@@ -1,0 +1,71 @@
+.axis, .axis path {
+  fill: none;
+  stroke: #ACB849;
+}
+
+text {
+  stroke: none;
+  fill: #666666;
+}
+
+.dot.Science {
+  fill: #990033;
+}
+
+.dot.Engineering{
+  fill: #000000;
+}
+ 
+.dot.Business{
+  fill: #8BD3E6;
+}
+.dot.HealthSciences{
+  fill: #FDBF57;
+}
+.dot.SocialSciences{
+  fill: #007096;
+}
+.dot.Humanities{
+ fill:#007B4B;
+}
+ 
+#facultyFilter button {
+  display:block;
+  width: 300px;
+}
+#facultyFilter .Science {
+  background-color: #990033;
+  color: #fff;
+}
+#facultyFilter .Engineering {
+  background-color: #000000;
+  color: #fff;
+}
+#facultyFilter .Business {
+  background-color: #8BD3E6;
+  color: #fff;
+}
+#facultyFilter .HealthSciences {
+  background-color: #FDBF57;
+  color: #000;
+}
+#facultyFilter .SocialSciences {
+  background-color: #007096;
+  color: #fff;
+}
+#facultyFilter .Humanities {
+  background-color: #007B4B;
+  color: #fff;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 300px;
+  height: auto;
+  padding: 2px;
+  font-size: 1.2em;
+  background: #fff;
+  border: 0px;
+  border-radius: 8px;
+}

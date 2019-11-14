@@ -1,0 +1,5 @@
+macid,position,first_name,last_name,email,mira_url_name,primary_faculty,x_value,y_value
+baid,Member,David,Bai,baid@mcmaster.ca,David-Bai,Engineering,20,20
+lawlord,Director,Debbie,Lawlor,lawlord@mcmaster.ca,Debbie-Lawlor,Science,50,50
+kemperd,Manager,David,kemper,kemperd@mcmaster.ca,David-Kemper,Science,150,100
+alvare,Assistant Professor,Elizabeth,Alvarez,alvare@mcmaster.ca,Elizabeth-Alvarez,Health Sciences,10,25
