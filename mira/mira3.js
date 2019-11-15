@@ -126,8 +126,10 @@ d3.csv("mira_members.csv").then(function(mira_members) {
                     .duration(200)
                     .style("opacity", .9);
                 tooltip.html(
+                    "<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").style(\"opacity\",0);'>Close</button></div>" +
                     "<span class='tooltipName'>"+d.first_name+ " "+d.last_name +
-                    "</span><br/>Department: "  + d.faculty2 +
+                    "</span><p>" + d.position + "</p>" +
+                    "Department: "  + d.faculty2 +
                     "<br>MIRA projects (pull projects)<br>" +
                     '<br><a href= "https://mira.mcmaster.ca/team/bio/'+
                     d.first_name.toLowerCase() + '-'+d.last_name.toLowerCase() +
@@ -174,7 +176,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
     // Event listener for faculty filter
     d3.selectAll("#facultyFilter button").on("click", function (d) {
-        console.log("event logged")
+      //  console.log("event logged")
         var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
 
         //Remove previous points
