@@ -31,31 +31,40 @@ text {
  
 #facultyFilter button {
   display:block;
-  width: 300px;
+  width: 200px;
+  background: none;
+  text-align: left;
 }
-#facultyFilter .Science {
-  background-color: #990033;
-  color: #fff;
+
+#facultyFilter button:hover {
+  background-color: #dbdbdd;
 }
-#facultyFilter .Engineering {
-  background-color: #000000;
-  color: #fff;
+
+#facultyFilter span {
+  font-size: 1.4em;
 }
-#facultyFilter .Business {
-  background-color: #8BD3E6;
-  color: #fff;
+#facultyFilter .Engineering span {
+  color: #000000;
 }
-#facultyFilter .HealthSciences {
-  background-color: #FDBF57;
-  color: #000;
+
+#facultyFilter .HealthSciences span {
+  color: #FDBF57;
 }
-#facultyFilter .SocialSciences {
-  background-color: #007096;
-  color: #fff;
+
+#facultyFilter .Science span {
+  color: #990033;
 }
-#facultyFilter .Humanities {
-  background-color: #007B4B;
-  color: #fff;
+
+#facultyFilter .Business span {
+  color: #8BD3E6;
+}
+
+#facultyFilter .SocialSciences span {
+  color: #007096;
+}
+
+#facultyFilter .Humanities span {
+  color:  #007B4B;
 }
 
 div.tooltip {

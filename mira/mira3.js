@@ -161,8 +161,22 @@ d3.csv("mira_members.csv").then(function(mira_members) {
     }
 
     // Event listener for faculty filter
+    /* using a select list
     d3.select("#facultyFilter").on("change", function (d) {
         var faculty = d3.select(this).property("value")
+        //Remove previous points
+        d3.selectAll(".dataGroup").remove();
+
+        // run the update function with this selected option
+        update(faculty, mira_members)
+    })
+     */
+
+    // Event listener for faculty filter
+    d3.selectAll("#facultyFilter button").on("click", function (d) {
+        console.log("event logged")
+        var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
+
         //Remove previous points
         d3.selectAll(".dataGroup").remove();
 

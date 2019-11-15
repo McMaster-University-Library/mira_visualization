@@ -17,7 +17,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class='col-md-2 mt-5'>
-                <strong>Filters</strong>
+                <p></p><strong>Filters</strong></p>
+                <!-- using a select list for faculty
                 <div class="mb-5">
                     <label for="facultyFilter">
                         Faculty</label>
@@ -31,7 +32,21 @@
                         <option value="Humanities">Humanities</option>
                     </select>
                 </div>
+                -->
 
+                <div class="mb-5">
+                    <strong>Faculty</strong>
+                    <div id="facultyFilter">
+                        <button data-fac="All" class="facultyFilter2 All"><span style='color:pink;'>&#9679;</span>All</button>
+                        <button data-fac="Engineering" class="facultyFilter2 Engineering"><span>&#9679;</span>Engineering</button>
+                        <button class="facultyFilter2 HealthSciences"><span>&#9679;</span>Health Sciences</button>
+                        <button class="facultyFilter2 Business"><span>&#9679;</span>Business</button>
+                        <button class="facultyFilter2 SocialSciences"><span>&#9679;</span>Social Sciences</button>
+                        <button class="facultyFilter2 Science"><span>&#9679;</span>Science</button>
+                        <button class="facultyFilter2 Humanities"><span>&#9679;</span>Humanities</button>
+                    </div>
+
+                </div>
                 <p>Another filter for projects</p>
             </div>
             <div class='col-md-10'>
