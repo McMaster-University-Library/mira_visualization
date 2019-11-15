@@ -170,19 +170,6 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         update(faculty, mira_members)
     })
 
-    // Event listener for faculty filter
-    d3.select("#facultyFilter2 button").on("click", function (d) {
-        console.log("event logged")
-        var faculty = d3.select(this).property("data-fac")
-        console.log(faculty)
-        d3.selectAll(".dot").style("opacity",0)
-        d3.selectAll(".dotText").style("opacity",0)
-        d3.selectAll("."+faculty).style("opacity",1)
-
-        // run the update function with this selected option
-        update(faculty, mira_members)
-    })
-
     update("All", mira_members)
 });
 
