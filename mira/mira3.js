@@ -4,6 +4,82 @@ Code below is just for learning d3.js
 I plan to improve it
 */
 
+var mira_members = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
+var faculty_members = {}  // key: faculty val: list of macid
+var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
+var coauthor_network = {}  // key: macid val: list of coauthor macid
+
+
+function get_mira_data(){
+
+    d3.csv("mira_members.csv").then(function(data){
+        for (i = 0; i < data.length; i++){
+            get_coauthor_xml(data[i]["macid"])
+            mira_members[data[i]["macid"]] = data[i]
+
+            // intializing faculty list if it isn't there already
+            faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
+            faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
+        }
+    })
+
+    d3.csv("project_grant.csv").then(function(data){
+
+        for (i = 0; i < data.length; i++){
+            //intializing project member list if it isn't there already
+            pg = data[i]["project_grant"]
+            pg_name = data[i]["name"]
+            project_members[pg][pg_name] = project_members[pg][pg_name] || [];
+            project_members[pg][pg_name].push(data[i]["macid"])
+        }
+    })
+}
+
+function get_coauthor_xml(member_macid) {
+    url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            sort_coauthor_xml(member_macid, this);
+        }
+        if (this.status >= 400) {
+            xhttp.abort()
+        }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+
+}
+
+function sort_coauthor_xml(member_macid, xml) {
+    /*
+     This function updates the global variable coauthor_network by adding a new member as a key. The value is a list
+     of all corresponding macids associated with that author, including that author itself
+     */
+    var xmlDoc = xml.responseXML;
+    mac_ids = [];
+    nodes  = xmlDoc.getElementsByTagNameNS("http://graphml.graphdrawing.org/xmlns", "node");
+    for (i = 0; i < nodes.length; i++) {
+        data_nodes = nodes[i].getElementsByTagNameNS("http://graphml.graphdrawing.org/xmlns", "data");
+        for (j = 0; j < data_nodes.length; j++) {
+
+            // extracting the co-author macids
+            if(data_nodes[j].getAttribute("key") == "url") {
+                experts_url_base = "https://experts.mcmaster.ca/individual/";
+                experts_url = data_nodes[j].textContent;
+                mac_id = experts_url.substring(experts_url_base.length, experts_url.length);
+                mac_ids.push(mac_id) ;
+            }
+        }
+    }
+    coauthor_network[member_macid] = mac_ids  // update global variable
+}
+
+get_mira_data();
+
+
+
+
 const svg = d3.select("#miraVis"),
     margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = +svg.attr("width"),
@@ -97,7 +173,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             if (faculty!="All") return mira_members.filter(function (d) {
                 return d.faculty2 == faculty;
             });
-            else {return mira_members }
+            else {return mira_members}
         });
 
         var gData = gDots.enter().append('g')
@@ -186,7 +262,23 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         update(faculty, mira_members)
     })
 
+
+    // Event listener for MIRA Member dot
+    d3.selectAll("#facultyFilter button").on("click", function (d) {
+        //  console.log("event logged")
+        var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
+
+        //Remove previous points
+        d3.selectAll(".dataGroup").remove();
+
+        // run the update function with this selected option
+        update(faculty, mira_members)
+    })
+
+
+
     update("All", mira_members)
+
 });
 
 function padExtent(e, p) {
