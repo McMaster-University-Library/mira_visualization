@@ -87,6 +87,17 @@ const svg = d3.select("#miraVis"),
     domainWidth = width - margin.left - margin.right,
     domainHeight = height - margin.top - margin.bottom;
 
+// Add d3 zoom feature to svg
+svg.call(d3.zoom()
+    .extent([[0, 0], [width, height]])
+    .scaleExtent([1, 8])
+    .on("zoom", zoomed));
+
+function zoomed() {
+    g.attr("transform", d3.event.transform);
+}
+
+
 // Scales
 const x = d3.scaleLinear()
     .domain(padExtent([1,200]))
