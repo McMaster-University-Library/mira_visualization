@@ -8,6 +8,7 @@ var mira_members = {} // key: macid val: dict(key: csv file attribute, val: attr
 var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
 var coauthor_network = {}  // key: macid val: list of coauthor macid
+var dots = {}  // key: macid val: dataGroup (for the dot)
 
 
 function get_mira_data(){
@@ -22,7 +23,7 @@ function get_mira_data(){
             faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
     })
-
+/*
     d3.csv("project_grant.csv").then(function(data){
 
         for (i = 0; i < data.length; i++){
@@ -33,6 +34,7 @@ function get_mira_data(){
             project_members[pg][pg_name].push(data[i]["macid"])
         }
     })
+ */
 }
 
 function get_coauthor_xml(member_macid) {
@@ -78,8 +80,6 @@ function sort_coauthor_xml(member_macid, xml) {
 get_mira_data();
 
 
-
-
 const svg = d3.select("#miraVis"),
     margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = +svg.attr("width"),
@@ -122,13 +122,13 @@ const xAxis= g.append("g")
     .call(d3.axisBottom(x).ticks(0));
 
 g.append("text")
-    //.attr("transform", "translate(" + x.range()[1] /2 + "," + y.range()[1] + ")")
+//.attr("transform", "translate(" + x.range()[1] /2 + "," + y.range()[1] + ")")
     .attr("transform", "translate(" + x.range()[1] /2 + "," + y.range()[1] + ")")
     .style("text-anchor", "middle")
     .attr("dy", "1em")
     .text("POLICY")
 
-    g.append("text")
+g.append("text")
     .attr("transform", "translate(" + x.range()[1] / 2 + "," + y.range()[0] + ")")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
@@ -160,6 +160,7 @@ g.append("text")
 csv file contains macid,position,first_name,last_name,email,mira_url_name,primary_faculty,x_value,y_value
 Don't need mira_url_name since this can be created using first_name & last_name columns
  */
+
 d3.csv("mira_members.csv").then(function(mira_members) {
     // Prepare data. Coerce the strings for coordinates to numbers.
     mira_members.forEach(function (d) {
@@ -170,6 +171,8 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         d.macid = d.macid;
         d.faculty2 = d.primary_faculty;
         d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
+        dots[d.macid] = d
+
     });
 
     // Define 'div' to contain the tooltip
@@ -184,7 +187,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             if (faculty!="All") return mira_members.filter(function (d) {
                 return d.faculty2 == faculty;
             });
-            else {return mira_members}
+            else {return mira_members }
         });
 
         var gData = gDots.enter().append('g')
@@ -197,7 +200,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             .attr("class", function (d) {
                 return "dot " + d.primary_faculty;
             })
-            .attr("r", "7")
+            .attr("r", "5")
             .attr("cx", function (d) {
                 return x(d.x_value);
             })
@@ -226,16 +229,18 @@ d3.csv("mira_members.csv").then(function(mira_members) {
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("click", function(d) {
-                    tooltip.transition()
-                        .duration(500)
-                        .style("opacity", .9);
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", 0);
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", .9);
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0);
             });
 
+
         gData.append("text").text(function (d) {
-            return d.first_name + " " + d.last_name;
+            //return d.first_name + " " + d.last_name;
+            return d.first_name;
         })
             .attr("class", function (d) {
                 return "dotText " + d.primary_faculty;
@@ -246,35 +251,22 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             .attr("y", function (d) {
                 return y(d.y_value) - 10;
             });
+
         gDots.exit().remove();
     }
 
+    function drawLine(macid, coauthor) {
+        //Draw the line
+        g.append("line")
+            .attr("x1", x(50+3.5))     // x position of the first end of the line
+            .attr("y1", y(50-7))      // y position of the first end of the line
+            .attr("x2", x(20+3.5))     // x position of the second end of the line
+            .attr("y2", y(20-7))    // y position of the second end of the line
+            .attr("stroke-width", 2)
+            .attr("stroke", "black");
+    }
+
     // Event listener for faculty filter
-    /* using a select list
-    d3.select("#facultyFilter").on("change", function (d) {
-        var faculty = d3.select(this).property("value")
-        //Remove previous points
-        d3.selectAll(".dataGroup").remove();
-
-        // run the update function with this selected option
-        update(faculty, mira_members)
-    })
-     */
-
-    // Event listener for faculty filter
-    d3.selectAll("#facultyFilter button").on("click", function (d) {
-      //  console.log("event logged")
-        var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
-
-        //Remove previous points
-        d3.selectAll(".dataGroup").remove();
-
-        // run the update function with this selected option
-        update(faculty, mira_members)
-    })
-
-
-    // Event listener for MIRA Member dot
     d3.selectAll("#facultyFilter button").on("click", function (d) {
         //  console.log("event logged")
         var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
@@ -286,9 +278,35 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         update(faculty, mira_members)
     })
 
-
-
     update("All", mira_members)
+
+
+    // Event listener for coauthor click on button
+    d3.selectAll(".dataGroup .dot").on("dblclick", function (d) {
+        console.log("event logged with this event listener")
+        d3.selectAll("line").remove();
+
+        const start = dots[this.parentElement.id];
+        for (i=0; i < coauthor_network[start.macid].length; i++){
+            if (coauthor_network[start.macid][i] in dots){
+
+                end = dots[coauthor_network[start.macid][i]]
+                d3.select(this.parentElement).append("line")
+                    .attr("x1", function (d) {
+                        return x(start.x_value);
+                    })    // x position of the first end of the line
+                    .attr("y1", function (d) {
+                        return y(start.y_value);
+
+                    })     // y position of the first end of the line
+                    .attr("x2", x(end.x_value))     // x position of the second end of the line
+                    .attr("y2", y(end.y_value))    // y position of the second end of the line
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "black");
+
+            }
+        }
+    })
 
 });
 
