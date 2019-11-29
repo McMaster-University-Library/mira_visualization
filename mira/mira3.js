@@ -277,11 +277,11 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
 
     // Event listener for coauthor lines
-    d3.selectAll(".dataGroup .dot").on("click", function (d) {
+    d3.selectAll(".dataGroup").on("click", function (d) {
         console.log("event logged with this event listener")
         d3.selectAll("line").remove();
 
-        const start = dots[this.parentElement.id];
+        const start = dots[this.id];
         for (i=0; i < coauthor_network[start.macid].length; i++){
             if (coauthor_network[start.macid][i] in dots){
 
