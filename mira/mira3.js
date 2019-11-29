@@ -4,7 +4,7 @@ Code below is just for learning d3.js
 I plan to improve it
 */
 
-var mira_members = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
+var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
 var coauthor_network = {}  // key: macid val: list of coauthor macid
@@ -16,7 +16,7 @@ function get_mira_data(){
     d3.csv("mira_members.csv").then(function(data){
         for (i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
-            mira_members[data[i]["macid"]] = data[i]
+            mira_members_data_pull[data[i]["macid"]] = data[i]
 
             // intializing faculty list if it isn't there already
             faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
@@ -276,17 +276,14 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
 
 
-    // Event listener for coauthor lines
-    d3.selectAll(".dataGroup").on("click", function (d) {
-        console.log("event logged with this event listener")
-        d3.selectAll("line").remove();
-
-        const start = dots[this.id];
+    function draw_lines(macid) {
+        console.log("draw")
+        const start = dots[macid];
         for (i=0; i < coauthor_network[start.macid].length; i++){
             if (coauthor_network[start.macid][i] in dots){
 
                 end = dots[coauthor_network[start.macid][i]]
-                d3.select(this.parentElement).append("line")
+                g.append("line")
                     .attr("x1", function (d) {
                         return x(start.x_value);
                     })    // x position of the first end of the line
@@ -301,6 +298,16 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
             }
         }
+    }
+
+    // Event listener for coauthor lines
+    d3.selectAll(".dataGroup").on("click", function (d) {
+        console.log("event logged with this event listener")
+        d3.selectAll("line").remove();
+
+        draw_lines(this.id)
+
+
     })
 
 });
