@@ -270,10 +270,10 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
         // run the update function with this selected option
         update(faculty, mira_members)
+        draw_lines(coauthor_start)
     })
 
     update("All", mira_members)
-
 
 
     function draw_lines(macid) {
@@ -300,11 +300,12 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         }
     }
 
+    coauthor_start = ""
     // Event listener for coauthor lines
     d3.selectAll(".dataGroup").on("click", function (d) {
         console.log("event logged with this event listener")
         d3.selectAll("line").remove();
-
+        coauthor_start = this.id
         draw_lines(this.id)
 
 
