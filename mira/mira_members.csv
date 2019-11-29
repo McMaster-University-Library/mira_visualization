@@ -1,49 +1,52 @@
 macid,position,first_name,last_name,email,mira_url_name,primary_faculty,x_value,y_value
-pritcjm,test_position,Janet,PRITCHARD,pritcjm@mcmaster.ca,,Science,79,185
-archer,test_position,Norman,ARCHER,archer@mcmaster.ca,,Science,58,174
-mishrar,test_position,Ram,MISHRA,mishrar@mcmaster.ca,,Science,135,172
-yuanyuf,test_position,Yufei,YUAN,yuanyuf@mcmaster.ca,,Science,108,110
-mreid,test_position,Maureen Frances F,MARKLE-REID,mreid@mcmaster.ca,,Science,1,80
-valaitis,test_position,Ruta K K,VALAITIS,valaitis@mcmaster.ca,,Science,109,133
-solomon,test_position,Patricia,SOLOMON,solomon@mcmaster.ca,,Science,114,193
-griffith,test_position,Lauren,GRIFFITH,griffith@mcmaster.ca,,Science,177,196
-mdenton,test_position,Margaret Anne A,DENTON,mdenton@mcmaster.ca,,Science,149,115
-fahnest,test_position,Margaret,FAHNESTOCK,fahnest@mcmaster.ca,,Science,58,94
-ljt,test_position,Laurel,TRAINOR,ljt@mcmaster.ca,,Science,49,108
-macdonmj,test_position,Maureen J J,MACDONALD,macdonmj@mcmaster.ca,,Health Sciences,129,98
-newbold,test_position,K Bruce B,NEWBOLD,newbold@mcmaster.ca,,Health Sciences,85,163
-agarg,test_position,Ragini Gina G,AGARWAL,agarg@mcmaster.ca,,Health Sciences,137,49
-sekuler,test_position,Allison,SEKULER,sekuler@mcmaster.ca,,Health Sciences,132,51
-cqxu,test_position,Chang Qing Q,XU,cqxu@mcmaster.ca,,Health Sciences,77,192
-brucei,test_position,Ian,BRUCE,brucei@mcmaster.ca,,Health Sciences,155,122
-paezha,test_position,Hector Antonio A,PAEZ,paezha@mcmaster.ca,,Health Sciences,55,68
-awill,test_position,Allison,WILLIAMS,awill@mcmaster.ca,,Health Sciences,178,29
-gillett,test_position,James,GILLETT,gillett@mcmaster.ca,,Health Sciences,12,155
-kaasal,test_position,Sharon June J,KAASALAINEN,kaasal@mcmaster.ca,,Health Sciences,142,96
-robert,test_position,Robert,FLEISIG,robert@mcmaster.ca,,Health Sciences,77,125
-zhuxu,test_position,Xu-dong -d,ZHU,zhuxu@mcmaster.ca,,Health Sciences,192,196
-guptab,test_position,Bhagwati,GUPTA,guptab@mcmaster.ca,,Health Sciences,95,32
-doylet,test_position,Thomas,DOYLE,doylet@mcmaster.ca,,Health Sciences,162,168
-hoaretr,test_position,Todd Ryan R,HOARE,hoaretr@mcmaster.ca,,Engineering,115,22
-heiszjj,test_position,Jennifer,HEISZ,heiszjj@mcmaster.ca,,Engineering,12,40
-gonzal,test_position,Andrea,GONZALEZ,gonzal@mcmaster.ca,,Engineering,39,197
-jconnol,test_position,John,CONNOLLY,jconnol@mcmaster.ca,,Engineering,70,45
-gstein,test_position,Gregory,STEINBERG,gstein@mcmaster.ca,,Engineering,1,5
-bowdish,test_position,Dawn,BOWDISH,bowdish@mcmaster.ca,,Engineering,152,29
-rheinsm,test_position,Maikel,RHEINSTADTER,rheinsm@mcmaster.ca,,Engineering,160,135
-dunnjam,test_position,James,DUNN,dunnjam@mcmaster.ca,,Engineering,141,23
-bhonig,test_position,Benson,HONIG,bhonig@mcmaster.ca,,Engineering,172,52
-vickup,test_position,Victor,KUPERMAN,vickup@mcmaster.ca,,Engineering,85,99
-ljubic,test_position,Vladimir,LJUBICIC,ljubic@mcmaster.ca,,Business,31,87
-griffmb,test_position,Meridith,GRIFFIN,griffmb@mcmaster.ca,,Business,169,53
-amstere,test_position,Ellen J J,AMSTER,amstere@mcmaster.ca,,Business,36,38
-ganannrl,test_position,Rebecca,GANANN,ganannrl@mcmaster.ca,,Business,7,200
-beaucm1,test_position,Marla,BEAUCHAMP,beaucm1@mcmaster.ca,,Humanities,12,162
-gardnerp,test_position,Paula,GARDNER,gardnerp@mcmaster.ca,,Humanities,188,164
-didart,test_position,Tohid,DIDAR,didart@mcmaster.ca,,Humanities,145,5
-motamedz,test_position,Zahra,KESHAVARZ MOTAMED,motamedz@mcmaster.ca,,Humanities,160,64
-bassimc,test_position,Carol Walker W,BASSIM,bassimc@mcmaster.ca,,Humanities,154,27
-olivejp,test_position,John Paul P,OLIVERIA,olivejp@mcmaster.ca,,Humanities,130,112
-durochee,test_position,Evelyne,DUROCHER,durochee@mcmaster.ca,,Humanities,56,30
-astephej,test_position,Janie,ASTEPHEN-WILSON,astephej@mcmaster.ca,,Humanities,123,197
-brookd8,test_position,Dina,BROOKS,brookd8@mcmaster.ca,,Humanities,30,107
+ploegj,test_position,Jenny,Ploeg,ploegj@mcmaster.ca,,Health Sciences,116,85
+praina,test_position,Parminder,Raina,praina@mcmaster.ca,,Health Sciences,103,144
+phillis,test_position,Stuart,Phillips,phillis@mcmaster.ca,,Health Sciences,190,45
+selvaga,test_position,Ponnambalam,Selvaganapathy,selvaga@mcmaster.ca,,Social Sciences,95,13
+griffith,test_position,Lauren,Griffith,griffith@mcmaster.ca,,Science,183,192
+mreid,test_position,Maureen Frances F,Markle-Reid,mreid@mcmaster.ca,,Science,66,123
+qfang,test_position,Qiyin,Fang,qfang@mcmaster.ca,,Social Sciences,17,72
+archer,test_position,Norman,Archer,archer@mcmaster.ca,,Science,81,167
+awill,test_position,Allison,Williams,awill@mcmaster.ca,,Engineering,126,79
+bowdish,test_position,Dawn,Bowdish,bowdish@mcmaster.ca,,Science,59,154
+brucei,test_position,Ian,Bruce,brucei@mcmaster.ca,,Engineering,28,115
+jamal,test_position,Jamal,Deen,jamal@mcmaster.ca,,Engineering,68,5
+ldolovic,test_position,Lisa,Dolovich,ldolovic@mcmaster.ca,,Engineering,1,142
+nosewor,test_position,Michael,Noseworthy,nosewor@mcmaster.ca,,Business,57,197
+rheinsm,test_position,Maikel,Rheinstadter,rheinsm@mcmaster.ca,,Science,90,168
+beckers,test_position,Sue,Becker,beckers@mcmaster.ca,,Health Sciences,108,177
+connell,test_position,Catherine,Connelly,connell@mcmaster.ca,,Business,196,88
+cqxu,test_position,Chang Qing Q,Xu,cqxu@mcmaster.ca,,Engineering,192,61
+didart,test_position,Tohid,Didar,didart@mcmaster.ca,,Engineering,86,115
+dsherif,test_position,Diana,Sherifali,dsherif@mcmaster.ca,,Social Sciences,155,119
+fahnest,test_position,Margaret,Fahnestock,fahnest@mcmaster.ca,,Science,25,30
+hoaretr,test_position,Todd Ryan R,Hoare,hoaretr@mcmaster.ca,,Social Sciences,156,85
+jconnol,test_position,John,Connolly,jconnol@mcmaster.ca,,Science,188,157
+kaasal,test_position,Sharon June J,Kaasalainen,kaasal@mcmaster.ca,,Business,7,97
+khome,test_position,Michelle,Kho,khome@mcmaster.ca,,Social Sciences,122,75
+ljt,test_position,Laurel,Trainor,ljt@mcmaster.ca,,Science,75,150
+macdonmj,test_position,Maureen J J,Macdonald,macdonmj@mcmaster.ca,,Engineering,47,109
+mdenton,test_position,Margaret Anne A,Denton,mdenton@mcmaster.ca,,Science,96,115
+mishrar,test_position,Ram,Mishra,mishrar@mcmaster.ca,,Science,156,102
+nelsonaj,test_position,Aimee,Nelson,nelsonaj@mcmaster.ca,,Health Sciences,170,84
+newbold,test_position,K Bruce B,Newbold,newbold@mcmaster.ca,,Engineering,135,116
+paezha,test_position,Hector Antonio A,Paez,paezha@mcmaster.ca,,Engineering,56,125
+pariseg,test_position,Gianni,Parise,pariseg@mcmaster.ca,,Social Sciences,20,142
+solomon,test_position,Patricia,Solomon,solomon@mcmaster.ca,,Science,90,38
+tarnopol,test_position,Mark,Tarnopolsky,tarnopol@mcmaster.ca,,Health Sciences,53,113
+acosta,test_position,Andrew,Costa,acosta@mcmaster.ca,,Health Sciences,86,149
+agarg,test_position,Ragini Gina G,Agarwal,agarg@mcmaster.ca,,Engineering,20,166
+alvare,test_position,Elizabeth,Alvarez,alvare@mcmaster.ca,,Social Sciences,127,98
+andrews,test_position,Gavin,Andrews,andrews@mcmaster.ca,,Social Sciences,0,139
+atang,test_position,Ada,Tang,atang@mcmaster.ca,,Health Sciences,30,77
+beaucm1,test_position,Marla,Beauchamp,beaucm1@mcmaster.ca,,Engineering,121,194
+bhonig,test_position,Benson,Honig,bhonig@mcmaster.ca,,Science,84,105
+boschj,test_position,Jackie,Bosch,boschj@mcmaster.ca,,Health Sciences,180,161
+charupat,test_position,Narat,Charupat,charupat@mcmaster.ca,,Health Sciences,137,40
+doylet,test_position,Thomas,Doyle,doylet@mcmaster.ca,,Business,183,163
+dunnjam,test_position,James,Dunn,dunnjam@mcmaster.ca,,Science,41,9
+ganannrl,test_position,Rebecca,Ganann,ganannrl@mcmaster.ca,,Engineering,68,114
+gary,test_position,Gary Mitchell M,Bone,gary@mcmaster.ca,,Health Sciences,28,20
+ghasemm,test_position,Maryam,Ghasemaghaei,ghasemm@mcmaster.ca,,Social Sciences,92,28
+gillett,test_position,James,Gillett,gillett@mcmaster.ca,,Business,113,34
+gonzal,test_position,Andrea,Gonzalez,gonzal@mcmaster.ca,,Social Sciences,48,170

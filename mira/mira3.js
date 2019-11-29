@@ -161,8 +161,11 @@ csv file contains macid,position,first_name,last_name,email,mira_url_name,primar
 Don't need mira_url_name since this can be created using first_name & last_name columns
  */
 
+
 d3.csv("mira_members.csv").then(function(mira_members) {
     // Prepare data. Coerce the strings for coordinates to numbers.
+
+
     mira_members.forEach(function (d) {
         d.x_value = +d.x_value;
         d.y_value = +d.y_value;
@@ -181,13 +184,14 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         .attr("class", "tooltip card card-shadow")
         .style("opacity", 0);
 
+
     function update(faculty, mira_members) {
 
         const gDots = g.selectAll("g.dot").data(function (d) {
             if (faculty!="All") return mira_members.filter(function (d) {
                 return d.faculty2 == faculty;
             });
-            else {return mira_members }
+            else {return mira_members}
         });
 
         var gData = gDots.enter().append('g')
@@ -240,7 +244,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
         gData.append("text").text(function (d) {
             //return d.first_name + " " + d.last_name;
-            return d.first_name;
+            return d.last_name;
         })
             .attr("class", function (d) {
                 return "dotText " + d.primary_faculty;
@@ -255,16 +259,6 @@ d3.csv("mira_members.csv").then(function(mira_members) {
         gDots.exit().remove();
     }
 
-    function drawLine(macid, coauthor) {
-        //Draw the line
-        g.append("line")
-            .attr("x1", x(50+3.5))     // x position of the first end of the line
-            .attr("y1", y(50-7))      // y position of the first end of the line
-            .attr("x2", x(20+3.5))     // x position of the second end of the line
-            .attr("y2", y(20-7))    // y position of the second end of the line
-            .attr("stroke-width", 2)
-            .attr("stroke", "black");
-    }
 
     // Event listener for faculty filter
     d3.selectAll("#facultyFilter button").on("click", function (d) {
@@ -281,8 +275,9 @@ d3.csv("mira_members.csv").then(function(mira_members) {
     update("All", mira_members)
 
 
-    // Event listener for coauthor click on button
-    d3.selectAll(".dataGroup .dot").on("dblclick", function (d) {
+
+    // Event listener for coauthor lines
+    d3.selectAll(".dataGroup .dot").on("click", function (d) {
         console.log("event logged with this event listener")
         d3.selectAll("line").remove();
 
