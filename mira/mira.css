@@ -1,3 +1,7 @@
+#miraVis {
+  max-width: 100%;
+}
+
 .axis, .axis path {
   fill: none;
   stroke: #ACB849;
@@ -83,4 +87,12 @@ div.tooltip .tooltipName {
   font-weight:bold;
   font-size:1.2em;
   text-align:center;
+}
+
+circle {
+  z-index: 100;
+}
+
+text {
+  z-index:5;
 }

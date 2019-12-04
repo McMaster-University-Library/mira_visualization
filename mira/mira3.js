@@ -123,7 +123,7 @@ const xAxis= g.append("g")
 
 g.append("text")
 //.attr("transform", "translate(" + x.range()[1] /2 + "," + y.range()[1] + ")")
-    .attr("transform", "translate(" + x.range()[1] /2 + "," + y.range()[1] + ")")
+    .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1]-20)+ ")")
     .style("text-anchor", "middle")
     .attr("dy", "1em")
     .text("POLICY")
@@ -146,11 +146,11 @@ g.append("text")
     .attr("x",-280 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
-    .text("Practice & Application");
+    .text("PRACTICE & APPLICATION");
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 950)
+    .attr("y", 1130)
     .attr("x",-280 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
