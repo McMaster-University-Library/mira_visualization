@@ -81,7 +81,8 @@ get_mira_data();
 
 
 const svg = d3.select("#miraVis"),
-    margin = {top: 20, right: 20, bottom: 30, left: 50},
+   // margin = {top: 20, right: 20, bottom: 30, left: 50},
+    margin = {top: 20, right: 20, bottom: 30, left: 20},
     width = +svg.attr("width"),
     height = +svg.attr("height"),
     domainWidth = width - margin.left - margin.right,
@@ -150,7 +151,7 @@ g.append("text")
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 1130)
+    .attr("y", 1160)
     .attr("x",-280 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
