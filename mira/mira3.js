@@ -132,6 +132,7 @@ g.append("text")
 //.attr("transform", "translate(" + x.range()[1] /2 + "," + y.range()[1] + ")")
     .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1]-20)+ ")")
     .style("text-anchor", "middle")
+    .attr("class", "axisTitle")
     .attr("dy", "1em")
     .text("POLICY")
 
@@ -139,6 +140,7 @@ g.append("text")
     .attr("transform", "translate(" + x.range()[1] / 2 + "," + y.range()[0] + ")")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
+    .attr("class", "axisTitle")
     .text("PRODUCT or SERVICE");
 
 //Add y-axis
@@ -153,6 +155,7 @@ g.append("text")
     .attr("x",-380 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
+    .attr("class", "axisTitle")
     .text("PRACTICE & APPLICATION");
 
 g.append("text")
@@ -161,6 +164,7 @@ g.append("text")
     .attr("x",-380 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
+    .attr("class", "axisTitle")
     .text("THEORY & DISCOVERY");
 
 /*

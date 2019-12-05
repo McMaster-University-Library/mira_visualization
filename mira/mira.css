@@ -7,6 +7,10 @@
   stroke: #ACB849;
 }
 
+.axisTitle {
+  font-weight: bold;
+}
+
 text {
   stroke: none;
   fill: #666666;
