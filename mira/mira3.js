@@ -95,7 +95,12 @@ svg.call(d3.zoom()
     .on("zoom", zoomed));
 
 function zoomed() {
-    g.attr("transform", d3.event.transform);
+    var transform = d3.event.transform;
+    transform.x = Math.min(margin.left, transform.x);
+   // transform.y = 0;
+    transform.y = Math.min(margin.top, transform.y);
+    //g.attr("transform", d3.event.transform);
+    g.attr("transform", transform);
 }
 
 
@@ -215,7 +220,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             // Tooltip events
             .on("mouseover", function(d) {
                 tooltip.transition()
-                    .duration(500)
+                    .duration(300)
                     .style("opacity", 0);
                 tooltip.transition()
                     .duration(200)
@@ -235,7 +240,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             })
             .on("click", function(d) {
                 tooltip.transition()
-                    .duration(500)
+                    .duration(400)
                     .style("opacity", .9);
                 tooltip.transition()
                     .duration(200)
