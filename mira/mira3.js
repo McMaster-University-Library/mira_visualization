@@ -244,7 +244,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
                     d.first_name.toLowerCase() + '-'+d.last_name.toLowerCase() +
                     '" target="_blank">View Profile Page' +
                     "</a>")
-                    .style("left", (d3.event.pageX +15) + "px")
+                    .style("left", (d3.event.pageX +10) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("click", function(d) {
