@@ -97,6 +97,7 @@ svg.call(d3.zoom()
 function zoomed() {
     var transform = d3.event.transform;
     transform.x = Math.min(margin.left, transform.x);
+
    // transform.y = 0;
     transform.y = Math.min(margin.top, transform.y);
     //g.attr("transform", d3.event.transform);
@@ -149,15 +150,15 @@ g.append("g")
 g.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y",-22)
-    .attr("x",-280 )
+    .attr("x",-380 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .text("PRACTICE & APPLICATION");
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 1160)
-    .attr("x",-280 )
+    .attr("y", 1360)
+    .attr("x",-380 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .text("THEORY & DISCOVERY");
@@ -205,7 +206,7 @@ d3.csv("mira_members.csv").then(function(mira_members) {
                 return d.macid;
             })
             .attr("class","dataGroup");
-
+      //  var jitter= () => Math.random()*5;
         gData.append("circle")
             .attr("class", function (d) {
                 return "dot " + d.primary_faculty;
@@ -213,9 +214,11 @@ d3.csv("mira_members.csv").then(function(mira_members) {
             .attr("r", "5")
             .attr("cx", function (d) {
                 return x(d.x_value);
+             //   return x(d.x_value+jitter());
             })
             .attr("cy", function (d) {
                 return y(d.y_value);
+               // return y(d.y_value+jitter());
             })
             // Tooltip events
             .on("mouseover", function(d) {
