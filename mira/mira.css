@@ -78,9 +78,9 @@ text {
 div.tooltip {
   position: absolute;
   text-align: center;
-  width: 300px;
+  width: auto;
   height: auto;
-  padding: 2px;
+  padding: 5px;
   font-size: .9em;
   background: #fff;
   border: 0px;
