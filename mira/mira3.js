@@ -4,12 +4,12 @@ Code below is just for learning d3.js
 I plan to improve it
 */
 
+const margin = {top: 20, right: 20, bottom: 45, left: 20};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
 var coauthor_network = {}  // key: macid val: list of coauthor macid
 var dots = {}  // key: macid val: dataGroup (for the dot)
-
 
 function get_mira_data(){
 
@@ -79,12 +79,17 @@ function sort_coauthor_xml(member_macid, xml) {
 
 get_mira_data();
 
+var availWidth=window.innerWidth-(document.getElementsByClassName('col-md-2')[0].clientWidth)-(margin.left+margin.right);
+var availHeight=window.innerHeight-(document.getElementsByTagName('h1')[0].clientHeight)-(margin.top+margin.bottom);
 
-const svg = d3.select("#miraVis"),
-   // margin = {top: 20, right: 20, bottom: 30, left: 50},
-    margin = {top: 20, right: 20, bottom: 30, left: 20},
-    width = +svg.attr("width"),
-    height = +svg.attr("height"),
+//below code will result in true if on small mobile device when filters column is taking up full width
+if (availWidth<0) {
+    availWidth=window.innerWidth;
+}
+
+const svg = d3.select("#miraVis").attr('width',availWidth.toString()).attr('height',availHeight.toString()),
+    width = +availWidth,
+    height = +availHeight,
     domainWidth = width - margin.left - margin.right,
     domainHeight = height - margin.top - margin.bottom;
 
@@ -160,9 +165,7 @@ g.append("text")
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    //.attr("y", 1360)
     .attr("y", domainWidth)
-    //.attr("x",-380 )
     .attr("x",-domainHeight/2 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
