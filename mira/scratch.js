@@ -1,9 +1,5 @@
 
 
-
-
-
-
 function update(faculty, mira_members) {
 
     const gDots = g.selectAll("g.dot").data(function (d) {
