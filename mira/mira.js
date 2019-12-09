@@ -335,7 +335,7 @@ function draw_lines(macid) {
                     .attr("x2", x(end.x_value))     // x position of the second end of the line
                     .attr("y2", y(end.y_value))    // y position of the second end of the line
                     .attr("stroke-width", 2)
-                    .attr("stroke", "black");
+                    .attr("stroke", "url(#gradientLine)");
             }
         }
     }
