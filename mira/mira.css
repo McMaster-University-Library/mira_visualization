@@ -2,6 +2,10 @@
   max-width: 100%;
 }
 
+h1 {
+    margin-bottom: 24px;
+}
+
 .axis, .axis path {
   fill: none;
   stroke: #ACB849;
@@ -103,4 +107,8 @@ circle {
 
 text, line {
   z-index: 5;
+}
+
+line {
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 50%, rgba(255,255,255,1) 100%);
 }
