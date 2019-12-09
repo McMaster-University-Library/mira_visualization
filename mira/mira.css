@@ -87,7 +87,7 @@ div.tooltip {
   padding: 5px;
   font-size: .9em;
   background: #fff;
-  border: 0px;
+  border: 1px solid #5e6a71;
   border-radius: 8px;
 }
 
@@ -101,6 +101,6 @@ circle {
   z-index: 100;
 }
 
-text {
-  z-index:5;
+text, line {
+  z-index: 5;
 }
