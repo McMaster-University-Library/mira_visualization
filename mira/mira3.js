@@ -172,10 +172,13 @@ csv file contains macid,position,first_name,last_name,email,mira_url_name,primar
 Don't need mira_url_name since this can be created using first_name & last_name columns
  */
 
+gData = []
+coauthor_origin = ""
+active_faculty = "All"
+
 
 d3.csv("mira_members.csv").then(function(mira_members) {
     // Prepare data. Coerce the strings for coordinates to numbers.
-
 
     mira_members.forEach(function (d) {
         d.x_value = +d.x_value;
@@ -189,140 +192,148 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
     });
 
+    const gDots = g.selectAll("g.dot").data(mira_members);
+
+    gData = gDots.enter().append('g')
+        .attr("id", function (d) {
+            return d.macid;
+        })
+        .attr("class","dataGroup");
+
+    // Event listener for faculty filter
+    d3.selectAll("#facultyFilter button").on("click", function (d) {
+        //  console.log("event logged")
+        var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
+        // run the update function with this selected option
+        faculty_filter(faculty)
+        draw_lines(coauthor_origin)
+    })
+
+    // Event listener for coauthor lines
+    d3.selectAll(".dataGroup").on("click", function (d) {
+        console.log("event logged with this event listener")
+        draw_lines(this.id)
+        faculty_filter(active_faculty)
+    })
+
+    // Initial start up
+    faculty_filter("All")
+});
+
+
+
+function faculty_filter(faculty) {
+
+    //Remove previous points
+    d3.selectAll("circle").remove()
+    d3.selectAll(".dotText").remove()
+
+    //Set active faculty global var
+    active_faculty = faculty
+
     // Define 'div' to contain the tooltip
     var tooltip = d3.select("body")
         .append("div")
         .attr("class", "tooltip card card-shadow")
         .style("opacity", 0);
 
-
-    function update(faculty, mira_members) {
-
-        const gDots = g.selectAll("g.dot").data(function (d) {
-            if (faculty!="All") return mira_members.filter(function (d) {
-                return d.faculty2 == faculty;
-            });
-            else {return mira_members}
-        });
-
-        var gData = gDots.enter().append('g')
-            .attr("id", function (d) {
-                return d.macid;
-            })
-            .attr("class","dataGroup");
-
-        gData.append("circle")
-            .attr("class", function (d) {
-                return "dot " + d.primary_faculty;
-            })
-            .attr("r", "5")
-            .attr("cx", function (d) {
-                return x(d.x_value);
-            })
-            .attr("cy", function (d) {
-                return y(d.y_value);
-            })
-            // Tooltip events
-            .on("mouseover", function(d) {
-                tooltip.transition()
-                    .duration(300)
-                    .style("opacity", 0);
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html(
-                    "<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").style(\"opacity\",0);'>Close</button></div>" +
-                    "<span class='tooltipName'>"+d.first_name+ " "+d.last_name +
-                    "</span><p>" + d.position + "</p>" +
-                    "Department: "  + d.faculty2 +
-                    "<br>MIRA projects (pull projects)<br>" +
-                    '<br><a href= "https://mira.mcmaster.ca/team/bio/'+
-                    d.first_name.toLowerCase() + '-'+d.last_name.toLowerCase() +
-                    '" target="_blank">View Profile Page' +
-                    "</a>")
-                    .style("left", (d3.event.pageX +10) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
-            })
-            .on("click", function(d) {
-                tooltip.transition()
-                    .duration(400)
-                    .style("opacity", .9);
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", 0);
-            });
-
-
-        gData.append("text").text(function (d) {
-            //return d.first_name + " " + d.last_name;
-            return d.last_name;
-        })
-            .attr("class", function (d) {
-                return "dotText " + d.primary_faculty;
-            })
-            .attr("x", function (d) {
-                return x(d.x_value);
-            })
-            .attr("y", function (d) {
-                return y(d.y_value) - 10;
-            });
-
-        gDots.exit().remove();
-    }
-
-
-    // Event listener for faculty filter
-    d3.selectAll("#facultyFilter button").on("click", function (d) {
-        //  console.log("event logged")
-        var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
-
-        //Remove previous points
-        d3.selectAll(".dataGroup").remove();
-
-        // run the update function with this selected option
-        update(faculty, mira_members)
-        draw_lines(coauthor_start)
+    active = gData.filter(function (d) {
+        if (faculty == "All" || d["faculty2"] == faculty || d.macid == coauthor_origin){
+            return true
+        } else {
+            return false
+        }
     })
 
-    update("All", mira_members)
+    //  var jitter= () => Math.random()*5;
+    active.append("circle")
+        .attr("class", function (d) {
+            return "dot " + d.primary_faculty;
+        })
+        .attr("r", "5")
+        .attr("cx", function (d) {
+            return x(d.x_value);
+            //   return x(d.x_value+jitter());
+        })
+        .attr("cy", function (d) {
+            return y(d.y_value);
+            // return y(d.y_value+jitter());
+        })
+        // Tooltip events
+        .on("mouseover", function(d) {
+            tooltip.transition()
+                .duration(300)
+                .style("opacity", 0);
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html(
+                "<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").style(\"opacity\",0);'>Close</button></div>" +
+                "<span class='tooltipName'>"+d.first_name+ " "+d.last_name +
+                "</span><p>" + d.position + "</p>" +
+                "Department: "  + d.faculty2 +
+                "<br>MIRA projects (pull projects)<br>" +
+                '<br><a href= "https://mira.mcmaster.ca/team/bio/'+
+                d.first_name.toLowerCase() + '-'+d.last_name.toLowerCase() +
+                '" target="_blank">View Profile Page' +
+                "</a>")
+                .style("left", (d3.event.pageX +10) + "px")
+                .style("top", (d3.event.pageY - 28) + "px");
+        })
+        .on("click", function(d) {
+            tooltip.transition()
+                .duration(400)
+                .style("opacity", .9);
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", 0);
+        });
 
+    active.append("text").text(function (d) {
+        return d.last_name;
+    })
+        .attr("class", function (d) {
+            return "dotText " + d.primary_faculty;
+        })
+        .attr("x", function (d) {
+            return x(d.x_value);
+        })
+        .attr("y", function (d) {
+            return y(d.y_value) - 10;
+        });
 
-    function draw_lines(macid) {
-        console.log("draw")
-        const start = dots[macid];
-        for (i=0; i < coauthor_network[start.macid].length; i++){
-            if (coauthor_network[start.macid][i] in dots){
+    //gDots.exit().remove();
+}
 
-                end = dots[coauthor_network[start.macid][i]]
+function draw_lines(macid) {
+    // remove former lines
+    d3.selectAll("line").remove();
+
+    //set global coauthor variable
+    coauthor_origin = macid
+
+    for (i = 0; i < coauthor_network[macid].length; i++){
+        if (coauthor_network[macid][i] in dots){
+            if (active_faculty == "All" || active_faculty == dots[coauthor_network[macid][i]].faculty2) {
+                const end = dots[coauthor_network[macid][i]]
                 g.append("line")
                     .attr("x1", function (d) {
-                        return x(start.x_value);
+                        return x(dots[macid].x_value);
                     })    // x position of the first end of the line
                     .attr("y1", function (d) {
-                        return y(start.y_value);
+                        return y(dots[macid].y_value);
 
                     })     // y position of the first end of the line
                     .attr("x2", x(end.x_value))     // x position of the second end of the line
                     .attr("y2", y(end.y_value))    // y position of the second end of the line
                     .attr("stroke-width", 2)
                     .attr("stroke", "black");
-
             }
         }
     }
-
-    coauthor_start = ""
-    // Event listener for coauthor lines
-    d3.selectAll(".dataGroup").on("click", function (d) {
-        console.log("event logged with this event listener")
-        d3.selectAll("line").remove();
-        coauthor_start = this.id
-        draw_lines(this.id)
+}
 
 
-    })
-
-});
 
 function padExtent(e, p) {
     if (p === undefined) p = 1;
