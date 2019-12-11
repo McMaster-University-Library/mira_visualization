@@ -232,8 +232,10 @@ d3.csv("mira_members.csv").then(function(mira_members) {
     // Event listener for coauthor lines
     d3.selectAll(".dataGroup").on("click", function (d) {
         console.log("event logged with this event listener")
+
         draw_lines(this.id)
         faculty_filter(active_faculty)
+
     })
 
     // Event listener for coauthor lines
@@ -289,7 +291,7 @@ function faculty_filter(faculty) {
                 .duration(200)
                 .style("opacity", .9);
             tooltip.html(
-                "<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").remove();'>Close</button></div>" +
+                //"<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").remove();'>Close</button></div>" +
                 "<span class='tooltipName'>"+d.first_name+ " "+d.last_name +
                 "</span><p>" + d.position + "</p>" +
                 "Department: "  + d.faculty2 +
@@ -315,6 +317,8 @@ function faculty_filter(faculty) {
         .attr("y", function (d) {
             return y(d.y_value) - 10;
         });
+
+    d3.selectAll("circle").raise()
 }
 
 
@@ -326,7 +330,16 @@ function draw_lines(macid) {
         if (coauthor_network[macid][i] in dots){
             if (active_faculty == "All" || active_faculty == dots[coauthor_network[macid][i]].faculty2) {
                 const end = dots[coauthor_network[macid][i]]
-                g.append("line")
+
+               gData_object = gData.filter(function (d) {
+                    if (d.macid == end.macid){
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+
+                gData_object.append("line")
                     .attr("x1", function (d) {
                         return x(dots[macid].x_value);  // x position of the first end of the line
                     })
@@ -336,9 +349,11 @@ function draw_lines(macid) {
                     .attr("x2", x(end.x_value))     // x position of the second end of the line
                     .attr("y2", y(end.y_value))    // y position of the second end of the line
                     .attr("stroke-width", 2)
-                    .attr("stroke", "url(#gradientLine)");
+                    .attr("stroke", "black");
             }
         }
     }
+    d3.selectAll("circle").raise()
+    d3.select("[id=" + macid + "]").raise()
 }
 
