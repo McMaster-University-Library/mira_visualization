@@ -238,11 +238,14 @@ d3.csv("mira_members.csv").then(function(mira_members) {
 
     })
 
-    // Event listener for coauthor lines
-    d3.select("#miraVis").on("click", function (d) {
-        console.log("event logged with this event listener")
-        //alert("qwe")
+    // Event listener to remove coauthor lines and tooltips when clicking on canvas
+    d3.select("#miraVis").on("click", function (e) {
+
         d3.selectAll(".tooltip").remove()
+
+        if (event.target.tagName != "circle"){
+            d3.selectAll("line").remove()
+        }
     })
 
     // Initial start up
