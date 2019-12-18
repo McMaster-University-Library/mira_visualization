@@ -232,8 +232,20 @@ d3.csv("mira_members.csv").then(function(mira_members) {
     // Event listener for coauthor lines
     d3.selectAll(".dataGroup").on("click", function (d) {
         console.log("event logged with this event listener")
+
         draw_lines(this.id)
         faculty_filter(active_faculty)
+
+    })
+
+    // Event listener to remove coauthor lines and tooltips when clicking on canvas
+    d3.select("#miraVis").on("click", function (e) {
+
+        d3.selectAll(".tooltip").remove()
+
+        if (event.target.tagName != "circle"){
+            d3.selectAll("line").remove()
+        }
     })
 
     // Initial start up
@@ -247,11 +259,7 @@ function faculty_filter(faculty) {
     d3.selectAll(".dotText").remove();  //Remove previous names
     active_faculty = faculty  //Set active faculty global var
 
-    // Define 'div' to contain the tooltip
-    var tooltip = d3.select("body")
-        .append("div")
-        .attr("class", "tooltip card card-shadow")
-        .style("opacity", 0);
+
 
     active = gData.filter(function (d) {
         if (faculty == "All" || d["faculty2"] == faculty || d.macid == coauthor_origin){
@@ -274,14 +282,19 @@ function faculty_filter(faculty) {
         })
         // Tooltip events
         .on("mouseover", function(d) {
-            tooltip.transition()
-                .duration(300)
+            d3.selectAll(".tooltip").remove()
+            // Define 'div' to contain the tooltip
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip card card-shadow")
                 .style("opacity", 0);
+
+
             tooltip.transition()
                 .duration(200)
                 .style("opacity", .9);
             tooltip.html(
-                "<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").style(\"opacity\",0);'>Close</button></div>" +
+                //"<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").remove();'>Close</button></div>" +
                 "<span class='tooltipName'>"+d.first_name+ " "+d.last_name +
                 "</span><p>" + d.position + "</p>" +
                 "Department: "  + d.faculty2 +
@@ -293,14 +306,7 @@ function faculty_filter(faculty) {
                 .style("left", (d3.event.pageX +10) + "px")
                 .style("top", (d3.event.pageY - 28) + "px");
         })
-        .on("click", function(d) {
-            tooltip.transition()
-                .duration(400)
-                .style("opacity", .9);
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", 0);
-        });
+
 
     active.append("text").text(function (d) {
         return d.last_name;
@@ -314,6 +320,8 @@ function faculty_filter(faculty) {
         .attr("y", function (d) {
             return y(d.y_value) - 10;
         });
+
+    d3.selectAll("circle").raise()
 }
 
 
@@ -325,7 +333,16 @@ function draw_lines(macid) {
         if (coauthor_network[macid][i] in dots){
             if (active_faculty == "All" || active_faculty == dots[coauthor_network[macid][i]].faculty2) {
                 const end = dots[coauthor_network[macid][i]]
-                g.append("line")
+
+               gData_object = gData.filter(function (d) {
+                    if (d.macid == end.macid){
+                        return true
+                    } else {
+                        return false
+                    }
+                })
+
+                gData_object.append("line")
                     .attr("x1", function (d) {
                         return x(dots[macid].x_value);  // x position of the first end of the line
                     })
@@ -335,9 +352,11 @@ function draw_lines(macid) {
                     .attr("x2", x(end.x_value))     // x position of the second end of the line
                     .attr("y2", y(end.y_value))    // y position of the second end of the line
                     .attr("stroke-width", 2)
-                    .attr("stroke", "url(#gradientLine)");
+                    .attr("stroke", "black");
             }
         }
     }
+    d3.selectAll("circle").raise()
+    d3.select("[id=" + macid + "]").raise()
 }
 
