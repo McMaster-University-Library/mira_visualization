@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sample Visualization for MIRA</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- McMaster University's Brighter World Branding CSS -->
     <link rel="stylesheet" href="https://documents.mcmaster.ca/www/cdn/css/1.0/mcm-bw.css">
 	<link rel="stylesheet" href="mira.css">
@@ -22,9 +23,13 @@
                 <svg id="miraVis" class='text-center'></svg>
             </div>
         </div>
-        <div class="filters">
-            <strong>Filter by Faculty</strong>
-            <div id="facultyFilter">
+        <div class="filters accordion">
+            <a class="btn btn-secondary collapsed" data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
+                Filters
+            </a>
+            <div class="collapse" id="collapseFilter">
+              <strong>Filter by Faculty</strong>
+              <div id="facultyFilter">
                 <button class="facultyFilter2 All"><span style='color:pink;'>&#9679;</span>All</button>
                 <button class="facultyFilter2 Engineering"><span>&#9679;</span>Engineering</button>
                 <button class="facultyFilter2 HealthSciences"><span>&#9679;</span>Health Sciences</button>
@@ -32,10 +37,14 @@
                 <button class="facultyFilter2 SocialSciences"><span>&#9679;</span>Social Sciences</button>
                 <button class="facultyFilter2 Science"><span>&#9679;</span>Science</button>
                 <button class="facultyFilter2 Humanities"><span>&#9679;</span>Humanities</button>
+              </div>
+              <div id="projectFilter">
+                <p>Another filter for projects</p>
             </div>
-            <p>Another filter for projects</p>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="d3.v5.min.js"></script>
     <script src="mira.js"></script>
 </body>

@@ -127,7 +127,6 @@ function zoomed() {
     g.attr("transform", transform);
 }
 
-
 // Scales
 const x = d3.scaleLinear()
     .domain(padExtent([1,200]))
@@ -369,3 +368,10 @@ function draw_lines(macid) {
     d3.select("[id=" + macid + "]").raise()
 }
 
+$('#collapseFilter').on('show.bs.collapse', function () {
+    $('.filters a').addClass('active');
+});
+
+$('#collapseFilter').on('hide.bs.collapse', function () {
+    $('.filters a').removeClass('active');
+});
