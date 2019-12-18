@@ -6,7 +6,7 @@ JavaScript to create visualization
 // Global Vars
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const margin = {top: 0, right: 20, bottom: 15, left: 0};
+const margin = {top: 0, right: 10, bottom: 10, left: 0};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
@@ -159,7 +159,7 @@ g.append("text")
     .text("POLICY")
 
 g.append("text")
-    .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[0]-margin.bottom) + ")")
+    .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[0]-(margin.bottom*2)) + ")")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .attr("class", "axisTitle")
@@ -183,7 +183,7 @@ g.append("text")
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", (domainWidth-margin.right))
+    .attr("y", (domainWidth-(margin.right*2)))
     .attr("x",-domainHeight/2 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
