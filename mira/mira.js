@@ -6,7 +6,7 @@ JavaScript to create visualization
 // Global Vars
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const margin = {top: 20, right: 20, bottom: 45, left: 20};
+const margin = {top: 0, right: 20, bottom: 15, left: 0};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
@@ -93,13 +93,19 @@ get_mira_data();
 // Visual Elements
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var availWidth=window.innerWidth-(document.getElementsByClassName('col-md-2')[0].clientWidth)-(margin.left+margin.right);
-var availHeight=window.innerHeight-(document.getElementsByTagName('h1')[0].clientHeight)-(margin.top+margin.bottom);
+//var availWidth=window.innerWidth-(document.getElementsByClassName('col-md-2')[0].clientWidth)-(margin.left+margin.right);
+var availWidth=window.innerWidth-margin.left-margin.right;
+
+//var availHeight=window.innerHeight-(document.getElementsByTagName('h1')[0].clientHeight)-(margin.top+margin.bottom);
+var availHeight=window.innerHeight-margin.top-margin.bottom;
 
 //below code will result in true if on small mobile device when filters column is taking up full width
+/* Don't need code below since visualization will take up full width
 if (availWidth<0) {
     availWidth=window.innerWidth;
 }
+
+ */
 
 const svg = d3.select("#miraVis").attr('width',availWidth.toString()).attr('height',availHeight.toString()),
     width = +availWidth,
@@ -111,6 +117,7 @@ const svg = d3.select("#miraVis").attr('width',availWidth.toString()).attr('heig
 // Add d3 zoom feature to svg
 svg.call(d3.zoom()
     .scaleExtent([1, 32])
+  //  .translateExtent([[-margin.left, -margin.top], [width, height]])
     .translateExtent([[-margin.left, -margin.top], [width, height]])
     .extent([[0, 0], [width, height]])
     .on("zoom", zoomed));
@@ -145,14 +152,15 @@ const xAxis= g.append("g")
     .call(d3.axisBottom(x).ticks(0));
 
 g.append("text")
-    .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1]-margin.top)+ ")")
+   // .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1]-margin.top)+ ")")
+    .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1])+ ")")
     .style("text-anchor", "middle")
     .attr("class", "axisTitle")
     .attr("dy", "1em")
     .text("POLICY")
 
 g.append("text")
-    .attr("transform", "translate(" + x.range()[1] / 2 + "," + y.range()[0] + ")")
+    .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[0]-margin.bottom) + ")")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .attr("class", "axisTitle")
@@ -166,7 +174,8 @@ g.append("g")
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y",-margin.left)
+//    .attr("y",-margin.left)
+    .attr("y",0)
     .attr("x",-domainHeight/2 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
@@ -175,7 +184,7 @@ g.append("text")
 
 g.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", domainWidth)
+    .attr("y", (domainWidth-margin.right))
     .attr("x",-domainHeight/2 )
     .attr("dy", "1em")
     .style("text-anchor", "middle")
