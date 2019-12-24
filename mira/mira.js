@@ -90,29 +90,15 @@ function sort_coauthor_xml(member_macid, xml) {
 get_mira_data();
 
 
-window.onresize = function invoke_visuals() {
-
-    visuals()
-}
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Visual Elements
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function visuals() {
 
-    d3.select("g").remove()
+    d3.select("g").remove()  // remove former drawn graphs
 
     var availWidth = window.innerWidth - margin.left - margin.right;
     var availHeight = window.innerHeight - margin.top - margin.bottom;
-
-//below code will result in true if on small mobile device when filters column is taking up full width
-    /* Don't need code below since visualization will take up full width
-    if (availWidth<0) {
-        availWidth=window.innerWidth;
-    }
-
-     */
 
     const svg = d3.select("#miraVis").attr('width', availWidth.toString()).attr('height', availHeight.toString()),
         width = +availWidth,
@@ -264,7 +250,8 @@ function visuals() {
         })
 
         // Initial start up
-        faculty_filter("All")
+        faculty_filter(active_faculty)
+        draw_lines(coauthor_origin)
     });
 
 
@@ -385,3 +372,4 @@ function visuals() {
 
 
 visuals() // initiate points
+window.onresize = function invoke_visuals() {visuals()}
