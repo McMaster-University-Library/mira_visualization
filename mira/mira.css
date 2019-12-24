@@ -8,7 +8,9 @@ h1 {
 
 .axis, .axis path {
   fill: none;
-  stroke: #ACB849;
+  stroke: #ffbf3d;
+  stroke-width: 4;
+
 }
 
 .axisTitle {
@@ -17,7 +19,7 @@ h1 {
 
 text {
   stroke: none;
-  fill: #666666;
+  fill: black;
 }
 
 .dot.Science {

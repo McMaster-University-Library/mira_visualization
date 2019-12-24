@@ -135,7 +135,7 @@ function visuals() {
     g.append("rect")
         .attr("width", width - margin.left - margin.right)
         .attr("height", height - margin.top - margin.bottom)
-        .attr("fill", "#F6F6F6");
+        .attr("fill", "white");
 
 //Add x-axis
     const xAxis = g.append("g")
