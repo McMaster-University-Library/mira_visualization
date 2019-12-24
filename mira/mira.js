@@ -138,11 +138,13 @@ function visuals() {
         .attr("fill", "white");
 
 //Add x-axis
+/*
     const xAxis = g.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + y.range()[0] / 2 + ")")
         .call(d3.axisBottom(x).ticks(0));
 
+*/
     g.append("text")
     // .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1]-margin.top)+ ")")
         .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[1]) + ")")
@@ -150,6 +152,7 @@ function visuals() {
         .attr("class", "axisTitle")
         .attr("dy", "1em")
         .text("POLICY")
+
 
     g.append("text")
         .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[0] - (margin.bottom * 2)) + ")")
@@ -159,10 +162,13 @@ function visuals() {
         .text("PRODUCT or SERVICE");
 
 //Add y-axis
+    /*
     g.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(" + x.range()[1] / 2 + ", 0)")
         .call(d3.axisLeft(y).ticks(0));
+*/
+
 
     g.append("text")
         .attr("transform", "rotate(-90)")
@@ -171,7 +177,7 @@ function visuals() {
         .attr("x", -domainHeight / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .attr("class", "axisTitle")
+        .attr("class", "axisTitle leftTitle")
         .text("PRACTICE & APPLICATION");
 
     g.append("text")
@@ -180,8 +186,27 @@ function visuals() {
         .attr("x", -domainHeight / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .attr("class", "axisTitle")
+        .attr("class", "axisTitle rightTitle")
         .text("THEORY & DISCOVERY");
+
+
+    g.append("line")
+        .attr("transform", "rotate(-90)")
+        .attr("x1", d3.select(".rightTitle").attr('x')) // x position of the first end of the line
+        .attr("y1", d3.select(".rightTitle").attr('y'))
+        .attr("x2", d3.select(".leftTitle").attr('x')) // x position of the first end of the line
+        .attr("y2", d3.select(".leftTitle").attr('y') + 20)
+        .attr("stroke-width", 4)
+        .attr("stroke", "black")
+
+    g.append("line")
+        //.attr("transform", "rotate(-90)")
+        .attr("x1", domainWidth / 2) // x position of the first end of the line
+        .attr("y1", 20)
+        .attr("x2", domainWidth / 2) // x position of the first end of the line
+        .attr("y2", domainHeight - 20)
+        .attr("stroke-width", 4)
+        .attr("stroke", "black")
 
 
     function padExtent(e, p) {
@@ -221,6 +246,7 @@ function visuals() {
             })
             .attr("class", "dataGroup");
 
+
         // Event listener for faculty filter
         d3.selectAll("#facultyFilter button").on("click", function (d) {
             //  console.log("event logged")
@@ -243,7 +269,7 @@ function visuals() {
         d3.select("#miraVis").on("click", function (e) {
 
             if (event.target.tagName != "circle") {
-                d3.selectAll("line").remove()
+                d3.selectAll(".coauthor_line").remove()
                 d3.selectAll(".tooltip").remove()
             }
         })
@@ -336,7 +362,7 @@ function visuals() {
 
 
     function draw_lines(macid) {
-        d3.selectAll("line").remove();  // remove former lines
+        d3.selectAll(".coauthor_line").remove();  // remove former lines
         coauthor_origin = macid;  //set global coauthor variable
 
         for (i = 0; i < coauthor_network[macid].length; i++) {
@@ -361,8 +387,21 @@ function visuals() {
                         })
                         .attr("x2", x(end.x_value))     // x position of the second end of the line
                         .attr("y2", y(end.y_value))    // y position of the second end of the line
-                        .attr("stroke-width", 2)
+                        .attr("stroke-width", 4)
+                        .attr("stroke", "black")
+                        .attr("class", "coauthor_line");
+
+                    /*
+                    gData_object.append("line")
+                        .attr("x1", 200) // x position of the first end of the line
+
+                        .attr("y1", 200)
+
+                        .attr("x2", 100)     // x position of the second end of the line
+                        .attr("y2", 100)    // y position of the second end of the line
+                        .attr("stroke-width", 4)
                         .attr("stroke", "black");
+*/
                 }
             }
         }
