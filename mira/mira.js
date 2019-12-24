@@ -297,7 +297,7 @@ function visuals() {
             .attr("class", function (d) {
                 return "dot " + d.primary_faculty;
             })
-            .attr("r", "5")
+            .attr("r", "7")
             .attr("cx", function (d) {
                 return x(d.x_value);
             })
