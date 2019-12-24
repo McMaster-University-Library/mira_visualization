@@ -15,14 +15,14 @@ var dots = {}  // key: macid val: dataGroup (for the dot)
 gData = []
 coauthor_origin = ""
 active_faculty = "All"
-
+csv_file = "mira_members52.csv"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Pulling co-author Data
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function get_mira_data(){
 
-    d3.csv("mira_members.csv").then(function(data){
+    d3.csv(csv_file).then(function(data){
         for (i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
             mira_members_data_pull[data[i]["macid"]] = data[i]
@@ -199,7 +199,7 @@ function visuals() {
      */
 
 
-    d3.csv("mira_members.csv").then(function (mira_members) {
+    d3.csv(csv_file).then(function (mira_members) {
         // Prepare data. Coerce the strings for coordinates to numbers.
         mira_members.forEach(function (d) {
             d.x_value = +d.x_value;
@@ -259,8 +259,6 @@ function visuals() {
         d3.selectAll("circle").remove();  //Remove previous points
         d3.selectAll(".dotText").remove();  //Remove previous names
         active_faculty = faculty  //Set active faculty global var
-
-
         active = gData.filter(function (d) {
             if (faculty == "All" || d["faculty2"] == faculty || d.macid == coauthor_origin) {
                 return true
