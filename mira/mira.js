@@ -242,10 +242,9 @@ function visuals() {
         // Event listener to remove coauthor lines and tooltips when clicking on canvas
         d3.select("#miraVis").on("click", function (e) {
 
-            d3.selectAll(".tooltip").remove()
-
             if (event.target.tagName != "circle") {
                 d3.selectAll("line").remove()
+                d3.selectAll(".tooltip").remove()
             }
         })
 
@@ -283,29 +282,41 @@ function visuals() {
             })
             // Tooltip events
             .on("mouseover", function (d) {
-                d3.selectAll(".tooltip").remove()
-                // Define 'div' to contain the tooltip
-                var tooltip = d3.select("body")
-                    .append("div")
-                    .attr("class", "tooltip card card-shadow")
-                    .style("opacity", 0);
+
+                var current_tooltip = document.getElementsByClassName("tooltip")
+
+                if (current_tooltip.length > 0 && current_tooltip[0].getAttribute("macid") != d.macid){
+                    d3.selectAll(".tooltip").remove()
+                }
+
+                current_tooltip = document.getElementsByClassName("tooltip")
+                if (current_tooltip.length == 0) {
+                    // Define 'div' to contain the tooltip
+                    var tooltip = d3.select("body")
+                        .append("div")
+                        .attr("class", "tooltip card card-shadow")
+                        .attr("macid", d.macid)
+                        .style("opacity", 0);
 
 
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html(
-                    //"<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").remove();'>Close</button></div>" +
-                    "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
-                    "</span><p>" + d.position + "</p>" +
-                    "Department: " + d.faculty2 +
-                    "<br>MIRA projects (pull projects)<br>" +
-                    '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
-                    d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
-                    '" target="_blank">View Profile Page' +
-                    "</a>")
-                    .style("left", (d3.event.pageX + 10) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(
+                        //"<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").remove();'>Close</button></div>" +
+                        "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
+                        "</span><p>" + d.position + "</p>" +
+                        "Department: " + d.faculty2 +
+                        "<br>MIRA projects (pull projects)<br>" +
+                        '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
+                        d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
+                        '" target="_blank">View Profile Page' +
+                        "</a>")
+                        .style("left", (d3.event.pageX + 10) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+
+                }
+
             })
 
 
@@ -371,5 +382,5 @@ function visuals() {
 }
 
 
-visuals() // initiate points
-window.onresize = function invoke_visuals() {visuals()}
+visuals() // initialization
+window.onresize = function invoke_visuals() {visuals()}  // redraw to fit window
