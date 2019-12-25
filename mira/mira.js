@@ -196,16 +196,16 @@ function visuals() {
         .attr("x1", d3.select(".rightTitle").attr('x')) // x position of the first end of the line
         .attr("y1", d3.select(".rightTitle").attr('y'))
         .attr("x2", d3.select(".leftTitle").attr('x')) // x position of the first end of the line
-        .attr("y2", d3.select(".leftTitle").attr('y') + 24)
+        .attr("y2", d3.select(".leftTitle").attr('y') + 27)
         .attr("stroke-width", 4)
         .attr("stroke", "black")
 
     g.append("line")
         //.attr("transform", "rotate(-90)")
         .attr("x1", domainWidth / 2) // x position of the first end of the line
-        .attr("y1", 24)
+        .attr("y1", 28)
         .attr("x2", domainWidth / 2) // x position of the first end of the line
-        .attr("y2", domainHeight - 24)
+        .attr("y2", domainHeight - 23)
         .attr("stroke-width", 4)
         .attr("stroke", "black")
 
