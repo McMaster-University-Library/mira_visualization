@@ -270,6 +270,7 @@ function visuals() {
         d3.select("#miraVis").on("click", function (e) {
 
             if (event.target.tagName != "circle") {
+                coauthor_origin = ""
                 d3.selectAll(".coauthor_line").remove()
                 d3.selectAll(".tooltip").remove()
             }
