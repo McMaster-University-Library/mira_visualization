@@ -3,8 +3,13 @@
 }
 
 h1 {
-    margin-bottom: 24px;
+    margin-bottom: 0px;
 }
+
+body { margin:0;
+  padding:0; overflow:hidden }
+
+svg { position:fixed; top:0; bottom:0; left:0; right:0 }
 
 .axis, .axis path {
   fill: none;
@@ -15,6 +20,7 @@ h1 {
 
 .axisTitle {
   font-weight: bold;
+  font-size: larger;
 }
 
 text {

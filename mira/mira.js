@@ -6,7 +6,7 @@ JavaScript to create visualization
 // Global Vars
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const margin = {top: 0, right: 10, bottom: 10, left: 0};
+const margin = {top: 0, right: 0, bottom: 0, left: 0};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
@@ -122,11 +122,11 @@ function visuals() {
 
 // Scales
     const x = d3.scaleLinear()
-        .domain(padExtent([1, 200]))
+        .domain(padExtent([0, 200]))
         .range(padExtent([0, domainWidth]));
 
     const y = d3.scaleLinear()
-        .domain(padExtent([1, 200]))
+        .domain(padExtent([0, 200]))
         .range(padExtent([domainHeight, 0]));
 
     const g = svg.append("g")
@@ -135,7 +135,7 @@ function visuals() {
     g.append("rect")
         .attr("width", width - margin.left - margin.right)
         .attr("height", height - margin.top - margin.bottom)
-        .attr("fill", "white");
+        .attr("fill", "#eaf1f8");
 
 //Add x-axis
 /*
@@ -155,11 +155,12 @@ function visuals() {
 
 
     g.append("text")
-        .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[0] - (margin.bottom * 2)) + ")")
+        .attr("transform", "translate(" + x.range()[1] / 2 + "," + (domainHeight - 24) + ")")
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .attr("class", "axisTitle")
-        .text("PRODUCT or SERVICE");
+        .text("PRODUCT or SERVICE"),
+        console.log(domainHeight)
 
 //Add y-axis
     /*
@@ -182,7 +183,7 @@ function visuals() {
 
     g.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", (domainWidth - (margin.right * 2)))
+        .attr("y", (domainWidth - 24))
         .attr("x", -domainHeight / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
@@ -195,16 +196,16 @@ function visuals() {
         .attr("x1", d3.select(".rightTitle").attr('x')) // x position of the first end of the line
         .attr("y1", d3.select(".rightTitle").attr('y'))
         .attr("x2", d3.select(".leftTitle").attr('x')) // x position of the first end of the line
-        .attr("y2", d3.select(".leftTitle").attr('y') + 20)
+        .attr("y2", d3.select(".leftTitle").attr('y') + 24)
         .attr("stroke-width", 4)
         .attr("stroke", "black")
 
     g.append("line")
         //.attr("transform", "rotate(-90)")
         .attr("x1", domainWidth / 2) // x position of the first end of the line
-        .attr("y1", 20)
+        .attr("y1", 24)
         .attr("x2", domainWidth / 2) // x position of the first end of the line
-        .attr("y2", domainHeight - 20)
+        .attr("y2", domainHeight - 24)
         .attr("stroke-width", 4)
         .attr("stroke", "black")
 
