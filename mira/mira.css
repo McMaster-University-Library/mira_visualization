@@ -113,6 +113,8 @@ div.tooltip .tooltipName {
 
 circle {
   z-index: 100;
+  stroke: white;
+  stroke-width: 0.4px;
 }
 
 text, line {
