@@ -257,7 +257,7 @@ function visuals() {
             draw_lines(coauthor_origin)
         })
 
-        // Event listener for coauthor lines
+        // Event listener for coauthor linesx
         d3.selectAll(".dataGroup").on("click", function (d) {
             console.log("event logged with this event listener")
 
@@ -273,6 +273,7 @@ function visuals() {
                 coauthor_origin = ""
                 d3.selectAll(".coauthor_line").remove()
                 d3.selectAll(".tooltip").remove()
+                faculty_filter(active_faculty)
             }
         })
 
