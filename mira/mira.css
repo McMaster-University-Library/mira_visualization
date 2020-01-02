@@ -59,7 +59,7 @@ text {
  
 #facultyFilter button {
   display:block;
-  width: 150px;
+  width: 100%;
   background: none;
   text-align: left;
   padding: 2px 2px 2px 10px;
