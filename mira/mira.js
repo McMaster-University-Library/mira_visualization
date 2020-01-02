@@ -252,6 +252,8 @@ function visuals() {
         d3.selectAll("#facultyFilter button").on("click", function (d) {
             //  console.log("event logged")
             var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
+            d3.selectAll('#facultyFilter button').classed('active',false)
+            d3.select(this).classed('active', true)
             // run the update function with this selected option
             faculty_filter(faculty)
             draw_lines(coauthor_origin)

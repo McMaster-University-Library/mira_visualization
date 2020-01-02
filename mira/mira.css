@@ -72,6 +72,10 @@ text {
   background-color: #dbdbdd;
 }
 
+#facultyFilter button.active {
+  background-color: #efefef;
+}
+
 #facultyFilter span {
   font-size: 1.4em;
 }
