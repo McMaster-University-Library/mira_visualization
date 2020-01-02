@@ -50,6 +50,12 @@ text {
 .dot.Humanities{
  fill:#007B4B;
 }
+
+.filterLabel {
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 15px;
+}
  
 #facultyFilter button {
   display:block;
@@ -57,9 +63,9 @@ text {
   background: none;
   text-align: left;
   padding: 2px 2px 2px 10px;
-  border: 2px solid #5e6a71;
   margin-bottom: 2px;
-  border-radius: 20px;
+  border: none;
+  border-bottom: 1px dashed #dbdbdd;
 }
 
 #facultyFilter button:hover {
@@ -127,11 +133,12 @@ line {
 
 .filters {
   position: absolute;
-  top: 2px;
+  top: 5px;
+  left: 5px;
 }
 
 .filters a.btn {
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 .filters a:before {
