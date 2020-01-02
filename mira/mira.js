@@ -339,8 +339,25 @@ function visuals() {
                         d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
                         '" target="_blank">View Profile Page' +
                         "</a>")
-                        .style("left", (d3.event.pageX + 10) + "px")
-                        .style("top", (d3.event.pageY - 28) + "px");
+                     //   .style("left", (d3.event.pageX + 10) + "px")
+                        .style("left", function () {
+                            var eventX=d3.event.pageX
+                            var tooltipWidth=this.offsetWidth
+                            if (eventX + tooltipWidth > availWidth) {
+                                return (eventX - tooltipWidth)+"px";
+                            } else {
+                                return (eventX + 10)+"px";
+                            }
+                        })
+                        .style("top", function () {
+                            var eventY=d3.event.pageY
+                            var tooltipHeight=this.offsetHeight
+                            if (eventY + tooltipHeight > availHeight) {
+                                return (eventY - tooltipHeight)+"px";
+                            } else {
+                                return (eventY - 28)+"px";
+                            }
+                        });
 
                 }
 
