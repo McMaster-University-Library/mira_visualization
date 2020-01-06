@@ -78,6 +78,7 @@ text {
 
 #facultyFilter span {
   font-size: 1.4em;
+  margin-right: 4px;
 }
 #facultyFilter .Engineering span {
   color: #000000;
@@ -132,7 +133,7 @@ text, line {
 }
 
 line {
-    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 50%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(255, 255, 255, 1) 100%);
 }
 
 .filters {
@@ -143,6 +144,7 @@ line {
 
 .filters a.btn {
   border-radius: 8px;
+  width: 100%;
 }
 
 .filters a:before {
@@ -163,6 +165,7 @@ line {
 #collapseFilter {
   background-color: #fff;
   border-radius: 8px;
+  padding: 0px 10px;
 }
 
 .filters div {
