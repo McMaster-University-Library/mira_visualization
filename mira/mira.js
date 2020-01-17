@@ -6,6 +6,8 @@ JavaScript to create visualization
 // Global Vars
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const mira_members_csv = "mira_members94.csv"
+const project_grants_csv = "project_grant_test1.csv"
 const margin = {top: 0, right: 0, bottom: 0, left: 0};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
@@ -15,10 +17,9 @@ var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
 var coauthor_origin = ""
 var active_faculty = "All"
-var levels = {}
-var pg = {}
-const csv_file = "mira_members94.csv"
-const project_grants_csv = "project_grant_test1.csv"
+var levels = {}  //
+var pg = {}  // holds
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Pulling co-author and Project/Grant Data
@@ -27,7 +28,7 @@ const project_grants_csv = "project_grant_test1.csv"
 function get_mira_data(){
 
     // member data
-    d3.csv(csv_file).then(function(data){
+    d3.csv(mira_members_csv).then(function(data){
         for (i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
             mira_members_data_pull[data[i]["macid"]] = data[i]
@@ -90,8 +91,6 @@ function get_mira_data(){
         console.log("PG:", pg)
         console.log("levels", levels)
     })
-
-
 
 }
 
@@ -186,14 +185,6 @@ function visuals() {
         .attr("height", height - margin.top - margin.bottom)
         .attr("fill", "#eaf1f8");
 
-//Add x-axis
-/*
-    const xAxis = g.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + y.range()[0] / 2 + ")")
-        .call(d3.axisBottom(x).ticks(0));
-
-*/
     g.append("text")
     // .attr("transform", "translate(" + x.range()[1] /2 + "," + (y.range()[1]-margin.top)+ ")")
         .attr("transform", "translate(" + x.range()[1] / 2 + "," + (y.range()[1]) + ")")
@@ -202,7 +193,6 @@ function visuals() {
         .attr("dy", "1em")
         .text("POLICY")
 
-
     g.append("text")
         .attr("transform", "translate(" + x.range()[1] / 2 + "," + (domainHeight - 24) + ")")
         .attr("dy", "1em")
@@ -210,15 +200,6 @@ function visuals() {
         .attr("class", "axisTitle")
         .text("PRODUCT or SERVICE"),
         console.log(domainHeight)
-
-//Add y-axis
-    /*
-    g.append("g")
-        .attr("class", "y axis")
-        .attr("transform", "translate(" + x.range()[1] / 2 + ", 0)")
-        .call(d3.axisLeft(y).ticks(0));
-*/
-
 
     g.append("text")
         .attr("transform", "rotate(-90)")
@@ -274,7 +255,7 @@ function visuals() {
      */
 
 
-    d3.csv(csv_file).then(function (mira_members) {
+    d3.csv(mira_members_csv).then(function (mira_members) {
         // Prepare data. Coerce the strings for coordinates to numbers.
         mira_members.forEach(function (d) {
             d.x_value = +d.x_value;
@@ -462,17 +443,6 @@ function visuals() {
                         .attr("stroke", "black")
                         .attr("class", "coauthor_line");
 
-                    /*
-                    gData_object.append("line")
-                        .attr("x1", 200) // x position of the first end of the line
-
-                        .attr("y1", 200)
-
-                        .attr("x2", 100)     // x position of the second end of the line
-                        .attr("y2", 100)    // y position of the second end of the line
-                        .attr("stroke-width", 4)
-                        .attr("stroke", "black");
-*/
                 }
             }
         }
