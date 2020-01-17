@@ -33,7 +33,7 @@ function get_mira_data(){
             get_coauthor_xml(data[i]["macid"])
             mira_members_data_pull[data[i]["macid"]] = data[i]
 
-            // intializing faculty list if it isn't there already
+            // initializing faculty list if it isn't there already
             faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
             faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
@@ -48,31 +48,33 @@ function get_mira_data(){
             const key = row["level1"] + row["level2"] + row["level3"]
 
             // filling the levels variable
-            levels[row["level1"]] = {}
+            levels[row["level1"]] = typeof(levels[row["level1"]]) === 'undefined' ? {} : levels[row["level1"]];
 
+            // If level ends at level1
             if (row["level2"].length == 0) {
                 levels[row["level1"]] = key
+            } else { // proceed to levels 2 and 3
+                cur_item = levels[row["level1"]][row["level2"]]
+                levels[row["level1"]][row["level2"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
             }
 
-            if (row["level2"].length > 0) {
-                levels[row["level1"]][row["level2"]] = {}
-            }
-
+            // If level ends at level2
             if (row["level3"].length == 0) {
                 levels[row["level1"]][row["level2"]] = key
+            } else { // proceed to level3
+                cur_item = levels[row["level1"]][row["level2"]][row["level3"]]
+                levels[row["level1"]][row["level2"]][row["level3"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
             }
 
+            // If level ends at level2
             if (row["level3"].length > 0) {
                 levels[row["level1"]][row["level2"]][row["level3"]] = key
             }
 
 
-            // filling the project grants variable
+            // filling the project grants variable (pg)
             var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
-
-            pg[key] = typeof(pg[key]) == 'undefined' ? base : pg[key];
-            console.log(row["macid"])
-
+            pg[key] = typeof(pg[key]) === 'undefined' ? base : pg[key];
             pg[key]["members"].push(row["macid"])
 
             if (row["pi"] == "TRUE"){
@@ -86,12 +88,10 @@ function get_mira_data(){
             if (row["blurb"].length > pg[key]["blurb"].length){
                 pg[key]["blurb"] = row["blurb"]
             }
-
         }
         console.log("PG:", pg)
         console.log("levels", levels)
     })
-
 }
 
 
