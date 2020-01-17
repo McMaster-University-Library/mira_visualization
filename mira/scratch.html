@@ -6,61 +6,68 @@
 </head>
 <body style="overflow: hidden;">
 <div id="canvas"  style="overflow: hidden;"></div>
-
+<script src="d3.v5.min.js"></script>
 <script type="text/javascript">
 
-    $( document ).ready(function() {
 
-        var width = 2000;
-        var height = 500;
+    levels = {}
+    pg = {}
 
-        var svg = d3.select("#canvas").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g");
+    d3.csv("project_grant.csv").then(function(data){
 
-        var lines = svg.attr("class", "line")
-            .selectAll("line").data(graph.nodes)
-            .enter().append("line")
-            .style("stroke", "gray") // <<<<< Add a color
-            .attr("x1", function (d, i) {
-                return d.x
-            })
-            .attr("y1", function (d) {
-                return d.y
-            })
-            .attr("x2", function (d) {
-                return findAttribute(d.connected).x
-            })
-            .attr("y2", function (d) {
-                return findAttribute(d.connected).y
-            })
 
-        var circles = svg.selectAll("circle")
-            .data(graph.nodes)
-            .enter().append("circle")
-            .style("stroke", "gray")
-            .style("fill", "white")
-            .attr("r", function (d, i) {
-                return d.r
-            })
-            .attr("cx", function (d, i) {
-                return d.x
-            })
-            .attr("cy", function (d, i) {
-                return d.y
-            });
+        for (i = 0; i < data.length; i++) {
+            const row = data[i]
+            const key = row["level1"] + row["level2"] + row["level3"]
 
-    });
+            // filling the levels variable
+            levels[row["level1"]] = {}
 
-    function findAttribute(name) {
-        for (var i = 0, len = graph.nodes.length; i < len; i++) {
-            if (graph.nodes[i].name === name)
-                return graph.nodes[i]; // Return as soon as the object is found
+            if (row["level2"].length == 0) {
+                levels[row["level1"]] = key
+            }
+
+            if (row["level2"].length > 0) {
+                levels[row["level1"]][row["level2"]] = {}
+            }
+
+            if (row["level3"].length == 0) {
+                levels[row["level1"]][row["level2"]] = key
+            }
+
+            if (row["level3"].length > 0) {
+                levels[row["level1"]][row["level2"]][row["level3"]] = key
+            }
+
+
+            // filling the project grants variable
+            var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
+
+            pg[key] = typeof(pg[key]) == 'undefined' ? base : pg[key];
+            console.log(row["macid"])
+
+            pg[key]["members"].push(row["macid"])
+            console.log(pg[key]["members"])
+            console.log(pg)
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+            if (row["pi"] == "TRUE"){
+                pg[key]["pi"].push(row["macid"])
+            }
+
+            if (row["blurb_title"].length > pg[key]["blurb_title"].length){
+                pg[key]["blurb_title"] = row["blurb_title"]
+            }
+
+            if (row["blurb"].length > pg[key]["blurb"].length){
+                pg[key]["blurb"] = row["blurb"]
+            }
+
+
         }
-        return null; // The object was not found
-    }
-
+        //console.log(pg)
+       // console.log(levels)
+    })
 
 </script>
 </body>
