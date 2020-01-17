@@ -12,16 +12,21 @@ var faculty_members = {}  // key: faculty val: list of macid
 var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
 var coauthor_network = {}  // key: macid val: list of coauthor macid
 var dots = {}  // key: macid val: dataGroup (for the dot)
-gData = []
-coauthor_origin = ""
-active_faculty = "All"
-csv_file = "mira_members94.csv"
+var gData = []
+var coauthor_origin = ""
+var active_faculty = "All"
+var levels = {}
+var pg = {}
+const csv_file = "mira_members94.csv"
+const project_grants_csv = "project_grant_test1.csv"
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Pulling co-author Data
+// Pulling co-author and Project/Grant Data
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function get_mira_data(){
 
+    // member data
     d3.csv(csv_file).then(function(data){
         for (i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
@@ -32,18 +37,62 @@ function get_mira_data(){
             faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
     })
-/*
-    d3.csv("project_grant.csv").then(function(data){
 
-        for (i = 0; i < data.length; i++){
-            //intializing project member list if it isn't there already
-            pg = data[i]["project_grant"]
-            pg_name = data[i]["name"]
-            project_members[pg][pg_name] = project_members[pg][pg_name] || [];
-            project_members[pg][pg_name].push(data[i]["macid"])
+
+    //project grant data
+    d3.csv(project_grants_csv).then(function(data){
+
+        for (i = 0; i < data.length; i++) {
+            const row = data[i]
+            const key = row["level1"] + row["level2"] + row["level3"]
+
+            // filling the levels variable
+            levels[row["level1"]] = {}
+
+            if (row["level2"].length == 0) {
+                levels[row["level1"]] = key
+            }
+
+            if (row["level2"].length > 0) {
+                levels[row["level1"]][row["level2"]] = {}
+            }
+
+            if (row["level3"].length == 0) {
+                levels[row["level1"]][row["level2"]] = key
+            }
+
+            if (row["level3"].length > 0) {
+                levels[row["level1"]][row["level2"]][row["level3"]] = key
+            }
+
+
+            // filling the project grants variable
+            var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
+
+            pg[key] = typeof(pg[key]) == 'undefined' ? base : pg[key];
+            console.log(row["macid"])
+
+            pg[key]["members"].push(row["macid"])
+
+            if (row["pi"] == "TRUE"){
+                pg[key]["pi"].push(row["macid"])
+            }
+
+            if (row["blurb_title"].length > pg[key]["blurb_title"].length){
+                pg[key]["blurb_title"] = row["blurb_title"]
+            }
+
+            if (row["blurb"].length > pg[key]["blurb"].length){
+                pg[key]["blurb"] = row["blurb"]
+            }
+
         }
+        console.log("PG:", pg)
+        console.log("levels", levels)
     })
- */
+
+
+
 }
 
 

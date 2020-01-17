@@ -13,7 +13,7 @@
     levels = {}
     pg = {}
 
-    d3.csv("project_grant.csv").then(function(data){
+    d3.csv("project_grant_test1.csv").then(function(data){
 
 
         for (i = 0; i < data.length; i++) {
@@ -65,8 +65,8 @@
 
 
         }
-        //console.log(pg)
-       // console.log(levels)
+        console.log("PG:", pg)
+       console.log("levels", levels)
     })
 
 </script>
