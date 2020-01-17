@@ -66,7 +66,7 @@ function get_mira_data(){
                 levels[row["level1"]][row["level2"]][row["level3"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
             }
 
-            // If level ends at level2
+            // If level ends at level3
             if (row["level3"].length > 0) {
                 levels[row["level1"]][row["level2"]][row["level3"]] = key
             }
