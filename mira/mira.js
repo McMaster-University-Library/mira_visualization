@@ -17,8 +17,8 @@ var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
 var coauthor_origin = ""
 var active_faculty = "All"
-var levels = {}  //
-var pg = {}  // holds
+var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
+var pg = {}  // holds project and grant data, key = id of project val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
