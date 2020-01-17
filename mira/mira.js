@@ -11,7 +11,6 @@ const project_grants_csv = "project_grant_test1.csv"
 const margin = {top: 0, right: 0, bottom: 0, left: 0};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
-var project_members = {"project":{}, "grant":{}}  // key: project or grant, value: {dict key: name, val: list of macid}
 var coauthor_network = {}  // key: macid val: list of coauthor macid
 var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
