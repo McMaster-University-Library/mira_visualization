@@ -1,5 +1,6 @@
 /*
-JavaScript to create visualization
+  JavaScript to create visualization
+  Developed by David Bai and Debbie Lawlor, McMaster University Library
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,9 +91,11 @@ function get_mira_data(){
         }
         console.log("PG:", pg)
         console.log("levels", levels)
+
+        generateProjectFilters(levels);
+
     })
 }
-
 
 function get_coauthor_xml(member_macid) {
     url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
@@ -134,7 +137,42 @@ function sort_coauthor_xml(member_macid, xml) {
     coauthor_network[member_macid] = mac_ids  // update global variable
 }
 
+function generateProjectFilters(levels) {
+    //console.log("levels2 " + Object.keys(levels));
+    const pf=d3.select('#projectFilter');
+    let pc1=0;
+    Object.keys(levels).forEach(function (level1) {
+        if (typeof levels[level1] === 'object' && level1 !== null) {
+            // Level 1 contains a second level
+            pf.append("button").attr('class', 'projectFilter level1 collapsed').attr('id', 'button'+pc1).attr('data-toggle','collapse').attr('href','#collapsePLevel1'+pc1).attr('aria-expanded','false').attr('aria-controls','collapsePLevel1'+pc1).text(level1);
+            pf.append("div").attr('class', 'collapse').attr('id', 'collapsePLevel1'+pc1);
+            let pc2=0;
+            let pfLevel1=d3.select('#collapsePLevel1'+pc1);
+            Object.keys(levels[level1]).forEach(function (level2) {
+                if (typeof levels[level1][level2] === 'object' && levels[level1][level2] !== null) {
+                    //Level 2 contains a third level
+                    pfLevel1.append("button").attr('class', 'projectFilter level2 collapsed').attr('id', 'button'+pc2).attr('data-toggle','collapse').attr('href','#collapsePLevel2'+pc2).attr('aria-expanded','false').attr('aria-controls','collapsePLevel2'+pc2).text(level2);
+                    pfLevel1.append("div").attr('class', 'collapse').attr('id', 'collapsePLevel2'+pc2);
+                    Object.keys(levels[level1][level2]).forEach(function (level3) {
+                        d3.select('#collapsePLevel2'+pc2).append("button").attr('class', 'projectFilter level3 triggerProjectFilter').attr('data-project-filter',levels[level1][level2][level3]).text(level3);
+                    });
+                } else {
+                    //Level 2 does not contain a third level
+                    pfLevel1.append("button").attr('class', 'projectFilter level2 triggerProjectFilter').attr('data-project-filter',levels[level1][level2]).text(level2);
+                }
+                pc2++;
+            });
+        } else {
+            // Level 1 doesn't contain further levels
+            pf.append("button").attr('class', 'projectFilter level1 triggerProjectFilter').attr('data-project-filter',levels[level1]).text(level1);
+        }
+        pc1++;
+    });
+}
+
 get_mira_data();
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +236,7 @@ function visuals() {
         .style("text-anchor", "middle")
         .attr("class", "axisTitle")
         .text("PRODUCT or SERVICE"),
-        console.log(domainHeight)
+       // console.log(domainHeight)
 
     g.append("text")
         .attr("transform", "rotate(-90)")
@@ -286,6 +324,14 @@ function visuals() {
             // run the update function with this selected option
             faculty_filter(faculty)
             draw_lines(coauthor_origin)
+        })
+
+        // Event listener for project filter
+        d3.selectAll(".triggerProjectFilter").on("click", function (d) {
+          var projectId=  this.getAttribute('data-project-filter');
+          // console.log("Project id is "+projectId);
+          alert("Project id is "+projectId);
+          // add function for project filter
         })
 
         // Event listener for coauthor linesx
@@ -449,15 +495,28 @@ function visuals() {
         d3.select("[id=" + macid + "]").raise()
     }
 
-    $('#collapseFilter').on('show.bs.collapse', function () {
+    $('#collapseFilter').on('show.bs.collapse', function (e) {
+        // Line below to prevent main filters button arrows changing when a collapsed project filter is selected
+        if(e.target != this) return;
         $('.filters a').addClass('active');
     });
 
-    $('#collapseFilter').on('hide.bs.collapse', function () {
+    $('#collapseFilter').on('hide.bs.collapse', function (e) {
+        if(e.target != this) return;
         $('.filters a').removeClass('active');
     });
-}
 
+    $("div[id='projectFilter'] div").on('show.bs.collapse', function () {
+       //console.log("TEST 6 "+this.id);
+      $(this).prevAll("button").first().addClass('active');
+    });
+
+    $("div[id^='projectFilter'] div").on('hide.bs.collapse', function () {
+        //console.log("test 7");
+        $(this).prevAll("button").first().removeClass('active');
+    });
+
+}
 
 visuals() // initialization
 window.onresize = function invoke_visuals() {visuals()}  // redraw to fit window
