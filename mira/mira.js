@@ -172,9 +172,6 @@ function generateProjectFilters(levels) {
 
 get_mira_data();
 
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Visual Elements
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,11 +182,15 @@ function visuals() {
     var availWidth = window.innerWidth - margin.left - margin.right;
     var availHeight = window.innerHeight - margin.top - margin.bottom;
 
+
+
     const svg = d3.select("#miraVis").attr('width', availWidth.toString()).attr('height', availHeight.toString()),
         width = +availWidth,
         height = +availHeight,
         domainWidth = width - margin.left - margin.right,
         domainHeight = height - margin.top - margin.bottom;
+
+
 
 
 // Add d3 zoom feature to svg
@@ -357,6 +358,7 @@ function visuals() {
         // Initial start up
         faculty_filter(active_faculty)
         draw_lines(coauthor_origin)
+        d3.select('#collapseFilter').attr('style','height: '+(+availHeight-50)+'px;');
     });
 
 
@@ -519,4 +521,5 @@ function visuals() {
 }
 
 visuals() // initialization
+
 window.onresize = function invoke_visuals() {visuals()}  // redraw to fit window

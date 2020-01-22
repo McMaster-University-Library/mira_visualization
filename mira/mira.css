@@ -51,7 +51,7 @@ text {
 
 .filterLabel {
   font-weight: bold;
-  padding: 10px;
+  padding: 0px 10px;
   margin-top: 15px;
 }
  
@@ -180,9 +180,19 @@ line {
 }
 
 #collapseFilter {
+//  background-color: #fff;
+//  border-radius: 8px;
+  padding: 0px 5px 5px 5px;
+//  border: 1px solid #dbdbdd;
+  overflow-y: scroll;
+  margin-top: 10px;
+  background-color: #dbdbdd;
+}
+
+#filter1, #filter2 {
   background-color: #fff;
   border-radius: 8px;
-  padding: 0px 10px 20px 0px;
+  padding: 0px 0px 20px 0px;
   border: 1px solid #dbdbdd;
 }
 
