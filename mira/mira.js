@@ -358,7 +358,7 @@ function visuals() {
         // Initial start up
         faculty_filter(active_faculty)
         draw_lines(coauthor_origin)
-        d3.select('#collapseFilter').attr('style','height: '+(+availHeight-50)+'px;');
+
     });
 
 
@@ -457,6 +457,7 @@ function visuals() {
             });
 
         d3.selectAll("circle").raise()
+        d3.select('#collapseFilter').attr('style','height: '+(+availHeight-100)+'px;');
     }
 
 
