@@ -14,12 +14,19 @@
     </style>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" region="main">
         <div class="row">
             <div class='col-md-12' id='visualization'>
                 <!-- Suppress heading but for accessibility reasons, add class for screen-readers. -->
                 <h1 class="sr-only">MIRA - Sample Visualization</h1>
-                <svg id="miraVis" class='text-center'></svg>
+                <svg id="miraVis" class='text-center' aria-labelledby="miraTitle miraDescription">
+                    <title id="miraTitle">Quadrant chart showing collaboration among members of McMaster Institute for Research on Aging.</title>
+                    <desc id="miraDescription">Top-left quadrant showing MIRA members focusing on Practice and Application to create a policy.
+                        Top-right quadrant showing MIRA members focusing on Theory & Discovery to create a policy.
+                        Bottom-left quadrant showing MIRA members focusing on Practice and Application to create a product or service.
+                        Bottom-right quadrant showing MIRA members focusing on Theory & Discovery to create a product or service. Clicking on a member dot will show co-author network.
+                    </desc>
+                </svg>
             </div>
         </div>
         <div class="filters accordion">
