@@ -194,17 +194,27 @@ function visuals() {
 
 
 // Add d3 zoom feature to svg
-    svg.call(d3.zoom()
-        .scaleExtent([1, 32])
+    const zoom=d3.zoom()
+        .scaleExtent([1, 40])
         //  .translateExtent([[-margin.left, -margin.top], [width, height]])
         .translateExtent([[-margin.left, -margin.top], [width, height]])
         .extent([[0, 0], [width, height]])
-        .on("zoom", zoomed));
+        .on("zoom", zoomed);
 
     function zoomed() {
         var transform = d3.event.transform;
         g.attr("transform", transform);
     }
+
+    svg.call(zoom);
+
+    d3.select("#zoomIn").on("click", function() {
+        svg.transition().call(zoom.scaleBy, 1.5);
+    });
+
+    d3.select("#zoomOut").on("click", function() {
+        svg.transition().call(zoom.scaleBy, 0.5);
+    });
 
 // Scales
     const x = d3.scaleLinear()
@@ -265,8 +275,9 @@ function visuals() {
         .attr("y1", d3.select(".rightTitle").attr('y'))
         .attr("x2", d3.select(".leftTitle").attr('x')) // x position of the first end of the line
         .attr("y2", d3.select(".leftTitle").attr('y') + 27)
-        .attr("stroke-width", 4)
+        .attr("stroke-width", 3)
         .attr("stroke", "black")
+        .attr("opacity", ".7")
 
     g.append("line")
         //.attr("transform", "rotate(-90)")
@@ -274,8 +285,9 @@ function visuals() {
         .attr("y1", 28)
         .attr("x2", domainWidth / 2) // x position of the first end of the line
         .attr("y2", domainHeight - 23)
-        .attr("stroke-width", 4)
+        .attr("stroke-width", 3)
         .attr("stroke", "black")
+        .attr("opacity", ".7")
 
 
     function padExtent(e, p) {
@@ -401,7 +413,7 @@ function visuals() {
                     var tooltip = d3.select("body")
                         .append("div")
                         .attr("class", "tooltip card card-shadow")
-                        .attr("macid", d.macid)
+                      //  .attr("macid", d.macid)
                         .style("opacity", 0);
 
 
@@ -409,9 +421,9 @@ function visuals() {
                         .duration(200)
                         .style("opacity", .9);
                     tooltip.html(
-                        //"<div class='text-right'><button onclick='d3.selectAll(\".tooltip\").remove();'>Close</button></div>" +
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
-                        "</span><p>" + d.position + "</p>" +
+                        "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
+                        "<p>" + d.position + "</p>" +
                         "Department: " + d.faculty2 +
                         "<br>MIRA projects (pull projects)<br>" +
                         '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
@@ -487,8 +499,8 @@ function visuals() {
                         })
                         .attr("x2", x(end.x_value))     // x position of the second end of the line
                         .attr("y2", y(end.y_value))    // y position of the second end of the line
-                        .attr("stroke-width", 4)
-                        .attr("stroke", "black")
+                        .attr("stroke-width", 2)
+                        .attr("stroke", "#5e6a71")
                         .attr("class", "coauthor_line");
 
                 }
@@ -497,6 +509,8 @@ function visuals() {
         d3.selectAll("circle").raise()
         d3.select("[id=" + macid + "]").raise()
     }
+
+
 
     $('#collapseFilter').on('show.bs.collapse', function (e) {
         // Line below to prevent main filters button arrows changing when a collapsed project filter is selected

@@ -137,6 +137,8 @@ div.tooltip .tooltipName {
   font-weight:bold;
   font-size:1.2em;
   text-align:center;
+  padding-left: 25px;
+  padding-right: 10px
 }
 
 circle {
@@ -150,7 +152,7 @@ text, line {
 }
 
 line {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(255, 255, 255, 1) 100%);
+
 }
 
 .filters {
@@ -202,4 +204,10 @@ line {
 
 .btn-secondary:not(:disabled):not(.disabled).active {
   border-color: transparent;
+}
+
+#zoomButtons {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
