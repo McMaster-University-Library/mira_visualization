@@ -18,7 +18,8 @@ var gData = []
 var coauthor_origin = ""
 var active_faculty = "All"
 var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
-var pg = {}  // holds project and grant data, key = id of project val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
+var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
+var current_levels = 1
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,7 +269,6 @@ function visuals() {
         .attr("class", "axisTitle rightTitle")
         .text("THEORY & DISCOVERY");
 
-
     g.append("line")
         .attr("transform", "rotate(-90)")
         .attr("x1", d3.select(".rightTitle").attr('x')) // x position of the first end of the line
@@ -280,7 +280,6 @@ function visuals() {
         .attr("opacity", ".7")
 
     g.append("line")
-        //.attr("transform", "rotate(-90)")
         .attr("x1", domainWidth / 2) // x position of the first end of the line
         .attr("y1", 28)
         .attr("x2", domainWidth / 2) // x position of the first end of the line
@@ -342,12 +341,103 @@ function visuals() {
         // Event listener for project filter
         d3.selectAll(".triggerProjectFilter").on("click", function (d) {
           var projectId=  this.getAttribute('data-project-filter');
-          // console.log("Project id is "+projectId);
-          alert("Project id is "+projectId);
-          // add function for project filter
+
+            d3.selectAll("circle").remove();  // Remove previous points
+            d3.selectAll(".dotText").remove();  // Remove previous names
+            pg_members = pg[projectId]["members"]  //Set active faculty global var
+            console.log(pg_members)
+            active = gData.filter(function (d) {
+                if (pg_members.includes(d.macid)) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+
+            active.append("circle")
+                .attr("class", function (d) {
+                    return "dot " + d.primary_faculty;
+                })
+                .attr("r", "7")
+                .attr("cx", function (d) {
+                    return x(d.x_value);
+                })
+                .attr("cy", function (d) {
+                    return y(d.y_value);
+                })
+                // Tooltip events
+                .on("mouseover", function (d) {
+
+                    var current_tooltip = document.getElementsByClassName("tooltip")
+
+                    if (current_tooltip.length > 0 && current_tooltip[0].getAttribute("macid") != d.macid){
+                        d3.selectAll(".tooltip").remove()
+                    }
+
+                    current_tooltip = document.getElementsByClassName("tooltip")
+                    if (current_tooltip.length == 0) {
+                        // Define 'div' to contain the tooltip
+                        var tooltip = d3.select("body")
+                            .append("div")
+                            .attr("class", "tooltip card card-shadow")
+                            .style("opacity", 0);
+
+
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        tooltip.html(
+                            "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
+                            "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
+                            "<p>" + d.position + "</p>" +
+                            "Department: " + d.faculty2 +
+                            "<br>MIRA projects (pull projects)<br>" +
+                            '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
+                            d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
+                            '" target="_blank">View Profile Page' +
+                            "</a>")
+                            .style("left", function () {
+                                var eventX=d3.event.pageX
+                                var tooltipWidth=this.offsetWidth
+                                if (eventX + tooltipWidth > availWidth) {
+                                    return (eventX - tooltipWidth)+"px";
+                                } else {
+                                    return (eventX + 10)+"px";
+                                }
+                            })
+                            .style("top", function () {
+                                var eventY=d3.event.pageY
+                                var tooltipHeight=this.offsetHeight
+                                if (eventY + tooltipHeight > availHeight) {
+                                    return (eventY - tooltipHeight)+"px";
+                                } else {
+                                    return (eventY - 28)+"px";
+                                }
+                            });
+
+                    }
+
+                })
+
+
+            active.append("text").text(function (d) {
+                return d.last_name;
+            })
+                .attr("class", function (d) {
+                    return "dotText " + d.primary_faculty;
+                })
+                .attr("x", function (d) {
+                    return x(d.x_value);
+                })
+                .attr("y", function (d) {
+                    return y(d.y_value) - 10;
+                });
+
+            d3.selectAll("circle").raise()
+            d3.select('#collapseFilter').attr('style','height: '+(+availHeight-100)+'px;');
         })
 
-        // Event listener for coauthor linesx
+        // Event listener for coauthor lines
         d3.selectAll(".dataGroup").on("click", function (d) {
             console.log("event logged with this event listener")
 
@@ -376,8 +466,8 @@ function visuals() {
 
     function faculty_filter(faculty) {
 
-        d3.selectAll("circle").remove();  //Remove previous points
-        d3.selectAll(".dotText").remove();  //Remove previous names
+        d3.selectAll("circle").remove();  // Remove previous points
+        d3.selectAll(".dotText").remove();  // Remove previous names
         active_faculty = faculty  //Set active faculty global var
         active = gData.filter(function (d) {
             if (faculty == "All" || d["faculty2"] == faculty || d.macid == coauthor_origin) {
@@ -413,7 +503,6 @@ function visuals() {
                     var tooltip = d3.select("body")
                         .append("div")
                         .attr("class", "tooltip card card-shadow")
-                      //  .attr("macid", d.macid)
                         .style("opacity", 0);
 
 
@@ -430,7 +519,6 @@ function visuals() {
                         d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
                         '" target="_blank">View Profile Page' +
                         "</a>")
-                     //   .style("left", (d3.event.pageX + 10) + "px")
                         .style("left", function () {
                             var eventX=d3.event.pageX
                             var tooltipWidth=this.offsetWidth
@@ -509,7 +597,6 @@ function visuals() {
         d3.selectAll("circle").raise()
         d3.select("[id=" + macid + "]").raise()
     }
-
 
 
     $('#collapseFilter').on('show.bs.collapse', function (e) {
