@@ -121,6 +121,15 @@ text {
   padding-left: 30px;
 }
 
+#projectFilter button:hover {
+  background-color: #dbdbdd;
+}
+
+#projectFilter button.active {
+  background-color: #efefef;
+}
+
+
 div.tooltip {
   position: absolute;
   text-align: center;
