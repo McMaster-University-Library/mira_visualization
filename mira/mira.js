@@ -332,9 +332,10 @@ function visuals() {
 
             var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
 
-
             d3.selectAll('#facultyFilter button').classed('active',false)
             d3.select(this).classed('active', true)
+
+
             // run the update function with this selected option
             faculty_filter(faculty)
             draw_lines(coauthor_origin)
@@ -343,6 +344,8 @@ function visuals() {
         // Event listener for project filter
         d3.selectAll(".triggerProjectFilter").on("click", function (d) {
           var projectId=  this.getAttribute('data-project-filter');
+
+            faculty_filter(active_faculty)  // select dots belonging to any faculty
 
             d3.selectAll("circle").remove();  // Remove previous points
             d3.selectAll(".dotText").remove();  // Remove previous names
