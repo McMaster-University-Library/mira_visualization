@@ -329,8 +329,10 @@ function visuals() {
 
         // Event listener for faculty filter
         d3.selectAll("#facultyFilter button").on("click", function (d) {
-            //  console.log("event logged")
+
             var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
+
+
             d3.selectAll('#facultyFilter button').classed('active',false)
             d3.select(this).classed('active', true)
             // run the update function with this selected option
@@ -344,8 +346,11 @@ function visuals() {
 
             d3.selectAll("circle").remove();  // Remove previous points
             d3.selectAll(".dotText").remove();  // Remove previous names
-            pg_members = pg[projectId]["members"]  //Set active faculty global var
-            console.log(pg_members)
+
+            pg_members = pg[projectId]["members"]
+            pg_pi = pg[projectId]["pi"]
+
+
             active = gData.filter(function (d) {
                 if (pg_members.includes(d.macid)) {
                     return true
@@ -355,16 +360,22 @@ function visuals() {
             })
 
             active.append("circle")
-                .attr("class", function (d) {
-                    return "dot " + d.primary_faculty;
-                })
-                .attr("r", "7")
-                .attr("cx", function (d) {
-                    return x(d.x_value);
-                })
-                .attr("cy", function (d) {
-                    return y(d.y_value);
-                })
+                    .attr("class", function (d) {
+                        return "dot " + d.primary_faculty;
+                    })
+                    .attr("r", function (d) {
+                        if (pg_pi.includes(d.macid)){
+                            return "9"
+                        } else {
+                            return "7"}
+                    })
+                    .attr("cx", function (d) {
+                        return x(d.x_value);
+                    })
+                    .attr("cy", function (d) {
+                        return y(d.y_value);
+                    })
+
                 // Tooltip events
                 .on("mouseover", function (d) {
 
