@@ -403,9 +403,7 @@ function visuals() {
                             "<p>" + d.position + "</p>" +
                             "Department: " + d.faculty2 +
                             "<br>MIRA projects (pull projects)<br>" +
-                            '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
-                            d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
-                            '" target="_blank">View Profile Page' +
+                            '<br><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                             "</a>")
                             .style("left", function () {
                                 var eventX=d3.event.pageX
@@ -526,9 +524,7 @@ function visuals() {
                         "<p>" + d.position + "</p>" +
                         "Department: " + d.faculty2 +
                         "<br>MIRA projects (pull projects)<br>" +
-                        '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
-                        d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
-                        '" target="_blank">View Profile Page' +
+                        '<br><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                         "</a>")
                         .style("left", function () {
                             var eventX=d3.event.pageX
