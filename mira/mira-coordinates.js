@@ -7,7 +7,7 @@
 // Global Vars
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const mira_members_csv = "mira_members94.csv"
+const mira_members_csv = "mira_members.csv"
 const project_grants_csv = "project_grant_test1.csv"
 const margin = {top: 0, right: 0, bottom: 0, left: 0};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
