@@ -327,6 +327,7 @@ function visuals() {
 
             var faculty = d3.select(this).text().replace(/[^a-zA-Z ]/g, "")
 
+            d3.selectAll('#projectFilter button').classed('active',false)
             d3.selectAll('#facultyFilter button').classed('active',false)
             d3.select(this).classed('active', true)
 
@@ -339,7 +340,7 @@ function visuals() {
         d3.selectAll(".triggerProjectFilter").on("click", function (d) {
           var projectId=  this.getAttribute('data-project-filter');
 
-            faculty_filter(active_faculty)  // select dots belonging to any faculty
+            d3.selectAll('#projectFilter button').classed('active',false)
             d3.selectAll('#facultyFilter button').classed('active',false)
             d3.select(this).classed('active', true)
 
