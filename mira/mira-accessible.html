@@ -3,30 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>MIRA Visualization - Interdisciplinary Connections</title>
+    <title>MIRA Visualization - Interdisciplinary Connections - Accessible Version</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- McMaster University's Brighter World Branding CSS -->
     <link rel="stylesheet" href="https://documents.mcmaster.ca/www/cdn/css/1.0/mcm-bw.css">
-	<link rel="stylesheet" href="mira.css">
+	<link rel="stylesheet" href="mira-accessible.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,700,700i');
     </style>
 </head>
 <body>
-    <div class="container-fluid" role="main">
+
+    <div class="container" role="main">
+        <h1>MIRA Members Interdisciplinary Connections</h1>
+        <div id="projectInfo" class="mt-3"></div>
         <div class="row">
             <div class='col-md-12' id='visualization'>
                 <!-- Suppress heading but for accessibility reasons, add class for screen-readers. -->
-                <h1 class="sr-only">>MIRA Visualization - Interdisciplinary Connections</h1>
-                <svg id="miraVis" class='text-center' aria-labelledby="miraTitle miraDescription">
-                    <title id="miraTitle">Quadrant chart showing interdisciplinary connections among members of McMaster Institute for Research on Aging.</title>
-                    <desc id="miraDescription">Top-left quadrant showing MIRA members who's research type is Practice and Application and research output is policy.
-                        Top-right quadrant showing MIRA members who's research type is Theory & Discovery and research output is policy.
-                        Bottom-left quadrant showing MIRA members who's research type is Practice and Application and research output is product or service.
-                        Bottom-right quadrant showing MIRA members who's research type is Theory & Discovery and research output is product or service. Clicking on a member dot will show co-author network.
-                    </desc>
-                </svg>
+                <div id="miraVis">
+                </div>
             </div>
         </div>
         <div class="filters accordion">
@@ -53,10 +49,7 @@
                 </div>
             </div>
         </div>
-        <div id="zoomButtons">
-            <button id='zoomIn'><span class="glyphicon glyphicon-plus" aria-hidden="true"><span class="sr-only">Zoom In</span></span></button>
-            <button id='zoomOut'><span class="glyphicon glyphicon-minus" aria-hidden="true"><span class="sr-only">Zoom Out</span></span></button>
-        </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -68,6 +61,6 @@
             document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"><\/script>');
     </script>
     <script src="d3.v5.min.js"></script>
-    <script src="mira.js"></script>
+    <script src="mira-accessible.js"></script>
 </body>
 </html>
