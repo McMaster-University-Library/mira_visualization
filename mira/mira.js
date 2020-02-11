@@ -90,9 +90,6 @@ function get_mira_data(){
                 pg[key]["blurb"] = row["blurb"]
             }
         }
-        console.log("PG:", pg)
-        console.log("levels", levels)
-
         generateProjectFilters(levels);
 
     })
@@ -139,7 +136,6 @@ function sort_coauthor_xml(member_macid, xml) {
 }
 
 function generateProjectFilters(levels) {
-    //console.log("levels2 " + Object.keys(levels));
     const pf=d3.select('#projectFilter');
     let pc1=0;
     Object.keys(levels).forEach(function (level1) {
@@ -243,7 +239,6 @@ function visuals() {
         .style("text-anchor", "middle")
         .attr("class", "axisTitle")
         .text("PRODUCT or SERVICE"),
-       // console.log(domainHeight)
 
     g.append("text")
         .attr("transform", "rotate(-90)")
@@ -450,8 +445,6 @@ function visuals() {
 
         // Event listener for coauthor lines
         d3.selectAll(".dataGroup").on("click", function (d) {
-            console.log("event logged with this event listener")
-
             draw_lines(this.id)
             faculty_filter(active_faculty)
 
@@ -618,12 +611,10 @@ function visuals() {
     });
 
     $("div[id='projectFilter'] div").on('show.bs.collapse', function () {
-       //console.log("TEST 6 "+this.id);
       $(this).prevAll("button").first().addClass('active');
     });
 
     $("div[id^='projectFilter'] div").on('hide.bs.collapse', function () {
-        //console.log("test 7");
         $(this).prevAll("button").first().removeClass('active');
     });
 
