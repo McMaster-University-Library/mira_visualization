@@ -217,6 +217,7 @@ function visuals() {
             d3.selectAll('#facultyFilter button').classed('active',false)
             d3.select(this).classed('active', true)
             d3.select('#projectInfo div').remove();
+            d3.select('#projectInfo').classed('active',false);
             // run the update function with this selected option
             faculty_filter(faculty)
           //  draw_lines(coauthor_origin)
@@ -232,6 +233,7 @@ function visuals() {
             d3.selectAll(".dataGroup:empty").attr('style', 'display: block;');
             d3.selectAll(".dotText").remove();  // Remove previous names
             d3.select('#projectInfo div').remove();
+            d3.select('#projectInfo').classed('active',true);
             pg_members = pg[projectId]["members"]
             pg_pi = pg[projectId]["pi"]
 
@@ -246,7 +248,7 @@ function visuals() {
 
             d3.select('#projectInfo').append("div").html(function (d) {
                 var projectInfo="";
-                projectInfo+="<strong>"+pg[projectId].blurb_title+"</strong>";
+                projectInfo+="<strong>Selected project/grant: "+pg[projectId].blurb_title+"</strong>";
                 projectInfo+="<p>"+pg[projectId].blurb+"</p>";
                 return projectInfo;
             });

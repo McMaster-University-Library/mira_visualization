@@ -129,6 +129,16 @@ text {
   padding-left: 30px;
 }
 
+#projectInfo.active {
+  border: 1px solid #7a003c;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#projectInfo.active p {
+  margin-bottom: 5px;
+}
+
 div.tooltip {
   position: absolute;
   text-align: center;
