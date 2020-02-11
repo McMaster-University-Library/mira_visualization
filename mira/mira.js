@@ -350,6 +350,8 @@ function visuals() {
             pg_members = pg[projectId]["members"]
             pg_pi = pg[projectId]["pi"]
 
+            var projectInfo="<strong>"+pg[projectId].blurb_title+"</strong>"+
+            "<p>"+pg[projectId].blurb+"</p>";
 
             active = gData.filter(function (d) {
                 if (pg_members.includes(d.macid)) {
@@ -402,8 +404,8 @@ function visuals() {
                             "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
                             "<p>" + d.position + "</p>" +
                             "Department: " + d.faculty2 +
-                            "<br>MIRA projects (pull projects)<br>" +
-                            '<br><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
+                            "<div class='p-2' id='projectInfo'>" + "<strong>Selected MIRA project/grant</strong><br>" + projectInfo +
+                            '</div><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                             "</a>")
                             .style("left", function () {
                                 var eventX=d3.event.pageX
@@ -523,7 +525,6 @@ function visuals() {
                         "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
                         "<p>" + d.position + "</p>" +
                         "Department: " + d.faculty2 +
-                        "<br>MIRA projects (pull projects)<br>" +
                         '<br><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                         "</a>")
                         .style("left", function () {

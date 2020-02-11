@@ -129,7 +129,6 @@ text {
   background-color: #efefef;
 }
 
-
 div.tooltip {
   position: absolute;
   text-align: center;
@@ -148,6 +147,10 @@ div.tooltip .tooltipName {
   text-align:center;
   padding-left: 25px;
   padding-right: 10px
+}
+
+div.tooltip p {
+  margin-bottom: 10px;
 }
 
 circle {
@@ -219,4 +222,8 @@ line {
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+
+#projectInfo {
+  text-align: left;
 }
