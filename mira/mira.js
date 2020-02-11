@@ -333,113 +333,13 @@ function visuals() {
 
         // Event listener for project filter
         d3.selectAll(".triggerProjectFilter").on("click", function (d) {
-          var projectId=  this.getAttribute('data-project-filter');
+            var projectId = this.getAttribute('data-project-filter');
 
-            d3.selectAll('#projectFilter button').classed('active',false)
-            d3.selectAll('#facultyFilter button').classed('active',false)
+            d3.selectAll('#projectFilter button').classed('active', false)
+            d3.selectAll('#facultyFilter button').classed('active', false)
             d3.select(this).classed('active', true)
 
-            d3.selectAll("circle").remove();  // Remove previous points
-            d3.selectAll(".dotText").remove();  // Remove previous names
-
-            pg_members = pg[projectId]["members"]
-            pg_pi = pg[projectId]["pi"]
-
-            var projectInfo="<strong>"+pg[projectId].blurb_title+"</strong>"+
-            "<p>"+pg[projectId].blurb+"</p>";
-
-            active = gData.filter(function (d) {
-                if (pg_members.includes(d.macid)) {
-                    return true
-                } else {
-                    return false
-                }
-            })
-
-            active.append("circle")
-                    .attr("class", function (d) {
-                        return "dot " + d.primary_faculty;
-                    })
-                    .attr("r", function (d) {
-                        if (pg_pi.includes(d.macid)){
-                            return "9"
-                        } else {
-                            return "7"}
-                    })
-                    .attr("cx", function (d) {
-                        return x(d.x_value);
-                    })
-                    .attr("cy", function (d) {
-                        return y(d.y_value);
-                    })
-
-                // Tooltip events
-                .on("mouseover", function (d) {
-
-                    var current_tooltip = document.getElementsByClassName("tooltip")
-
-                    if (current_tooltip.length > 0 && current_tooltip[0].getAttribute("macid") != d.macid){
-                        d3.selectAll(".tooltip").remove()
-                    }
-
-                    current_tooltip = document.getElementsByClassName("tooltip")
-                    if (current_tooltip.length == 0) {
-                        // Define 'div' to contain the tooltip
-                        var tooltip = d3.select("body")
-                            .append("div")
-                            .attr("class", "tooltip card card-shadow")
-                            .style("opacity", 0);
-
-
-                        tooltip.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        tooltip.html(
-                            "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
-                            "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
-                            "<p>" + d.position + "</p>" +
-                            "Department: " + d.faculty2 +
-                            "<div class='p-2' id='projectInfo'>" + "<strong>Selected MIRA project/grant</strong><br>" + projectInfo +
-                            '</div><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
-                            "</a>")
-                            .style("left", function () {
-                                var eventX=d3.event.pageX
-                                var tooltipWidth=this.offsetWidth
-                                if (eventX + tooltipWidth > availWidth) {
-                                    return (eventX - tooltipWidth)+"px";
-                                } else {
-                                    return (eventX + 10)+"px";
-                                }
-                            })
-                            .style("top", function () {
-                                var eventY=d3.event.pageY
-                                var tooltipHeight=this.offsetHeight
-                                if (eventY + tooltipHeight > availHeight) {
-                                    return (eventY - tooltipHeight)+"px";
-                                } else {
-                                    return (eventY - 28)+"px";
-                                }
-                            });
-
-                    }
-
-                })
-
-
-            active.append("text").text(function (d) {
-                return d.last_name;
-            })
-                .attr("class", function (d) {
-                    return "dotText " + d.primary_faculty;
-                })
-                .attr("x", function (d) {
-                    return x(d.x_value);
-                })
-                .attr("y", function (d) {
-                    return y(d.y_value) - 10;
-                });
-
-            d3.selectAll("circle").raise()
+            project_filter(projectId)
 
         })
 
@@ -543,6 +443,112 @@ function visuals() {
 
             })
 
+        active.append("text").text(function (d) {
+            return d.last_name;
+        })
+            .attr("class", function (d) {
+                return "dotText " + d.primary_faculty;
+            })
+            .attr("x", function (d) {
+                return x(d.x_value);
+            })
+            .attr("y", function (d) {
+                return y(d.y_value) - 10;
+            });
+
+        d3.selectAll("circle").raise()
+    }
+
+
+    function project_filter(projectId) {
+
+
+        d3.selectAll("circle").remove();  // Remove previous points
+        d3.selectAll(".dotText").remove();  // Remove previous names
+
+        pg_members = pg[projectId]["members"]
+        pg_pi = pg[projectId]["pi"]
+
+        var projectInfo="<strong>"+pg[projectId].blurb_title+"</strong>"+
+            "<p>"+pg[projectId].blurb+"</p>";
+
+        active = gData.filter(function (d) {
+            if (pg_members.includes(d.macid)) {
+                return true
+            } else {
+                return false
+            }
+        })
+
+        active.append("circle")
+            .attr("class", function (d) {
+                return "dot " + d.primary_faculty;
+            })
+            .attr("r", function (d) {
+                if (pg_pi.includes(d.macid)){
+                    return "9"
+                } else {
+                    return "7"}
+            })
+            .attr("cx", function (d) {
+                return x(d.x_value);
+            })
+            .attr("cy", function (d) {
+                return y(d.y_value);
+            })
+
+            // Tooltip events
+            .on("mouseover", function (d) {
+
+                var current_tooltip = document.getElementsByClassName("tooltip")
+
+                if (current_tooltip.length > 0 && current_tooltip[0].getAttribute("macid") != d.macid){
+                    d3.selectAll(".tooltip").remove()
+                }
+
+                current_tooltip = document.getElementsByClassName("tooltip")
+                if (current_tooltip.length == 0) {
+                    // Define 'div' to contain the tooltip
+                    var tooltip = d3.select("body")
+                        .append("div")
+                        .attr("class", "tooltip card card-shadow")
+                        .style("opacity", 0);
+
+
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(
+                        "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
+                        "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
+                        "<p>" + d.position + "</p>" +
+                        "Department: " + d.faculty2 +
+                        "<div class='p-2' id='projectInfo'>" + "<strong>Selected MIRA project/grant</strong><br>" + projectInfo +
+                        '</div><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
+                        "</a>")
+                        .style("left", function () {
+                            var eventX=d3.event.pageX
+                            var tooltipWidth=this.offsetWidth
+                            if (eventX + tooltipWidth > availWidth) {
+                                return (eventX - tooltipWidth)+"px";
+                            } else {
+                                return (eventX + 10)+"px";
+                            }
+                        })
+                        .style("top", function () {
+                            var eventY=d3.event.pageY
+                            var tooltipHeight=this.offsetHeight
+                            if (eventY + tooltipHeight > availHeight) {
+                                return (eventY - tooltipHeight)+"px";
+                            } else {
+                                return (eventY - 28)+"px";
+                            }
+                        });
+
+                }
+
+            })
+
 
         active.append("text").text(function (d) {
             return d.last_name;
@@ -558,6 +564,8 @@ function visuals() {
             });
 
         d3.selectAll("circle").raise()
+
+
     }
 
 
