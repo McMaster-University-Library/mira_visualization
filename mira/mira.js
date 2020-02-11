@@ -17,6 +17,7 @@ var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
 var coauthor_origin = ""
 var active_faculty = "All"
+var active_project
 var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
 var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
 var current_levels = 1
@@ -358,6 +359,7 @@ function visuals() {
                 d3.selectAll(".coauthor_line").remove()
                 d3.selectAll(".tooltip").remove()
                 faculty_filter(active_faculty)
+                project_filter(active_project)
             }
         })
 
@@ -370,9 +372,10 @@ function visuals() {
 
     function faculty_filter(faculty) {
 
+        active_faculty = faculty  //Set active faculty global var
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
-        active_faculty = faculty  //Set active faculty global var
+
         active = gData.filter(function (d) {
             if (faculty == "All" || d["faculty2"] == faculty || d.macid == coauthor_origin) {
                 return true
@@ -462,7 +465,7 @@ function visuals() {
 
     function project_filter(projectId) {
 
-
+        active_project = projectId  //Set active project global var
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
 
