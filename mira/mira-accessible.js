@@ -17,10 +17,10 @@ var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
 var coauthor_origin = ""
 var active_faculty = "All"
+var active_project = false
 var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
 var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
 var current_levels = 1
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Pulling co-author and Project/Grant Data
@@ -40,10 +40,8 @@ function get_mira_data(){
         }
     })
 
-
     //project grant data
     d3.csv(project_grants_csv).then(function(data){
-
         for (i = 0; i < data.length; i++) {
             const row = data[i]
             const key = row["level1"] + row["level2"] + row["level3"]
@@ -72,7 +70,6 @@ function get_mira_data(){
                 levels[row["level1"]][row["level2"]][row["level3"]] = key
             }
 
-
             // filling the project grants variable (pg)
             var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
             pg[key] = typeof(pg[key]) === 'undefined' ? base : pg[key];
@@ -90,9 +87,7 @@ function get_mira_data(){
                 pg[key]["blurb"] = row["blurb"]
             }
         }
-
         generateProjectFilters(levels);
-
     })
 }
 
@@ -109,7 +104,6 @@ function get_coauthor_xml(member_macid) {
     };
     xhttp.open("GET", url, true);
     xhttp.send();
-
 }
 
 function sort_coauthor_xml(member_macid, xml) {
@@ -192,7 +186,6 @@ function visuals() {
     Don't need mira_url_name since this can be created using first_name & last_name columns
      */
 
-
     d3.csv(mira_members_csv).then(function (mira_members) {
         // Prepare data. Coerce the strings for coordinates to numbers.
         mira_members.forEach(function (d) {
@@ -204,12 +197,10 @@ function visuals() {
             d.faculty2 = d.primary_faculty;
             d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
             dots[d.macid] = d
-
         });
 
         const gDots = g.selectAll("dataGroup").data(mira_members);
         gData = gDots.enter().append('div')
-
 
         // Event listener for faculty filter
         d3.selectAll("#facultyFilter button").on("click", function (d) {
@@ -227,70 +218,14 @@ function visuals() {
         d3.selectAll(".triggerProjectFilter").on("click", function (d) {
             var projectId=  this.getAttribute('data-project-filter');
             //faculty_filter(active_faculty)  // select dots belonging to any faculty
-            d3.selectAll('#facultyFilter button').classed('active',false)
-            d3.selectAll('#projectFilter button').classed('active',false)
-            d3.select(this).classed('active', true)
-            d3.selectAll(".dataGroup:empty").attr('style', 'display: block;');
-            d3.selectAll(".dotText").remove();  // Remove previous names
-            d3.select('#projectInfo div').remove();
-            d3.select('#projectInfo').classed('active',true);
-            pg_members = pg[projectId]["members"]
-            pg_pi = pg[projectId]["pi"]
-
-
-            active = gData.filter(function (d) {
-                if (pg_members.includes(d.macid)) {
-                    return true
-                } else {
-                    return false
-                }
-            });
-
-            d3.select('#projectInfo').append("div").html(function (d) {
-                var projectInfo="";
-                projectInfo+="<strong>Selected project/grant: "+pg[projectId].blurb_title+"</strong>";
-                projectInfo+="<p>"+pg[projectId].blurb+"</p>";
-                return projectInfo;
-            });
-
-
-            active.append("div").attr('class','dotText').html(function (d) {
-                var htmlcontents="<h2><a href='#collapseFilter"+d.macid+"' class='collapsed' data-toggle='collapse' aria-expanded='false' aria-controls='collapseFilter"+d.macid+"'>"+d.first_name+" "+d.last_name+
-                    "</a></h2>, Faculty of "+d.faculty2;
-
-                if (pg_pi.includes(d.macid)){
-                    htmlcontents+=" <strong>PI</strong>";
-                }
-
-                htmlcontents+="<br>Research output is ";
-                if (d.y_value>100) {
-                    htmlcontents+="Policy"
-                } else {
-                    htmlcontents+="Product or Service"
-                }
-                htmlcontents+=".<br> Research type is ";
-                if (d.x_value<100) {
-                    htmlcontents += "Practice & Application"
-                } else {
-                    htmlcontents += "Theory & Discovery"
-                }
-
-                htmlcontents+=".<br><div id='collapseFilter"+d.macid+"' class='collapse'>"+
-                    "<div class='coauthors mt-2'></div>"+
-                    '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
-                    d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
-                    '" target="_blank">View Profile Page' +
-                    "</a></div>";
-
-                return htmlcontents;
-            })
-
-            d3.selectAll('.dataGroup:empty').attr('style','display: none;')
+            d3.selectAll('#facultyFilter button').classed('active',false);
+            d3.selectAll('#projectFilter button').classed('active',false);
+            d3.select(this).classed('active', true);
+            project_filter(projectId);
         })
 
         // Initial start up
         faculty_filter(active_faculty)
-
     });
 
     function getCoauthors(macid) {
@@ -313,7 +248,6 @@ function visuals() {
 
         return coauthor_network[macid];
     }
-
 
     function faculty_filter(faculty) {
 
@@ -369,6 +303,64 @@ function visuals() {
         d3.selectAll('.dataGroup:empty').attr('style','display: none;')
     }
 
+    function project_filter(projectId) {
+        d3.selectAll(".dataGroup:empty").attr('style', 'display: block;');
+        d3.selectAll(".dotText").remove();  // Remove previous names
+        d3.select('#projectInfo div').remove();
+        d3.select('#projectInfo').classed('active',true);
+        pg_members = pg[projectId]["members"]
+        pg_pi = pg[projectId]["pi"]
+
+        active = gData.filter(function (d) {
+            if (pg_members.includes(d.macid)) {
+                return true
+            } else {
+                return false
+            }
+        });
+
+        d3.select('#projectInfo').append("div").html(function (d) {
+            var projectInfo="";
+            projectInfo+="<strong>Selected project/grant: "+pg[projectId].blurb_title+"</strong>";
+            projectInfo+="<p>"+pg[projectId].blurb+"</p>";
+            return projectInfo;
+        });
+
+
+        active.append("div").attr('class','dotText').html(function (d) {
+            var htmlcontents="<h2><a href='#collapseFilter"+d.macid+"' class='collapsed' data-toggle='collapse' aria-expanded='false' aria-controls='collapseFilter"+d.macid+"'>"+d.first_name+" "+d.last_name+
+                "</a></h2>, Faculty of "+d.faculty2;
+
+            if (pg_pi.includes(d.macid)){
+                htmlcontents+=" <strong>PI</strong>";
+            }
+
+            htmlcontents+="<br>Research output is ";
+            if (d.y_value>100) {
+                htmlcontents+="Policy"
+            } else {
+                htmlcontents+="Product or Service"
+            }
+            htmlcontents+=".<br> Research type is ";
+            if (d.x_value<100) {
+                htmlcontents += "Practice & Application"
+            } else {
+                htmlcontents += "Theory & Discovery"
+            }
+
+            htmlcontents+=".<br><div id='collapseFilter"+d.macid+"' class='collapse'>"+
+                "<div class='coauthors mt-2'></div>"+
+                '<br><a href= "https://mira.mcmaster.ca/team/bio/' +
+                d.first_name.toLowerCase() + '-' + d.last_name.toLowerCase() +
+                '" target="_blank">View Profile Page' +
+                "</a></div>";
+
+            return htmlcontents;
+        })
+
+        d3.selectAll('.dataGroup:empty').attr('style','display: none;')
+
+    }
 
     $('#collapseFilter').on('show.bs.collapse', function (e) {
         // Line below to prevent main filters button arrows changing when a collapsed project filter is selected
