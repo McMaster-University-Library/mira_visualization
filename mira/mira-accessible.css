@@ -129,6 +129,14 @@ text {
   padding-left: 30px;
 }
 
+#projectFilter button:hover {
+  background-color: #dbdbdd;
+}
+
+#projectFilter button.active {
+  background-color: #efefef;
+}
+
 #projectInfo.active {
   border: 1px solid #7a003c;
   border-radius: 10px;
