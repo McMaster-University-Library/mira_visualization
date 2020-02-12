@@ -17,7 +17,7 @@ var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
 var coauthor_origin = ""
 var active_faculty = "All"
-var active_project
+var active_project = false
 var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
 var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
 var current_levels = 1
@@ -327,6 +327,8 @@ function visuals() {
             d3.selectAll('#facultyFilter button').classed('active',false)
             d3.select(this).classed('active', true)
 
+            active_project = false
+
             // run the update function with this selected option
             faculty_filter(faculty)
             draw_lines(coauthor_origin)
@@ -354,12 +356,20 @@ function visuals() {
         // Event listener to remove coauthor lines and tooltips when clicking on canvas
         d3.select("#miraVis").on("click", function (e) {
 
+            console.log("123123123123")
             if (event.target.tagName != "circle") {
                 coauthor_origin = ""
+
                 d3.selectAll(".coauthor_line").remove()
                 d3.selectAll(".tooltip").remove()
-                faculty_filter(active_faculty)
-                project_filter(active_project)
+                console.log("123123")
+
+                if (active_project != false){
+                    project_filter(active_project)
+                } else {
+                    faculty_filter(active_faculty)
+                }
+
             }
         })
 
