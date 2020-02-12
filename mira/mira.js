@@ -174,7 +174,6 @@ get_mira_data();
 // Visual Elements
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function visuals() {
-
     d3.select("g").remove()  // remove former drawn graphs
 
     var availWidth = window.innerWidth - margin.left - margin.right;
@@ -356,13 +355,11 @@ function visuals() {
         // Event listener to remove coauthor lines and tooltips when clicking on canvas
         d3.select("#miraVis").on("click", function (e) {
 
-            console.log("123123123123")
             if (event.target.tagName != "circle") {
                 coauthor_origin = ""
 
                 d3.selectAll(".coauthor_line").remove()
                 d3.selectAll(".tooltip").remove()
-                console.log("123123")
 
                 if (active_project != false){
                     project_filter(active_project)
@@ -374,7 +371,11 @@ function visuals() {
         })
 
         // Initial start up
-        faculty_filter(active_faculty)
+        if (active_project != false){
+            project_filter(active_project)
+        } else {
+            faculty_filter(active_faculty)
+        }
         draw_lines(coauthor_origin)
 
     });
