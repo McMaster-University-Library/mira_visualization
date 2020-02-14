@@ -1,6 +1,6 @@
 # Overview
 
-This repository contains the a coauthor network visualization for the faculty member within the McMaster Institute of Research in Aging (MIRA).
+This repository contains the a coauthor network visualization for faculty members within the McMaster Institute of Research in Aging (MIRA).
 
 
 # Instructions for Mira Admins
