@@ -430,9 +430,8 @@ function visuals() {
                     tooltip.html(
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
                         "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
-                        "<p>" + d.position + "</p>" +
-                        "Department: " + d.faculty2 +
-                        '<br><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
+                        "<p>Department: " + d.faculty2 +
+                        '</p><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                         "</a>")
                         .style("left", function () {
                             var eventX=d3.event.pageX
@@ -535,9 +534,8 @@ function visuals() {
                     tooltip.html(
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
                         "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
-                        "<p>" + d.position + "</p>" +
-                        "Department: " + d.faculty2 +
-                        "<div class='p-2' id='projectInfo'>" + "<strong>Selected MIRA project/grant</strong><br>" + projectInfo +
+                        "<p>Department: " + d.faculty2 +
+                        "</p><div class='p-2' id='projectInfo'>" + "<strong>Selected MIRA project/grant</strong><br>" + projectInfo +
                         '</div><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                         "</a>")
                         .style("left", function () {
