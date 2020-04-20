@@ -387,6 +387,19 @@ function visuals() {
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
 
+        const projectKeys=Object.keys(pg); // get all project keys
+
+        // function is used to pull a listing of researcher's projects to be displayed in modal window
+        function memberProjects(projectKeys, macid) {
+            let memberProjectsText="";
+            for (const projectKey of projectKeys) {
+                if (pg[projectKey]['members'].includes(macid)) {
+                    memberProjectsText+=pg[projectKey]['blurb_title']+"<br>";
+                }
+            }
+            return memberProjectsText;
+        }
+
         active = gData.filter(function (d) {
             if (faculty == "All" || d["faculty2"] == faculty || d.macid == coauthor_origin) {
                 return true
@@ -431,7 +444,8 @@ function visuals() {
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
                         "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
                         "<p>Faculty: " + d.faculty2 +
-                        '</p><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
+                        '</p><div class="memberprojects m-2"><strong>Projects</strong><br>'+ memberProjects(projectKeys, d.macid)+'</div>'+
+                        '<a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                         "</a>")
                         .style("left", function () {
                             var eventX=d3.event.pageX
