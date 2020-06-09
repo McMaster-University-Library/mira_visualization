@@ -45,7 +45,7 @@ function get_mira_data(){
     //project grant data
     d3.csv(project_grants_csv).then(function(data){
 
-        for (i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             const row = data[i]
             const key = row["level1"] + row["level2"] + row["level3"]
 
@@ -394,7 +394,7 @@ function visuals() {
             let memberProjectsText="";
             for (const projectKey of projectKeys) {
                 if (pg[projectKey]['members'].includes(macid)) {
-                    memberProjectsText+=pg[projectKey]['blurb_title']+"<br>";
+                    memberProjectsText+="<div class='pb-2'>"+pg[projectKey]['blurb_title']+"</div>";
                 }
             }
             return memberProjectsText;
@@ -549,7 +549,7 @@ function visuals() {
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
                         "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
                         "<p>Faculty: " + d.faculty2 +
-                        "</p><div class='p-2' id='projectInfo'>" + "<strong>Selected MIRA project/grant</strong><br>" + projectInfo +
+                        "</p><div class='p-2' id='projectInfo'>" + projectInfo +
                         '</div><a href="'+d.mira_bio_url+'" target="_blank">View Profile Page' +
                         "</a>")
                         .style("left", function () {

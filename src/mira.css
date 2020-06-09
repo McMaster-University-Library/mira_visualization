@@ -226,4 +226,10 @@ line {
 
 #projectInfo {
   text-align: left;
+  max-width: 300px;
+}
+
+.memberprojects.m-2 {
+  text-align: left;
+  max-width: 300px;
 }

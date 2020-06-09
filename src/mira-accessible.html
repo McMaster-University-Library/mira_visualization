@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MIRA Visualization - Interdisciplinary Connections - Accessible Version</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- McMaster University's Brighter World Branding CSS -->
     <link rel="stylesheet" href="https://documents.mcmaster.ca/www/cdn/css/1.0/mcm-bw.css">
 	<link rel="stylesheet" href="mira-accessible.css">
@@ -51,17 +51,17 @@
         </div>
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.2.1.slim.min.js" ></script>
+    <script src="js/bootstrap.min.js" ></script>
     <script>
         // IE 11 doesn't support promises or csv fetch, therefore the following work-around is needed
         if (typeof Promise !== "function")
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"><\/script>');
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"><\/script>');
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"><\/script>');
+            document.write('<script src="js/es6-promise.min.js"><\/script>');
+            document.write('<script src="js/es6-promise.auto.min.js"><\/script>');
+            document.write('<script src="js/fetch.min.js"><\/script>');
             document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.includes"><\/script>');
     </script>
-    <script src="d3.v5.min.js"></script>
+    <script src="js/d3.v5.min.js"></script>
     <script src="mira-accessible.js"></script>
 </body>
 </html>

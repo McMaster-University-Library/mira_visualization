@@ -1,95 +1,139 @@
-macid,position,first_name,last_name,email,mira_bio_url,primary_faculty,x_value,y_value
-pritcjm,test_position,Janet,Pritchard,pritcjm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Janet-Pritchard,Science,128,37
-archer,test_position,Norman,Archer,archer@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Norman-Archer,Science,104,167
-mishrar,test_position,Ram,Mishra,mishrar@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ram-Mishra,Science,56,16
-yuanyuf,test_position,Yufei,Yuan,yuanyuf@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Yufei-Yuan,Science,54,100
-mreid,test_position,Maureen Frances F,Markle-Reid,mreid@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Maureen Frances F-Markle-Reid,Science,184,154
-valaitis,test_position,Ruta K K,Valaitis,valaitis@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ruta K K-Valaitis,Science,18,72
-solomon,test_position,Patricia,Solomon,solomon@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Patricia-Solomon,Science,97,103
-griffith,test_position,Lauren,Griffith,griffith@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Lauren-Griffith,Science,89,108
-mdenton,test_position,Margaret Anne A,Denton,mdenton@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Margaret Anne A-Denton,Science,115,177
-fahnest,test_position,Margaret,Fahnestock,fahnest@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Margaret-Fahnestock,Science,4,116
-ljt,test_position,Laurel,Trainor,ljt@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Laurel-Trainor,Science,108,14
-beckers,test_position,Sue,Becker,beckers@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Sue-Becker,Health Sciences,48,65
-gary,test_position,Gary Mitchell M,Bone,gary@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Gary Mitchell M-Bone,Health Sciences,172,141
-papaioa,test_position,Alexandra,Papaioannou,papaioa@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Alexandra-Papaioannou,Health Sciences,18,37
-boschj,test_position,Jackie,Bosch,boschj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Jackie-Bosch,Health Sciences,131,112
-shedden,test_position,Judith,Shedden,shedden@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Judith-Shedden,Health Sciences,6,188
-lettsl,test_position,Lori,Letts,lettsl@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Lori-Letts,Health Sciences,151,134
-praina,test_position,Parminder,Raina,praina@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Parminder-Raina,Health Sciences,134,1
-jrichard,test_position,Julie,Richardson,jrichard@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Julie-Richardson,Health Sciences,171,29
-tarnopol,test_position,Mark,Tarnopolsky,tarnopol@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Mark-Tarnopolsky,Health Sciences,12,117
-ploegj,test_position,Jenny,Ploeg,ploegj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Jenny-Ploeg,Health Sciences,150,66
-mohrens,test_position,Martin George G,Von Mohrenschildt,mohrens@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Martin George G-Von Mohrenschildt,Health Sciences,31,132
-mcaineyc,test_position,Carrie,Mcainey,mcaineyc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Carrie-Mcainey,Health Sciences,1,120
-phillis,test_position,Stuart,Phillips,phillis@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Stuart-Phillips,Health Sciences,27,146
-charupat,test_position,Narat,Charupat,charupat@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Narat-Charupat,Health Sciences,106,174
-jamal,test_position,Jamal,Deen,jamal@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Jamal-Deen,Engineering,50,62
-ldolovic,test_position,Lisa,Dolovich,ldolovic@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Lisa-Dolovich,Engineering,109,22
-macdonmj,test_position,Maureen J J,Macdonald,macdonmj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Maureen J J-Macdonald,Engineering,198,12
-newbold,test_position,K Bruce B,Newbold,newbold@mcmaster.ca,https://mira.mcmaster.ca/team/bio/K Bruce B-Newbold,Engineering,113,187
-agarg,test_position,Ragini Gina G,Agarwal,agarg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ragini Gina G-Agarwal,Engineering,37,35
-sekuler,test_position,Allison,Sekuler,sekuler@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Allison-Sekuler,Engineering,62,48
-cqxu,test_position,Chang Qing Q,Xu,cqxu@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Chang Qing Q-Xu,Engineering,64,67
-brucei,test_position,Ian,Bruce,brucei@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ian-Bruce,Engineering,113,125
-paezha,test_position,Hector Antonio A,Paez,paezha@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Hector Antonio A-Paez,Engineering,190,165
-awill,test_position,Allison,Williams,awill@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Allison-Williams,Engineering,36,90
-gillett,test_position,James,Gillett,gillett@mcmaster.ca,https://mira.mcmaster.ca/team/bio/James-Gillett,Business,137,124
-kaasal,test_position,Sharon June J,Kaasalainen,kaasal@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Sharon June J-Kaasalainen,Business,179,32
-robert,test_position,Robert,Fleisig,robert@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Robert-Fleisig,Business,185,177
-zhuxu,test_position,Xu-Dong -D,Zhu,zhuxu@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Xu-Dong -D-Zhu,Business,160,3
-guptab,test_position,Bhagwati,Gupta,guptab@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Bhagwati-Gupta,Business,22,55
-doylet,test_position,Thomas,Doyle,doylet@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Thomas-Doyle,Business,129,176
-nosewor,test_position,Michael,Noseworthy,nosewor@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Michael-Noseworthy,Business,158,194
-connell,test_position,Catherine,Connelly,connell@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Catherine-Connelly,Business,66,164
-grignon,test_position,Michel,Grignon,grignon@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Michel-Grignon,Business,153,175
-tflynn,test_position,Terence,Flynn,tflynn@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Terence-Flynn,Business,77,27
-dolive,test_position,Douglas,Oliver,dolive@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Douglas-Oliver,Business,81,24
-ioannig,test_position,George,Ioannidis,ioannig@mcmaster.ca,https://mira.mcmaster.ca/team/bio/George-Ioannidis,Business,62,33
-selvaga,test_position,Ponnambalam,Selvaganapathy,selvaga@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ponnambalam-Selvaganapathy,Social Sciences,110,185
-qfang,test_position,Qiyin,Fang,qfang@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Qiyin-Fang,Social Sciences,94,120
-pariseg,test_position,Gianni,Parise,pariseg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Gianni-Parise,Social Sciences,15,167
-lokkerc,test_position,Cynthia,Lokker,lokkerc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Cynthia-Lokker,Social Sciences,74,153
-pjkeir,test_position,Peter,Keir,pjkeir@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Peter-Keir,Social Sciences,43,184
-zhoura,test_position,Yanqiu Rachel R,Zhou,zhoura@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Yanqiu Rachel R-Zhou,Social Sciences,170,112
-andrews,test_position,Gavin,Andrews,andrews@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Gavin-Andrews,Social Sciences,164,17
-dsherif,test_position,Diana,Sherifali,dsherif@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Diana-Sherifali,Social Sciences,52,35
-ghasemm,test_position,Maryam,Ghasemaghaei,ghasemm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Maryam-Ghasemaghaei,Social Sciences,140,164
-alvare,test_position,Elizabeth,Alvarez,alvare@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Elizabeth-Alvarez,Social Sciences,132,90
-singhg,test_position,Gurmit,Singh,singhg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Gurmit-Singh,Social Sciences,196,91
-grandfk,test_position,Kathryn,Grandfield,grandfk@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Kathryn-Grandfield,Social Sciences,74,39
-khome,test_position,Michelle,Kho,khome@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Michelle-Kho,Social Sciences,124,185
-hoaretr,test_position,Todd Ryan R,Hoare,hoaretr@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Todd Ryan R-Hoare,Social Sciences,143,191
-heiszjj,test_position,Jennifer,Heisz,heiszjj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Jennifer-Heisz,Social Sciences,190,29
-gonzal,test_position,Andrea,Gonzalez,gonzal@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Andrea-Gonzalez,Social Sciences,172,170
-jconnol,test_position,John,Connolly,jconnol@mcmaster.ca,https://mira.mcmaster.ca/team/bio/John-Connolly,Science,51,115
-gstein,test_position,Gregory,Steinberg,gstein@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Gregory-Steinberg,Science,69,66
-bowdish,test_position,Dawn,Bowdish,bowdish@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Dawn-Bowdish,Science,158,143
-rheinsm,test_position,Maikel,Rheinstadter,rheinsm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Maikel-Rheinstadter,Science,32,191
-dunnjam,test_position,James,Dunn,dunnjam@mcmaster.ca,https://mira.mcmaster.ca/team/bio/James-Dunn,Science,138,124
-bhonig,test_position,Benson,Honig,bhonig@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Benson-Honig,Science,71,44
-vickup,test_position,Victor,Kuperman,vickup@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Victor-Kuperman,Science,140,6
-quennev,test_position,Cheryl,Quenneville,quennev@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Cheryl-Quenneville,Health Sciences,170,147
-surette,test_position,Michael,Surette,surette@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Michael-Surette,Health Sciences,120,78
-vdalbel,test_position,Vanina,Dal Bello-Haas,vdalbel@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Vanina-Dal Bello-Haas,Health Sciences,23,29
-grenier,test_position,Amanda M M,Grenier,grenier@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Amanda M M-Grenier,Health Sciences,9,139
-woolhmh,test_position,Matthew,Woolhouse,woolhmh@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Matthew-Woolhouse,Health Sciences,105,158
-nelsonaj,test_position,Aimee,Nelson,nelsonaj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Aimee-Nelson,Health Sciences,108,26
-acosta,test_position,Andrew,Costa,acosta@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Andrew-Costa,Health Sciences,41,128
-atang,test_position,Ada,Tang,atang@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ada-Tang,Health Sciences,198,71
-rzheng,test_position,Rong,Zheng,rzheng@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Rong-Zheng,Health Sciences,124,65
-mangind,test_position,Derelie A A,Mangin,mangind@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Derelie A A-Mangin,Health Sciences,143,2
-samavir,test_position,Reza,Samavi,samavir@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Reza-Samavi,Health Sciences,29,156
-ljubic,test_position,Vladimir,Ljubicic,ljubic@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Vladimir-Ljubicic,Health Sciences,182,126
-griffmb,test_position,Meridith,Griffin,griffmb@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Meridith-Griffin,Health Sciences,2,92
-amstere,test_position,Ellen J J,Amster,amstere@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ellen J J-Amster,Health Sciences,42,172
-ganannrl,test_position,Rebecca,Ganann,ganannrl@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Rebecca-Ganann,Engineering,62,27
-beaucm1,test_position,Marla,Beauchamp,beaucm1@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Marla-Beauchamp,Engineering,132,100
-gardnerp,test_position,Paula,Gardner,gardnerp@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Paula-Gardner,Engineering,108,174
-didart,test_position,Tohid,Didar,didart@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Tohid-Didar,Engineering,78,21
-motamedz,test_position,Zahra,Keshavarz Motamed,motamedz@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Zahra-Keshavarz Motamed,Engineering,154,192
-bassimc,test_position,Carol Walker W,Bassim,bassimc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Carol Walker W-Bassim,Engineering,141,180
-olivejp,test_position,John Paul P,Oliveria,olivejp@mcmaster.ca,https://mira.mcmaster.ca/team/bio/John Paul P-Oliveria,Engineering,55,98
-durochee,test_position,Evelyne,Durocher,durochee@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Evelyne-Durocher,Humanities,200,10
-astephej,test_position,Janie,Astephen-Wilson,astephej@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Janie-Astephen-Wilson,Humanities,44,196
-brookd8,test_position,Dina,Brooks,brookd8@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Dina-Brooks,Humanities,27,81
+macid,first_name,last_name,position,primary_faculty,email,mira_bio_url,x_value,y_value
+abelsonj,Julia,Abelson,Health Sciences,Health Sciences,abelsonj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/julia-abelson,79,100
+agarg,Gina,Agarwal,Health Sciences,Health Sciences,agarg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/gina-agarwal ,90,120
+alkhazrb,Baraa,Al-Khazraji,Science,Science,alkhazrb@mcmaster.ca,https://mira.mcmaster.ca/team/bio/baraa-k.-al-khazraji,106,98
+alvare,Elizabeth,Alvarez,Health Sciences,Health Sciences,alvare@mcmaster.ca,https://mira.mcmaster.ca/team/bio/elizabeth-alvarez ,60,110
+amstere,Ellen,Amster,Humanities,Humanities,amstere@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ellen-amster ,112,118
+anderl10,Laura,Anderson,Health Sciences,Health Sciences,anderl10@mcmaster.ca,https://mira.mcmaster.ca/team/bio/laura-anderson ,100,117
+andrews,Gavin,Andrews,Social Sciences,Social Sciences,andrews@mcmaster.ca,https://mira.mcmaster.ca/team/bio/gavin-andrews ,192,100
+archer,Norm,Archer,Business,Business,archer@mcmaster.ca,https://mira.mcmaster.ca/team/bio/norm-archer ,129,75
+bassimc,Carol,Bassim,Health Sciences,Health Sciences,bassimc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/carol-bassim,188,129
+baxterp,Pamela,Baxter,Health Sciences,Health Sciences,baxterp@mcmaster.ca,https://mira.mcmaster.ca/team/bio/pamela-baxter,49,111
+beaucm1,Marla,Beauchamp,Health Sciences,Health Sciences,beaucm1@mcmaster.ca,https://mira.mcmaster.ca/team/bio/marla-beauchamp,28,132
+beckers,Sue,Becker,Science,Science,becker@mcmaster.ca,https://mira.mcmaster.ca/team/bio/sue-becker,158,118
+belkhir,Lofti,Belkhir,Engineering,Engineering,belkhir@mcmaster.ca,https://mira.mcmaster.ca/team/bio/lotfi-belkhir,22,32
+bennett,Patrick,Bennett,Science,Science,bennett@mcmaster.ca,https://mira.mcmaster.ca/team/bio/patrick-bennett ,14,53
+boamahs,Sheila,Boamah,Health Sciences,Health Sciences,boamahs@mcmaster.ca,https://mira.mcmaster.ca/team/bio/sheila-boamah,55,139
+gary,Gary ,Bone,Engineering,Engineering,gary@mcmaster.ca,https://mira.mcmaster.ca/team/bio/gary-bone,48,23
+boschj,Jackie,Bosch,Health Sciences,Health Sciences,boschj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jackie-bosch,42,83
+bowdish,Dawn,Bowdish,Health Sciences,Health Sciences,bowdish@mcmaster.ca,https://mira.mcmaster.ca/team/bio/dawn-bowdish,140,100
+brookd8,Dina,Brooks,Health Sciences,Health Sciences,brookd8@mcmaster.ca,https://mira.mcmaster.ca/team/bio/dina-brooks,22,102
+brucei,Ian,Bruce,Engineering,Engineering,brucei@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ian-bruce,160,35
+calicg,Goran,Calic,Business,Business,calicg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/goran-calic,131,187
+carlesl,Lisa,Carlesso,Health Sciences,Health Sciences,carlesl@mcmaster.ca,https://mira.mcmaster.ca/team/bio/lisa-carlesso,24,111
+charupat,Narat,Charupat,Business,Business,charupat@mcmaster.ca,https://mira.mcmaster.ca/team/bio/narat-charupat,39,178
+fchiang,Fei,Chiang,Engineering,Engineering,fchiang@mcmaster.ca,https://mira.mcmaster.ca/team/bio/fei-chiang,66,64
+connell,Catherine,Connelly,Business,Business,connell@mcmaster.ca,https://mira.mcmaster.ca/team/bio/catherine-connelly,113,92
+jconnol,John,Connolly,Humanities,Humanities,jconnol@mcmaster.ca,https://mira.mcmaster.ca/team/bio/john-connolly,18,25
+acosta,Andrew,Costa,Health Sciences,Health Sciences,acosta@mcmaster.ca,https://mira.mcmaster.ca/team/bio/andrea-costa,44,34
+vdalbel,Vanina,Dal Bello-Haas,Health Sciences,Health Sciences,vdalbel@mcmaster.ca,https://mira.mcmaster.ca/team/bio/vanina-dal-bello-haas,75,112
+jamal,Jamal,Deen,Engineering,Engineering,jamal@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jamal-deen,35,28
+mdenton,Margaret,Denton,Social Sciences,Social Sciences,mdenton@mcmaster.ca,https://mira.mcmaster.ca/team/bio/margaret-denton,81,186
+didar,Tohid,Didar,Engineering,Engineering,didart@mcmaster.ca,https://mira.mcmaster.ca/team/bio/tohid-didar,190,72
+ldolovic,Lisa,Dolovich,Health Sciences,Health Sciences,ldolovic@mcmaster.ca,https://mira.mcmaster.ca/team/bio/lisa-dolovich,100,135
+doylet,Tom,Doyle,Engineering,Engineering,doylet@mcmaster.ca,https://mira.mcmaster.ca/team/bio/tom-doyle,56,55
+dunnjam,James,Dunn,Social Sciences,Social Sciences,jim.dunn@mcmaster.ca,https://mira.mcmaster.ca/team/bio/james-dunn,64,183
+duongmy,Mylinh,Duong,Health Sciences,Health Sciences,duongmy@mcmaster.ca,https://mira.mcmaster.ca/team/bio/mylinh-duong,170,137
+durochee,Evelyne,Durocher,Health Sciences,Health Sciences,durochee@mcmaster.ca,https://mira.mcmaster.ca/team/bio/evelyne-durocher,101,92
+dushoff,Jonathan,Dushoff,Science,Science,dushoff@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jonathan-dushoff,185,118
+jenna.evans,Jenna,Evans,Business,Business,jenna.evans@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jenna-evans,101,125
+fahnest,Margaret,Fahnestock,Health Sciences,Health Sciences,fahnest@mcmaster.ca,https://mira.mcmaster.ca/team/bio/margaret-fahnestock,168,90
+qfang,Qiyin,Fang,Engineering,Engineering,qfang@mcmaster.ca,https://mira.mcmaster.ca/team/bio/qiyin-fang,73,74
+fisheka,Kathryn,Fisher,Health Sciences,Health Sciences,fisheka@mcmaster.ca,https://mira.mcmaster.ca/team/bio/kathryn-fisher,110,85
+robert,Robert,Fleisig,Engineering,Engineering,robert@mcmaster.ca,https://mira.mcmaster.ca/team/bio/robert-fleisig,7,21
+tflynn,Terry,Flynn,Business,Business,tflynn@mcmaster.ca,https://mira.mcmaster.ca/team/bio/terence-flynn,18,186
+galeav,Vickie,Galea,Health Sciences,Health Sciences,galeav@mcmaster.ca,https://mira.mcmaster.ca/team/bio/vickie-galea,55,69
+ganannrl,Rebecca,Ganann,Health Sciences,Health Sciences,ganannrl@mcmaster.ca,https://mira.mcmaster.ca/team/bio/rebecca-ganaan,86,95
+gardnerp,Paula,Gardner,Humanities,Humanities,gardnerp@mcmaster.ca,https://mira.mcmaster.ca/team/bio/paula-gardner,85,87
+ghasemm,Maryam,Ghasemaghaei,Business,Business,ghasemm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/maryam-ghasemaghaei,175,21
+gillett,James,Gillett,Social Sciences,Social Sciences,gillett@mcmaster.ca,https://mira.mcmaster.ca/team/bio/james-gillett,93,110
+gilsing,Anne,Gilsing,Health Sciences,Health Sciences,gilsing@mcmaster.ca,https://mira.mcmaster.ca/team/bio/anne-gisling,159,149
+gonzal,Andrea,Gonzalez,Health Sciences,Health Sciences,gonzal@mcmaster.ca,https://mira.mcmaster.ca/team/bio/andrea-gonzalez,84,127
+grandfk,Kathryn,Grandfield,Engineering,Engineering,kgrandfield@mcmaster.ca,https://mira.mcmaster.ca/team/bio/kathryn-grandfield,141,80
+grenier,Amanda,Grenier,Social Sciences,Social Sciences,grenier@mcmaster.ca,https://mira.mcmaster.ca/team/bio/amanda-grenier,183,162
+griffmb,Meridith,Griffin,Social Sciences,Social Sciences,griffmb@mcmaster.ca,https://mira.mcmaster.ca/team/bio/meredith-griffin,117,126
+griffith,Lauren,Griffith,Health Sciences,Health Sciences,griffith@mcmaster.ca,https://mira.mcmaster.ca/team/bio/lauren-griffith,102,154
+grignon,Michel,Grignon,Social Sciences,Social Sciences,grignon@mcmaster.ca,https://mira.mcmaster.ca/team/bio/michel-grignon,166,170
+guptab,Bhagwati,Gupta,Science,Science,guptab@mcmaster.ca,https://mira.mcmaster.ca/team/bio/bhagwati-gupta,169,69
+hassank,Khaled,Hassanein,Business,Business,hassank@mcmaster.ca,https://mira.mcmaster.ca/team/bio/khaled-hassanein,72,90
+headm,Milena,Head,Business,Business,headm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/milena-head,50,62
+heiszjj,Jennifer,Heisz,Science,Science,heiszjj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jennifer-heisz,96,95
+hirotaja,Jeremy,Hirota,Health Sciences,Health Sciences,hirotaja@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jeremy-hirota,130,69
+hoaretr,Todd,Hoare,Engineering,Engineering,hoaretr@mcmaster.ca,https://mira.mcmaster.ca/team/bio/todd-hoare,81,52
+bhonig,Benson,Honig,Business,Business,bhonig@mcmaster.ca,https://mira.mcmaster.ca/team/bio/benson-honig,138,185
+ioannig,George,Ioannidis,Health Sciences,Health Sciences,ioannig@mcmaster.ca,https://mira.mcmaster.ca/team/bio/george-ioannidis,101,74
+joshia,Anju,Joshi,Social Sciences,Social Sciences,joshia@mcmaster.ca,https://mira.mcmaster.ca/team/bio/anju-joshi,85,107
+kaasal,Sharon June,Kaasalainen,Business,Business,kaasal@mcmaster.ca,https://mira.mcmaster.ca/team/bio/faculty-of-health-sciences,46,94
+pjkeir,Peter,Keir,Science,Science,pjkeir@mcmaster.ca,https://mira.mcmaster.ca/team/bio/peter-keir,105,89
+kennedyc,Courtney ,Kennedy,Health Sciences,Health Sciences,kennedyc@hhsc.ca,https://mira.mcmaster.ca/team/bio/courtney-kennedy,23,78
+khome,Michelle,Kho,Health Sciences,Health Sciences,khome@mcmaster.ca,https://mira.mcmaster.ca/team/bio/michelle-kho,22,116
+kobsard,Dylan,Kobsar,Science,Science,kobsard@mcmaster.ca,https://mira.mcmaster.ca/team/bio/dylan-kobsar,47,40
+vickup,Victor,Kuperman,Humanities,Humanities,vickup@mcmaster.ca,https://mira.mcmaster.ca/team/bio/victor-kuperman,154,88
+kuspinaa,Ayse,Kuspinar,Health Sciences,Health Sciences,kuspinaa@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ayse-kuspinar,29,139
+larost1,Tara,La Rose,Social Sciences,Social Sciences,larost1@mcmaster.ca,https://mira.mcmaster.ca/team/bio/tara-larose,95,78
+lettsl,Lori,Letts,Health Sciences,Health Sciences,lettsl@mcmaster.ca,https://mira.mcmaster.ca/team/bio/lori-letts,66,56
+ljubic,Vladimir,Ljubicic,Science,Science,ljubic@mcmaster.ca,https://mira.mcmaster.ca/team/bio/vladimir-ljubicic,170,102
+lokkerc,Cynthia,Lokker,Health Sciences,Health Sciences,lokkerc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/cynthia-lokker,70,83
+maj26,Jinhui,Ma,Health Sciences,Health Sciences,maj26@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jihui-ma,146,113
+macdonmj,Maureen,Macdonald,Science,Science,macdonmj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/maureen-macdonald,150,102
+macedol,Luciana,Macedo,Health Sciences,Health Sciences,macedol@mcmaster.ca,https://mira.mcmaster.ca/team/bio/luciana-macedo,71,35
+mangind,Dee,Mangin,Health Sciences,Health Sciences,mangind@mcmaster.ca,https://mira.mcmaster.ca/team/bio/dee-mangin,69,124
+marcum2,Maura,Marcucci,Health Sciences,Health Sciences,marcum2@mcmaster.ca,https://mira.mcmaster.ca/team/bio/maura-marcucci,58,76
+mreid,Maureen,Markle-Reid,Health Sciences,Health Sciences,mreid@mcmaster.ca,https://mira.mcmaster.ca/team/bio/maureen-markle-reid,105,111
+mcaineyc,Carrie,McAiney,Health Sciences,Health Sciences,mcaineyc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/carrie-mcainey,24,90
+paulmc,Paul,McNicholas,Science,Science,paulmc@mcmaster.ca,https://mira.mcmaster.ca/team/bio/paul-mcnicholas,155,108
+mishrar,Ram,Mishra,Health Sciences,Health Sciences,mishrar@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Ram-Mishra,195,5
+motamedz,Zahra,Motamed,Engineering,Engineering,motamedz@mcmaster.ca,https://mira.mcmaster.ca/team/bio/zahra-motamed,150,70
+namasia,Ashwini,Namasivayam-MacDonald,Health Sciences,Health Sciences,namasia@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ashwini-namasivayam-macdonald,14,105
+nelsonaj,Aimee,Nelson,Science,Science,nelsonaj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/aimee-nelson,160,79
+newbold,Bruce,Newbold,Science,Science,newbold@mcmaster.ca,https://mira.mcmaster.ca/team/bio/bruce-newbold,131,120
+nosewor,Michael,Noseworthy,Engineering,Engineering,nosewor@mcmaster.ca,https://mira.mcmaster.ca/team/bio/michael-noseworthy,192,38
+dolive,Doug,Oliver,Health Sciences,Health Sciences,dolive@mcmaster.ca,https://mira.mcmaster.ca/team/bio/doug-oliver,16,124
+olivejp,John Paul,Oliveria,Health Sciences,Health Sciences,olivejp@mcmaster.ca,https://mira.mcmaster.ca/team/bio/john-paul-oliveria,183,59
+paezha,Antonio,Paez,Science,Science,paezha@mcmaster.ca,https://mira.mcmaster.ca/team/bio/antonio-paez,42,129
+papaioa,Alexandra,Papaioannou,Health Sciences,Health Sciences,papaioa@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Alexandra-Papaioannou,20,95
+pariseg,Gianni,Parise,Science,Science,pariseg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/gianni-parise,170,84
+pattec4,Christopher,Patterson,Health Sciences,Health Sciences,pattec4@mcmaster.ca,https://mira.mcmaster.ca/team/bio/christopher-patterson,172,189
+phillis,Stuart,Phillips,Science,Science,phillis@mcmaster.ca,https://mira.mcmaster.ca/team/bio/stuart-phillips,177,77
+ploegj,Jenny,Ploeg,Health Sciences,Health Sciences,ploegj@mcmaster.ca,https://mira.mcmaster.ca/team/bio/jenny-ploeg,90,101
+pritcjm,Janet,Pritchard,Science,Science,pritcjm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/janet-pritchard,55,87
+quennev,Cheryl,Quenneville,Engineering,Engineering,quennev@mcmaster.ca,https://mira.mcmaster.ca/team/bio/cheryl-quenneville,120,82
+praina,Parminder,Raina,Health Sciences,Health Sciences,praina@mcmaster.ca,https://mira.mcmaster.ca/team/bio/parminder-raina,103,144
+rheinsm,Maikel,Rheinstadter,Science,Science,rheinsm@mcmaster.ca,https://mira.mcmaster.ca/team/bio/Maikel-Rheinstadter,183,93
+jrichard,Julie,Richardson,Health Sciences,Health Sciences,jrichard@mcmaster.ca,https://mira.mcmaster.ca/team/bio/julie-richardson,8,152
+saperson,Karen,Saperson,Health Sciences,Health Sciences,saperson@mcmaster.ca,https://mira.mcmaster.ca/team/bio/karen-saperson,37,123
+satiai,Imran,Satia,Health Sciences,Health Sciences,satiai@mcmaster.ca,https://mira.mcmaster.ca/team/bio/imran-satia,139,68
+schwarcz,Henry,Schwarcz,Science,Science,schwarcz@mcmaster.ca,https://mira.mcmaster.ca/team/bio/henry-schwarcz,190,79
+sekuler,Allison,Sekuler,Science,Science,sekuler@mcmaster.ca,https://mira.mcmaster.ca/team/bio/allison-sekular,95,85
+selvaga,Ravi,Selvaganapathy,Engineering,Engineering,selvaga@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ravi-selvaganapathy,100,43
+seowh,Hsien,Seow,Health Sciences,Health Sciences,seowh@mcmaster.ca,https://mira.mcmaster.ca/team/bio/hsien-seow,6,105
+shedden,Judith,Shedden,Science,Science,shedden@mcmaster.ca,https://mira.mcmaster.ca/team/bio/faculty-of-science,124,110
+dsherif,Diana,Sherifali,Health Sciences,Health Sciences,dsherif@mcmaster.ca,https://mira.mcmaster.ca/team/bio/diana-sherifali,68,100
+singhg,Gurmit,Singh,Health Sciences,Health Sciences,singhg@mcmaster.ca,https://mira.mcmaster.ca/team/bio/gurmit-singh,178,64
+sloboda,Deborah,Sloboda,Health Sciences,Health Sciences,sloboda@mcmaster.ca,https://mira.mcmaster.ca/team/bio/deborah-sloboda,106,170
+solomon,Patty,Solomon,Health Sciences,Health Sciences,solomon@mcmaster.ca,https://mira.mcmaster.ca/team/bio/patty-solomon,77,120
+rhpcs.admin,Ranil,Sonnadara,Health Sciences,Health Sciences,rhpcs.admin@rhpcs.mcmaster.ca,https://mira.mcmaster.ca/team/bio/ranil-sonnadara,87,47
+spencer,Byron,Spencer,Social Sciences,Social Sciences,spencer@mcmaster.ca,https://mira.mcmaster.ca/team/bio/byron-spencer,103,192
+gstein,Gregory,Steinberg,Health Sciences,Health Sciences,gstein@mcmaster.ca,https://mira.mcmaster.ca/team/bio/gregory-steinberg,170,116
+surette,Michael,Surette,Health Sciences,Health Sciences,surette@mcmaster.ca,https://mira.mcmaster.ca/team/bio/michael-surette,68,94
+sztramrw,Richard,Sztramko,Health Sciences,Health Sciences,sztramrw@mcmaster.ca,https://mira.mcmaster.ca/team/bio/richard-sztramko,16,14
+atang,Ada,Tang,Health Sciences,Health Sciences,atang@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ada-tang,38,50
+tarnopol,Mark,Tarnopolsky,Health Sciences,Health Sciences,tarnopol@mcmaster.ca,https://mira.mcmaster.ca/team/bio/mark-tarnopolsky,178,42
+thabanl,Lehana,Thabane,Health Sciences,Health Sciences,thabanl@mcmaster.ca,https://mira.mcmaster.ca/team/bio/lehana-thabane,6,169
+ljt,Laurel,Trainor,Science,Science,ljt@mcmaster.ca,https://mira.mcmaster.ca/team/bio/laurel-trainor,143,86
+valaitis,Ruta,Valaitis,Health Sciences,Health Sciences,valaitis@mcmaster.ca,https://mira.mcmaster.ca/team/bio/ruta-valaitis,119,100
+veall,Michael,Veall,Social Sciences,Social Sciences,veall@mcmaster.ca,https://mira.mcmaster.ca/team/bio/michael-veall,115,105
+cversch,Chris,Verschoor,Health Sciences,Health Sciences,cversch@mcmaster.ca,https://mira.mcmaster.ca/team/bio/chris-verschoor,187,105
+mohrens,Martin ,Von Mohrenschildt,Engineering,Engineering,mohrens@mcmaster.ca,https://mira.mcmaster.ca/team/bio/martin-von-mohrenschildt,140,59
+vrkljan,Brenda,Vrkljan,Health Sciences,Health Sciences,vrkljan@mcmaster.ca,https://mira.mcmaster.ca/team/bio/brenda-vrkljan,38,112
+wangli1,Li,Wang,Health Sciences,Health Sciences,wangli1@mcmaster.ca,https://mira.mcmaster.ca/team/bio/li-wang,50,103
+awill,Allison,Williams,Science,Science,awill@mcmaster.ca,https://mira.mcmaster.ca/team/bio/allison-williams,100,105
+astephej,Janie,Wilson,Health Sciences,Health Sciences,janiewilson@mcmaster.ca,https://mira.mcmaster.ca/team/bio/janie-wilson,88,62
+woolhmh,Matthew,Woolhouse,Humanities,Humanities,woolhmh@mcmaster.ca,https://mira.mcmaster.ca/team/bio/matthew-woolhouse,36,60
+cqxu,Chang Qing,Xu,Engineering,Engineering,cqxu@mcmaster.ca,https://mira.mcmaster.ca/team/bio/chang-qinq-xu,88,30
+yuanyuf,Yufei,Yuan,Business,Business,yuanyuf@mcmaster.ca,https://mira.mcmaster.ca/team/bio/yufei-yuan,6,44
+zargoush,Manaf,Zargoush,Business,Business,zargoush@mcmaster.ca,https://mira.mcmaster.ca/team/bio/manaf-zargoush,124,94
+zeytino,Isik,Zeytinoglu,Business,Business,zeytino@mcmaster.ca,https://mira.mcmaster.ca/team/bio/isik-zeytinoglu,51,169
+rzheng,Rong,Zheng,Engineering,Engineering,rzheng@mcmaster.ca,https://mira.mcmaster.ca/team/bio/rong-zheng,96,54
+zhoura,Rachel,Zhou,Social Sciences,Social Sciences,zhoura@mcmaster.ca,https://mira.mcmaster.ca/team/bio/rachel-zhou,112,148
+zhuxu,Xu-Dong -D,Zhu,Science,Science,zhuxu@mcmaster.ca,https://mira.mcmaster.ca/team/bio/xu-dong-zhu,178,98
