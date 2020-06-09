@@ -348,8 +348,11 @@ function visuals() {
         // Event listener for coauthor lines
         d3.selectAll(".dataGroup").on("click", function (d) {
             draw_lines(this.id)
-            faculty_filter(active_faculty)
-
+            if (active_project != false){
+                project_filter(active_project)
+            } else {
+                faculty_filter(active_faculty)
+            }
         })
 
         // Event listener to remove coauthor lines and tooltips when clicking on canvas
