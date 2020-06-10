@@ -62,12 +62,21 @@
     <script src="js/jquery-3.2.1.slim.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script>
+        // Load script
+        function loadScript(src) {
+            var js = document.createElement('script');
+            js.src = src;
+            js.async = false;
+            document.body.appendChild(js);
+        }
+
         // IE 11 doesn't support promises or csv fetch, therefore the following work-around is needed
-        if (typeof Promise !== "function")
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"><\/script>');
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"><\/script>');
-            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"><\/script>');
-            document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.prototype.includes"><\/script>');
+        if (typeof Promise !== "function") {
+            loadScript('js/es6-promise.min.js');
+            loadScript('js/es6-promise.auto.min.js');
+            loadScript('js/fetch.min.js');
+            loadScript('js/polyfill.min.js?features=default,Array.prototype.includes');
+        }
     </script>
     <script src="js/d3.v5.min.js"></script>
     <script src="mira.js"></script>
