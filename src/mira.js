@@ -395,9 +395,10 @@ function visuals() {
         // function is used to pull a listing of researcher's projects to be displayed in modal window
         function memberProjects(projectKeys, macid) {
             let memberProjectsText="";
-            for (const projectKey of projectKeys) {
-                if (pg[projectKey]['members'].includes(macid)) {
-                    memberProjectsText+="<div class='pb-2'>"+pg[projectKey]['blurb_title']+"</div>";
+            for (projectKey in projectKeys) {
+                var keyvalue=projectKeys[projectKey];
+                if (pg[keyvalue]['members'].includes(macid)) {
+                    memberProjectsText+="<div class='pb-2'>"+pg[keyvalue]['blurb_title']+"</div>";
                 }
             }
             return memberProjectsText;
