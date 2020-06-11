@@ -339,7 +339,7 @@ function visuals() {
             d3.selectAll('#projectFilter button').classed('active', false);
             d3.selectAll('#facultyFilter button').classed('active', false);
             d3.select(this).classed('active', true);
-            d3.selectAll('#facultyFilter button All').classed('active', true);
+            d3.selectAll('#facultyFilter .All').classed('active', true);
             if (projectId=='All') {
                 faculty_filter('All');
             } else {

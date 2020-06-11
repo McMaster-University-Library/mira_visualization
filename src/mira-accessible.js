@@ -221,7 +221,7 @@ function visuals() {
             d3.selectAll('#facultyFilter button').classed('active',false);
             d3.selectAll('#projectFilter button').classed('active',false);
             d3.select(this).classed('active', true);
-            d3.selectAll('#facultyFilter button All').classed('active', true);
+            d3.selectAll('#facultyFilter button .All').classed('active', true);
             if (projectId=='All') {
                 d3.select('#projectInfo div').remove();
                 d3.select('#projectInfo').classed('active',false);
