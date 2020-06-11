@@ -42,7 +42,7 @@ function get_mira_data(){
 
     //project grant data
     d3.csv(project_grants_csv).then(function(data){
-        for (i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             const row = data[i]
             const key = row["level1"] + row["level2"] + row["level3"]
 
@@ -92,7 +92,7 @@ function get_mira_data(){
 }
 
 function get_coauthor_xml(member_macid) {
-    url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
+    url = "/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -221,7 +221,14 @@ function visuals() {
             d3.selectAll('#facultyFilter button').classed('active',false);
             d3.selectAll('#projectFilter button').classed('active',false);
             d3.select(this).classed('active', true);
-            project_filter(projectId);
+            d3.selectAll('#facultyFilter button All').classed('active', true);
+            if (projectId=='All') {
+                d3.select('#projectInfo div').remove();
+                d3.select('#projectInfo').classed('active',false);
+                faculty_filter('All');
+            } else {
+                project_filter(projectId);
+            }
         })
 
         // Initial start up

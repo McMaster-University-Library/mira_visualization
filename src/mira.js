@@ -336,13 +336,15 @@ function visuals() {
         // Event listener for project filter
         d3.selectAll(".triggerProjectFilter").on("click", function (d) {
             var projectId = this.getAttribute('data-project-filter');
-
-            d3.selectAll('#projectFilter button').classed('active', false)
-            d3.selectAll('#facultyFilter button').classed('active', false)
-            d3.select(this).classed('active', true)
-
-            project_filter(projectId)
-
+            d3.selectAll('#projectFilter button').classed('active', false);
+            d3.selectAll('#facultyFilter button').classed('active', false);
+            d3.select(this).classed('active', true);
+            d3.selectAll('#facultyFilter button All').classed('active', true);
+            if (projectId=='All') {
+                faculty_filter('All');
+            } else {
+                project_filter(projectId);
+            }
         })
 
         // Event listener for coauthor lines
