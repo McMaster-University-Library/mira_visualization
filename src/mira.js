@@ -166,6 +166,7 @@ function generateProjectFilters(levels) {
         }
         pc1++;
     });
+    d3.select('#collapseFilter').attr('style','max-height: '+(+window.innerHeight - margin.top - margin.bottom-100)+'px;');
 }
 
 get_mira_data();
@@ -596,8 +597,6 @@ function visuals() {
             });
 
         d3.selectAll("circle").raise()
-
-
     }
 
 
