@@ -446,7 +446,7 @@ function visuals() {
 
                     tooltip.transition()
                         .duration(200)
-                        .style("opacity", .9);
+                        .style("opacity", .95);
                     tooltip.html(
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
                         "</span><button class='pull-right' onclick='d3.selectAll(\".tooltip\").remove();'><span class='glyphicon glyphicon-remove' aria-hidden='true'><span class='sr-only'>Close</span></span></button>" +
