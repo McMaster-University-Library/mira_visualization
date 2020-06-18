@@ -375,12 +375,12 @@ function visuals() {
 
             }
         })
-
+        
         // Initial start up
         if (active_project != false){
-            project_filter(active_project)
+            setTimeout(project_filter(active_project), 1500)
         } else {
-            faculty_filter(active_faculty)
+            setTimeout(faculty_filter(active_faculty), 1500)
         }
         draw_lines(coauthor_origin)
 
