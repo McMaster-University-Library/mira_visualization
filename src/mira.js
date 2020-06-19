@@ -9,7 +9,7 @@
 
 const mira_members_csv = "mira_members.csv"
 const project_grants_csv = "project_grant.csv"
-const margin = {top: 0, right: 0, bottom: 0, left: 0};
+const margin = {top: 2, right: 2, bottom: 1, left: 2};
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var coauthor_network = {}  // key: macid val: list of coauthor macid

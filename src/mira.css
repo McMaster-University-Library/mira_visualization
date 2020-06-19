@@ -1,5 +1,7 @@
 #miraVis {
   max-width: 100%;
+  border: 1px solid black;
+  background-color: #eaf1f8;
 }
 
 h1 {
@@ -9,7 +11,7 @@ h1 {
 body { margin:0;
   padding:0; overflow:hidden }
 
-svg { position:fixed; top:0; bottom:0; left:0; right:0 }
+svg { position:fixed; top:1px; bottom:0; left:1px; right:0 }
 
 .axis, .axis path {
   fill: none;
