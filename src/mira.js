@@ -604,35 +604,44 @@ function visuals() {
         d3.selectAll(".coauthor_line").remove();  // remove former lines
         coauthor_origin = macid;  //set global coauthor variable
 
-        for (i = 0; i < coauthor_network[macid].length; i++) {
-            if (coauthor_network[macid][i] in dots) {
-                if (active_faculty == "All" || active_faculty == dots[coauthor_network[macid][i]].faculty2) {
-                    const end = dots[coauthor_network[macid][i]]
 
-                    gData_object = gData.filter(function (d) {
-                        if (d.macid == end.macid) {
-                            return true
-                        } else {
-                            return false
-                        }
-                    })
 
-                    gData_object.append("line")
-                        .attr("x1", function (d) {
-                            return x(dots[macid].x_value);  // x position of the first end of the line
+        try{
+            for (i = 0; i < coauthor_network[macid].length; i++) {
+                if (coauthor_network[macid][i] in dots) {
+                    if (active_faculty == "All" || active_faculty == dots[coauthor_network[macid][i]].faculty2) {
+                        const end = dots[coauthor_network[macid][i]]
+
+                        gData_object = gData.filter(function (d) {
+                            if (d.macid == end.macid) {
+                                return true
+                            } else {
+                                return false
+                            }
                         })
-                        .attr("y1", function (d) {
-                            return y(dots[macid].y_value);  // y position of the first end of the line
-                        })
-                        .attr("x2", x(end.x_value))     // x position of the second end of the line
-                        .attr("y2", y(end.y_value))    // y position of the second end of the line
-                        .attr("stroke-width", 2)
-                        .attr("stroke", "#5e6a71")
-                        .attr("class", "coauthor_line");
 
+                        gData_object.append("line")
+                            .attr("x1", function (d) {
+                                return x(dots[macid].x_value);  // x position of the first end of the line
+                            })
+                            .attr("y1", function (d) {
+                                return y(dots[macid].y_value);  // y position of the first end of the line
+                            })
+                            .attr("x2", x(end.x_value))     // x position of the second end of the line
+                            .attr("y2", y(end.y_value))    // y position of the second end of the line
+                            .attr("stroke-width", 2)
+                            .attr("stroke", "#5e6a71")
+                            .attr("class", "coauthor_line");
+
+                    }
                 }
             }
+        }catch(e){
+            console.log('coauthor_network[macid] is undefined at start-up');
         }
+
+
+
         d3.selectAll("circle").raise()
         d3.select("[id=" + macid + "]").raise()
     }
