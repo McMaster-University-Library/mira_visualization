@@ -10,6 +10,7 @@
 const mira_members_csv = "mira_members.csv"
 const project_grants_csv = "project_grant.csv"
 const margin = {top: 2, right: 2, bottom: 1, left: 2};
+const csv_check_cols = ["email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"];
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var faculty_members = {}  // key: faculty val: list of macid
 var coauthor_network = {}  // key: macid val: list of coauthor macid
@@ -33,90 +34,108 @@ function get_mira_data(){
     d3.csv(mira_members_csv).then(function(data){
         for (i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
-            mira_members_data_pull[data[i]["macid"]] = data[i]
+
+            // this check ensures that faculty who have not properly been filled out in the mira_members.csv file are not imported
+            let check = true
+
+            for(let j = 0; j < csv_check_cols.length; j++){
+                if (!(csv_check_cols[j] in data[i])){
+                    check = false
+                    console.log("failed check, element does not contain all fields", data[i])
+                } else if (data[i][csv_check_cols[j]].length <= 0){
+                    console.log("failed check, required fields are not filled out properly", data[i])
+                    check = false
+                }
+            }
+
+            if (check) {
+                mira_members_data_pull[data[i]["macid"]] = data[i]
+            }
+
 
             // initializing faculty list if it isn't there already
             faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
             faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
+        console.log(mira_members_data_pull)
     })
 
 
-    //project grant data
-    d3.csv(project_grants_csv).then(function(data){
+               //project grant data
+               d3.csv(project_grants_csv).then(function(data){
 
-        for (let i = 0; i < data.length; i++) {
-            const row = data[i]
-            const key = row["level1"] + row["level2"] + row["level3"]
+                   for (let i = 0; i < data.length; i++) {
+                       const row = data[i]
+                       const key = row["level1"] + row["level2"] + row["level3"]
 
-            // filling the levels variable
-            levels[row["level1"]] = typeof(levels[row["level1"]]) === 'undefined' ? {} : levels[row["level1"]];
+                       // filling the levels variable
+                       levels[row["level1"]] = typeof(levels[row["level1"]]) === 'undefined' ? {} : levels[row["level1"]];
 
-            // If level ends at level1
-            if (row["level2"].length == 0) {
-                levels[row["level1"]] = key
-            } else { // proceed to levels 2 and 3
-                cur_item = levels[row["level1"]][row["level2"]]
-                levels[row["level1"]][row["level2"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
-            }
+                       // If level ends at level1
+                       if (row["level2"].length == 0) {
+                           levels[row["level1"]] = key
+                       } else { // proceed to levels 2 and 3
+                           cur_item = levels[row["level1"]][row["level2"]]
+                           levels[row["level1"]][row["level2"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
+                       }
 
-            // If level ends at level2
-            if (row["level3"].length == 0) {
-                levels[row["level1"]][row["level2"]] = key
-            } else { // proceed to level3
-                cur_item = levels[row["level1"]][row["level2"]][row["level3"]]
-                levels[row["level1"]][row["level2"]][row["level3"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
-            }
+                       // If level ends at level2
+                       if (row["level3"].length == 0) {
+                           levels[row["level1"]][row["level2"]] = key
+                       } else { // proceed to level3
+                           cur_item = levels[row["level1"]][row["level2"]][row["level3"]]
+                           levels[row["level1"]][row["level2"]][row["level3"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
+                       }
 
-            // If level ends at level3
-            if (row["level3"].length > 0) {
-                levels[row["level1"]][row["level2"]][row["level3"]] = key
-            }
+                       // If level ends at level3
+                       if (row["level3"].length > 0) {
+                           levels[row["level1"]][row["level2"]][row["level3"]] = key
+                       }
 
 
-            // filling the project grants variable (pg)
-            var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
-            pg[key] = typeof(pg[key]) === 'undefined' ? base : pg[key];
-            pg[key]["members"].push(row["macid"])
+                       // filling the project grants variable (pg)
+                       var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
+                       pg[key] = typeof(pg[key]) === 'undefined' ? base : pg[key];
+                       pg[key]["members"].push(row["macid"])
 
-            if (row["pi"] == "TRUE"){
-                pg[key]["pi"].push(row["macid"])
-            }
+                       if (row["pi"] == "TRUE"){
+                           pg[key]["pi"].push(row["macid"])
+                       }
 
-            if (row["blurb_title"].length > pg[key]["blurb_title"].length){
-                pg[key]["blurb_title"] = row["blurb_title"]
-            }
+                       if (row["blurb_title"].length > pg[key]["blurb_title"].length){
+                           pg[key]["blurb_title"] = row["blurb_title"]
+                       }
 
-            if (row["blurb"].length > pg[key]["blurb"].length){
-                pg[key]["blurb"] = row["blurb"]
-            }
-        }
-        generateProjectFilters(levels);
+                       if (row["blurb"].length > pg[key]["blurb"].length){
+                           pg[key]["blurb"] = row["blurb"]
+                       }
+                   }
+                   generateProjectFilters(levels);
 
-    })
-}
+               })
+           }
 
-function get_coauthor_xml(member_macid) {
-    url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            sort_coauthor_xml(member_macid, this);
-        }
-        if (this.status >= 400) {
-            xhttp.abort()
-        }
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
+           function get_coauthor_xml(member_macid) {
+               url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
+               let xhttp = new XMLHttpRequest();
+               xhttp.onreadystatechange = function () {
+                   if (this.readyState == 4 && this.status == 200) {
+                       sort_coauthor_xml(member_macid, this);
+                   }
+                   if (this.status >= 400) {
+                       xhttp.abort()
+                   }
+               };
+               xhttp.open("GET", url, true);
+               xhttp.send();
 
-}
+           }
 
-function sort_coauthor_xml(member_macid, xml) {
-    /*
-     This function updates the global variable coauthor_network by adding a new member as a key. The value is a list
-     of all corresponding macids associated with that author, including that author itself
-     */
+           function sort_coauthor_xml(member_macid, xml) {
+               /*
+                This function updates the global variable coauthor_network by adding a new member as a key. The value is a list
+                of all corresponding macids associated with that author, including that author itself
+                */
     var xmlDoc = xml.responseXML;
     mac_ids = [];
     nodes  = xmlDoc.getElementsByTagNameNS("http://graphml.graphdrawing.org/xmlns", "node");
