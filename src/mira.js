@@ -254,7 +254,7 @@ function visuals() {
         .text("POLICY")
 
     g.append("text")
-        .attr("transform", "translate(" + x.range()[1] / 2 + "," + (domainHeight - 24) + ")")
+        .attr("transform", "translate(" + x.range()[1] / 2 + "," + (domainHeight - 30) + ")")
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .attr("class", "axisTitle")
@@ -272,13 +272,14 @@ function visuals() {
 
     g.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", (domainWidth - 24))
+        .attr("y", (domainWidth - 30))
         .attr("x", -domainHeight / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .attr("class", "axisTitle rightTitle")
         .text("THEORY & DISCOVERY");
 
+    // horizontal axis
     g.append("line")
         .attr("transform", "rotate(-90)")
         .attr("x1", d3.select(".rightTitle").attr('x')) // x position of the first end of the line
@@ -289,11 +290,12 @@ function visuals() {
         .attr("stroke", "black")
         .attr("opacity", ".7")
 
+    // Vertical axis
     g.append("line")
         .attr("x1", domainWidth / 2) // x position of the first end of the line
         .attr("y1", 28)
         .attr("x2", domainWidth / 2) // x position of the first end of the line
-        .attr("y2", domainHeight - 23)
+        .attr("y2", domainHeight - 27)
         .attr("stroke-width", 3)
         .attr("stroke", "black")
         .attr("opacity", ".7")
