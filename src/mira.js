@@ -12,6 +12,7 @@ const project_grants_csv = "project_grant.csv"
 const margin = {top: 2, right: 2, bottom: 1, left: 2};
 const csv_check_cols = ["email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"];
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
+var mira_members_list = [] // dict representing each member in mira, keys in dict correspond to cols in mira_members.csv
 var faculty_members = {}  // key: faculty val: list of macid
 var coauthor_network = {}  // key: macid val: list of coauthor macid
 var dots = {}  // key: macid val: dataGroup (for the dot)
@@ -57,9 +58,8 @@ function get_mira_data(){
             faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
             faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
-        console.log(mira_members_data_pull)
-    })
 
+    })
 
                //project grant data
                d3.csv(project_grants_csv).then(function(data){
@@ -316,19 +316,35 @@ function visuals() {
 
     d3.csv(mira_members_csv).then(function (mira_members) {
         // Prepare data. Coerce the strings for coordinates to numbers.
-        mira_members.forEach(function (d) {
-            d.x_value = +d.x_value;
-            d.y_value = +d.y_value;
-            d.first_name = d.first_name;
-            d.last_name = d.last_name;
-            d.macid = d.macid;
-            d.faculty2 = d.primary_faculty;
-            d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
-            dots[d.macid] = d
 
+        mira_members.forEach(function (d) {
+            // this check ensures that faculty who have not properly been filled out in the mira_members.csv file are not imported
+            let check = true
+
+            for(let j = 0; j < csv_check_cols.length; j++){
+                if (!(csv_check_cols[j] in d)){
+                    check = false
+                    console.log("failed check2, element does not contain all fields", d)
+                } else if (d[csv_check_cols[j]].length <= 0){
+                    console.log("failed check2, required fields are not filled out properly", d)
+                    check = false
+                }
+            }
+
+            if (check){
+                d.x_value = +d.x_value;
+                d.y_value = +d.y_value;
+                d.first_name = d.first_name;
+                d.last_name = d.last_name;
+                d.macid = d.macid;
+                d.faculty2 = d.primary_faculty;
+                d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
+                dots[d.macid] = d
+                mira_members_list.push(d)
+            }
         });
 
-        const gDots = g.selectAll("g.dot").data(mira_members);
+        const gDots = g.selectAll("g.dot").data(mira_members_list);
 
         gData = gDots.enter().append('g')
             .attr("id", function (d) {
