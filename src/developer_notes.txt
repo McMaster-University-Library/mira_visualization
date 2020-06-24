@@ -1,0 +1,3 @@
+Notes:
+
+- On the server, these files live in  /var/lib/tomcat/webapps/mira/
