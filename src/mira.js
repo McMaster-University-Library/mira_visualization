@@ -415,11 +415,12 @@ function visuals() {
         
         // Initial start up
         if (active_project != false){
-            setTimeout(project_filter(active_project), 1500)
+            project_filter(active_project)
         } else {
-            setTimeout(faculty_filter(active_faculty), 1500)
+            faculty_filter(active_faculty)
         }
         draw_lines(coauthor_origin)
+
 
     });
 
@@ -536,6 +537,7 @@ function visuals() {
         active_project = projectId  //Set active project global var
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
+
 
         pg_members = pg[projectId]["members"]
         pg_pi = pg[projectId]["pi"]
@@ -704,7 +706,7 @@ function visuals() {
     });
 
 }
+setTimeout(function(){visuals()}, 2000)
 
-visuals() // initialization
 
 window.onresize = function invoke_visuals() {visuals()}  // redraw to fit window
