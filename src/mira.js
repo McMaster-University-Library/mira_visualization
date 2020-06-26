@@ -22,7 +22,6 @@ var active_faculty = "All"
 var active_project = false
 var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
 var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
-var current_levels = 1
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
