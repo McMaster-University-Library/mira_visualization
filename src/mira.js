@@ -189,9 +189,11 @@ function generateProjectFilters(levels) {
 
 get_mira_data();
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Visual Elements
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function visuals() {
     d3.select("g").remove()  // remove former drawn graphs
 
@@ -425,7 +427,7 @@ function visuals() {
 
 
     function faculty_filter(faculty) {
-
+        active_project = false
         active_faculty = faculty  //Set active faculty global var
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
@@ -536,6 +538,8 @@ function visuals() {
         active_project = projectId  //Set active project global var
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
+        d3.selectAll(".coauthor_line").remove();  // remove former lines
+        coauthor_origin = ""
 
 
         pg_members = pg[projectId]["members"]
@@ -705,7 +709,7 @@ function visuals() {
     });
 
 }
-setTimeout(function(){visuals()}, 2000)
+setTimeout(function(){visuals()}, 1000)
 
 
 window.onresize = function invoke_visuals() {visuals()}  // redraw to fit window
