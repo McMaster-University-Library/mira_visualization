@@ -41,9 +41,9 @@ function get_mira_data(){
             for(let j = 0; j < csv_check_cols.length; j++){
                 if (!(csv_check_cols[j] in data[i])){
                     check = false
-                    console.log("failed check, element does not contain all fields", data[i])
+                    //console.log("failed check, element does not contain all fields", data[i])
                 } else if (data[i][csv_check_cols[j]].length <= 0){
-                    console.log("failed check, required fields are not filled out properly", data[i])
+                   // console.log("failed check, required fields are not filled out properly", data[i])
                     check = false
                 }
             }
@@ -327,9 +327,9 @@ function visuals() {
             for(let j = 0; j < csv_check_cols.length; j++){
                 if (!(csv_check_cols[j] in d)){
                     check = false
-                    console.log("failed check2, element does not contain all fields", d)
+                    //console.log("failed check2, element does not contain all fields", d)
                 } else if (d[csv_check_cols[j]].length <= 0){
-                    console.log("failed check2, required fields are not filled out properly", d)
+                    //console.log("failed check2, required fields are not filled out properly", d)
                     check = false
                 }
             }
@@ -679,13 +679,15 @@ function visuals() {
                 }
             }
         }catch(e){
-            console.log('coauthor_network[macid] is undefined at start-up');
+           // console.log('coauthor_network[macid] is undefined at start-up');
         }
 
 
 
         d3.selectAll("circle").raise()
-        d3.select("[id=" + macid + "]").raise()
+        if (macid!=='') {
+            d3.select("#" + macid).raise()
+        }
     }
 
 
