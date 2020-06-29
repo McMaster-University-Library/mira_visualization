@@ -255,7 +255,7 @@ function visuals() {
         .text("POLICY")
 
     g.append("text")
-        .attr("transform", "translate(" + x.range()[1] / 2 + "," + (domainHeight - 30) + ")")
+        .attr("transform", "translate(" + x.range()[1] / 2 + "," + (domainHeight - 29) + ")")
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .attr("class", "axisTitle")
