@@ -711,7 +711,7 @@ function visuals() {
     });
 
 }
-setTimeout(function(){visuals()}, 1000)
+setTimeout(function(){visuals()}, 500)
 
 
 window.onresize = function invoke_visuals() {visuals()}  // redraw to fit window
