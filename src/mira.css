@@ -173,6 +173,7 @@ line {
   position: absolute;
   top: 5px;
   left: 5px;
+  max-width: 400px;
 }
 
 .filters a.btn {

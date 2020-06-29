@@ -484,7 +484,7 @@ function visuals() {
 
 
                     tooltip.transition()
-                        .duration(200)
+                        .duration(400)
                         .style("opacity", .95);
                     tooltip.html(
                         "<span class='tooltipName'>" + d.first_name + " " + d.last_name +
