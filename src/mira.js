@@ -263,17 +263,16 @@ function visuals() {
 
     g.append("text")
         .attr("transform", "rotate(-90)")
-        //    .attr("y",-margin.left)
         .attr("y", 0)
         .attr("x", -domainHeight / 2)
-        .attr("dy", "1em")
+        .attr("dy", "0.95em")
         .style("text-anchor", "middle")
         .attr("class", "axisTitle leftTitle")
         .text("PRACTICE & APPLICATION");
 
     g.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", (domainWidth - 30))
+        .attr("y", (domainWidth - 29))
         .attr("x", -domainHeight / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
