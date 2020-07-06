@@ -9,8 +9,10 @@
 
 const mira_members_csv = "mira_members.csv"
 const project_grants_csv = "project_grant.csv"
-const margin = {top: 0, right: 0, bottom: 0, left: 0};
+const margin = {top: 2, right: 2, bottom: 1, left: 2};
+const csv_check_cols = ["email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"];
 var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
+var mira_members_list = [] // dict representing each member in mira, keys in dict correspond to cols in mira_members.csv
 var faculty_members = {}  // key: faculty val: list of macid
 var coauthor_network = {}  // key: macid val: list of coauthor macid
 var dots = {}  // key: macid val: dataGroup (for the dot)
@@ -20,7 +22,6 @@ var active_faculty = "All"
 var active_project = false
 var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
 var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
-var current_levels = 1
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Pulling co-author and Project/Grant Data
@@ -30,19 +31,37 @@ function get_mira_data(){
 
     // member data
     d3.csv(mira_members_csv).then(function(data){
-        for (i = 0; i < data.length; i++){
+        for (let i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
-            mira_members_data_pull[data[i]["macid"]] = data[i]
+
+            // this check ensures that faculty who have not properly been filled out in the mira_members.csv file are not imported
+            let check = true
+
+            for(let j = 0; j < csv_check_cols.length; j++){
+                if (!(csv_check_cols[j] in data[i])){
+                    check = false
+                    //console.log("failed check, element does not contain all fields", data[i])
+                } else if (data[i][csv_check_cols[j]].length <= 0){
+                    //console.log("failed check, required fields are not filled out properly", data[i])
+                    check = false
+                }
+            }
+
+            if (check) {
+                mira_members_data_pull[data[i]["macid"]] = data[i]
+            }
+
 
             // initializing faculty list if it isn't there already
             faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
             faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
+
     })
 
     //project grant data
     d3.csv(project_grants_csv).then(function(data){
-        for (let i = 0; i < data.length; i++) {
+        for (i = 0; i < data.length; i++) {
             const row = data[i]
             const key = row["level1"] + row["level2"] + row["level3"]
 
@@ -92,7 +111,7 @@ function get_mira_data(){
 }
 
 function get_coauthor_xml(member_macid) {
-    url = "/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
+    url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -190,17 +209,33 @@ function visuals() {
     d3.csv(mira_members_csv).then(function (mira_members) {
         // Prepare data. Coerce the strings for coordinates to numbers.
         mira_members.forEach(function (d) {
-            d.x_value = +d.x_value;
-            d.y_value = +d.y_value;
-            d.first_name = d.first_name;
-            d.last_name = d.last_name;
-            d.macid = d.macid;
-            d.faculty2 = d.primary_faculty;
-            d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
-            dots[d.macid] = d
-        });
+            // this check ensures that faculty who have not properly been filled out in the mira_members.csv file are not imported
+            let check = true
 
-        const gDots = g.selectAll("dataGroup").data(mira_members);
+            for(let j = 0; j < csv_check_cols.length; j++){
+                if (!(csv_check_cols[j] in d)){
+                    check = false
+                    //console.log("failed check2, element does not contain all fields", d)
+                } else if (d[csv_check_cols[j]].length <= 0){
+                    //console.log("failed check2, required fields are not filled out properly", d)
+                    check = false
+                }
+            }
+
+            if (check){
+                d.x_value = +d.x_value;
+                d.y_value = +d.y_value;
+                d.first_name = d.first_name;
+                d.last_name = d.last_name;
+                d.macid = d.macid;
+                d.faculty2 = d.primary_faculty;
+                d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
+                dots[d.macid] = d
+                mira_members_list.push(d)
+            }
+        });
+        const gDots = g.selectAll("dataGroup").data(mira_members_list);
+
         gData = gDots.enter().append('div')
 
         // Event listener for faculty filter
@@ -364,7 +399,7 @@ function visuals() {
                 "</a></div>";
 
             return htmlcontents;
-        })
+        });
 
         d3.selectAll('.dataGroup:empty').attr('style','display: none;')
 
@@ -390,5 +425,5 @@ function visuals() {
     });
 
 }
+setTimeout(function(){visuals()}, 500); // initialization
 
-visuals() // initialization
