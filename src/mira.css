@@ -236,3 +236,14 @@ line {
   text-align: left;
   max-width: 400px;
 }
+
+#info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#info a {
+  font-size: 1.4em;
+  color: #ac1455;
+}
