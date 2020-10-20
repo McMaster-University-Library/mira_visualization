@@ -11,9 +11,7 @@ const mira_members_csv = "mira_members.csv"
 const project_grants_csv = "project_grant.csv"
 const margin = {top: 2, right: 2, bottom: 1, left: 2};
 const csv_check_cols = ["email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"];
-var mira_members_data_pull = {} // key: macid val: dict(key: csv file attribute, val: attribute value)
 var mira_members_list = [] // dict representing each member in mira, keys in dict correspond to cols in mira_members.csv
-var faculty_members = {}  // key: faculty val: list of macid
 var coauthor_network = {}  // key: macid val: list of coauthor macid
 var dots = {}  // key: macid val: dataGroup (for the dot)
 var gData = []
@@ -34,28 +32,6 @@ function get_mira_data(){
     d3.csv(mira_members_csv).then(function(data){
         for (i = 0; i < data.length; i++){
             get_coauthor_xml(data[i]["macid"])
-
-            // this check ensures that faculty who have not properly been filled out in the mira_members.csv file are not imported
-            let check = true
-
-            for(let j = 0; j < csv_check_cols.length; j++){
-                if (!(csv_check_cols[j] in data[i])){
-                    check = false
-                    //console.log("failed check, element does not contain all fields", data[i])
-                } else if (data[i][csv_check_cols[j]].length <= 0){
-                   // console.log("failed check, required fields are not filled out properly", data[i])
-                    check = false
-                }
-            }
-
-            if (check) {
-                mira_members_data_pull[data[i]["macid"]] = data[i]
-            }
-
-
-            // initializing faculty list if it isn't there already
-            faculty_members[data[i]["primary_faculty"]] = faculty_members[data[i]["primary_faculty"]] || [];
-            faculty_members[data[i]["primary_faculty"]].push(data[i]["macid"])
         }
 
     })
