@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MIRA Visualization - Interdisciplinary Connections</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- McMaster University's Brighter World Branding CSS -->
     <link rel="stylesheet" href="https://documents.mcmaster.ca/www/cdn/css/1.0/mcm-bw.css">
-	<link rel="stylesheet" href="mira.css">
+	<link rel="stylesheet" href="assets/css/mira.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,700,700i');
     </style>
@@ -19,7 +19,7 @@
             <div class='col-md-12' id='visualization'>
                 <!-- Suppress heading but for accessibility reasons, add class for screen-readers. -->
                 <h1 class="sr-only">MIRA Visualization - Interdisciplinary Connections</h1>
-                <p class="sr-only"><a href="mira-accessible.html">Accessible text version</a></p>
+                <p class="sr-only"><a href="mira-accessible">Accessible text version</a></p>
                 <svg id="miraVis" class='text-center' aria-labelledby="miraTitle miraDescription">
                     <title id="miraTitle"></title>
                     <desc id="miraDescription">Quadrant chart showing interdisciplinary connections among members of McMaster Institute for Research on Aging. Top-left quadrant showing MIRA members who's research type is Practice and Application and research output is policy.
@@ -63,8 +63,8 @@
             <button id='zoomOut'><span class="glyphicon glyphicon-minus" aria-hidden="true"><span class="sr-only">Zoom Out</span></span></button>
         </div>
     </div>
-    <script src="js/jquery-3.2.1.slim.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <script>
         // Load script
         function loadScript(src) {
@@ -76,15 +76,15 @@
 
         // IE 11 doesn't support promises or csv fetch, therefore the following work-around is needed
         if (typeof Promise !== "function") {
-            loadScript('js/es6-promise.min.js');
-            loadScript('js/es6-promise.auto.min.js');
-            loadScript('js/fetch.min.js');
-           //loadScript('js/polyfill.min.js?features=default,Array.prototype.includes');
+            loadScript('assets/js/es6-promise.min.js');
+            loadScript('assets/js/es6-promise.auto.min.js');
+            loadScript('assets/js/fetch.min.js');
+           //loadScript('assets/js/polyfill.min.js?features=default,Array.prototype.includes');
             loadScript('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.1/polyfill.min.js');
         }
 
     </script>
-    <script src="js/d3.v5.min.js"></script>
-    <script src="mira.js"></script>
+    <script src="assets/js/d3.v5.min.js"></script>
+    <script src="assets/js/mira.js"></script>
 </body>
 </html>

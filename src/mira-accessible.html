@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>MIRA Visualization - Interdisciplinary Connections - Accessible Version</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/bootstrap-glyphicons.css" rel="stylesheet">
     <!-- McMaster University's Brighter World Branding CSS -->
     <link rel="stylesheet" href="https://documents.mcmaster.ca/www/cdn/css/1.0/mcm-bw.css">
-	<link rel="stylesheet" href="mira-accessible.css">
+	<link rel="stylesheet" href="assets/css/mira-accessible.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,700,700i');
     </style>
@@ -52,8 +52,8 @@
         </div>
 
     </div>
-    <script src="js/jquery-3.2.1.slim.min.js" ></script>
-    <script src="js/bootstrap.min.js" ></script>
+    <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <script>
         // Load script
         function loadScript(src) {
@@ -65,14 +65,13 @@
 
         // IE 11 doesn't support promises or csv fetch, therefore the following work-around is needed
         if (typeof Promise !== "function") {
-            loadScript('js/es6-promise.min.js');
-            loadScript('js/es6-promise.auto.min.js');
-            loadScript('js/fetch.min.js');
-            //loadScript('js/polyfill.min.js?features=default,Array.prototype.includes');
+            loadScript('assets/js/es6-promise.min.js');
+            loadScript('assets/js/es6-promise.auto.min.js');
+            loadScript('assets/js/fetch.min.js');
             loadScript('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.1/polyfill.min.js');
         }
     </script>
-    <script src="js/d3.v5.min.js"></script>
-    <script src="mira-accessible.js"></script>
+    <script src="assets/js/d3.v5.min.js"></script>
+    <script src="assets/js/mira-accessible.js"></script>
 </body>
 </html>

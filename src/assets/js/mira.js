@@ -4,131 +4,46 @@
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Global Vars
+// Global Vars and API Calls
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const mira_members_csv = "mira_members.csv"
-const project_grants_csv = "project_grant.csv"
 const margin = {top: 2, right: 2, bottom: 1, left: 2};
-const csv_check_cols = ["email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"];
-var mira_members_list = [] // dict representing each member in mira, keys in dict correspond to cols in mira_members.csv
-var coauthor_network = {}  // key: macid val: list of coauthor macid
+
+// API CALL "/mira_members.json"
+// returns list of dict representing each member in mira. Key in each dict shown below.
+// keys: "email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"
+
+// API CALL "/pg,json"
+// returns dict of projects/grants, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
+var pg = pg || {}
+d3.json("shared_assets/pg.json").then(function(data){
+   pg.json = data
+})
+
+// API CALL "/coauthornetwork.json"
+// returns dict. Key: macid val: list of coauthor macids (list of macids include the original author as well).
+var coauthor_network = coauthor_network || {}
+d3.json("shared_assets/coauthor_network.json").then(function(data){
+   coauthor_network.json = data
+})
+
+
+// Other Variables used in D3 Visualization
 var dots = {}  // key: macid val: dataGroup (for the dot)
-var gData = []
-var coauthor_origin = ""
-var active_faculty = "All"
-var active_project = false
-var levels = {}  // holds all the levels information key=level val=dict of next levels or concatenated id
-var pg = {}  // project and grant data, key = id of project, val= {"members":[], "pi":[], "blurb_title:"", "blurb":""}
+var gData = [] //list of dict keys: "email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"
+var coauthor_origin = ""  // Keeps track of the point the user clicked on last
+var active_faculty = "All"  // Keeps track of the faculty the user clicked on last
+var active_project = false  // Keeps track of the project the user clicked on last
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Pulling co-author and Project/Grant Data
+// Project grant filter initialization
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+d3.json("shared_assets/levels.json").then(function(levels){
+    // levels = {} holds all the levels information key=level val=dict of next levels or concatenated id
+    generateProjectFilters(levels);
+})
 
-function get_mira_data(){
-
-    // member data
-    d3.csv(mira_members_csv).then(function(data){
-        for (i = 0; i < data.length; i++){
-            get_coauthor_xml(data[i]["macid"])
-        }
-
-    })
-
-               //project grant data
-               d3.csv(project_grants_csv).then(function(data){
-
-                   for (let i = 0; i < data.length; i++) {
-                       const row = data[i]
-                       const key = row["level1"] + row["level2"] + row["level3"]
-
-                       // filling the levels variable
-                       levels[row["level1"]] = typeof(levels[row["level1"]]) === 'undefined' ? {} : levels[row["level1"]];
-
-                       // If level ends at level1
-                       if (row["level2"].length == 0) {
-                           levels[row["level1"]] = key
-                       } else { // proceed to levels 2 and 3
-                           cur_item = levels[row["level1"]][row["level2"]]
-                           levels[row["level1"]][row["level2"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
-                       }
-
-                       // If level ends at level2
-                       if (row["level3"].length == 0) {
-                           levels[row["level1"]][row["level2"]] = key
-                       } else { // proceed to level3
-                           cur_item = levels[row["level1"]][row["level2"]][row["level3"]]
-                           levels[row["level1"]][row["level2"]][row["level3"]] = typeof(cur_item) === 'undefined' ? {} : cur_item;
-                       }
-
-                       // If level ends at level3
-                       if (row["level3"].length > 0) {
-                           levels[row["level1"]][row["level2"]][row["level3"]] = key
-                       }
-
-
-                       // filling the project grants variable (pg)
-                       var base = {"members": [], "pi": [], "blurb_title":"", "blurb":""}
-                       pg[key] = typeof(pg[key]) === 'undefined' ? base : pg[key];
-                       pg[key]["members"].push(row["macid"])
-
-                       if (row["pi"] == "TRUE"){
-                           pg[key]["pi"].push(row["macid"])
-                       }
-
-                       if (row["blurb_title"].length > pg[key]["blurb_title"].length){
-                           pg[key]["blurb_title"] = row["blurb_title"]
-                       }
-
-                       if (row["blurb"].length > pg[key]["blurb"].length){
-                           pg[key]["blurb"] = row["blurb"]
-                       }
-                   }
-                   generateProjectFilters(levels);
-
-               })
-           }
-
-           function get_coauthor_xml(member_macid) {
-               url = "https://vivovis.mcmaster.ca/visualizationData?vis=coauthorship&uri=https%3A%2F%2Fvivovis.mcmaster.ca%2Findividual%2F" + member_macid + "&vis_mode=coauthor_network_download"
-               let xhttp = new XMLHttpRequest();
-               xhttp.onreadystatechange = function () {
-                   if (this.readyState == 4 && this.status == 200) {
-                       sort_coauthor_xml(member_macid, this);
-                   }
-                   if (this.status >= 400) {
-                       xhttp.abort()
-                   }
-               };
-               xhttp.open("GET", url, true);
-               xhttp.send();
-
-           }
-
-           function sort_coauthor_xml(member_macid, xml) {
-               /*
-                This function updates the global variable coauthor_network by adding a new member as a key. The value is a list
-                of all corresponding macids associated with that author, including that author itself
-                */
-    var xmlDoc = xml.responseXML;
-    mac_ids = [];
-    nodes  = xmlDoc.getElementsByTagNameNS("http://graphml.graphdrawing.org/xmlns", "node");
-    for (i = 0; i < nodes.length; i++) {
-        data_nodes = nodes[i].getElementsByTagNameNS("http://graphml.graphdrawing.org/xmlns", "data");
-        for (j = 0; j < data_nodes.length; j++) {
-
-            // extracting the co-author macids
-            if(data_nodes[j].getAttribute("key") == "url") {
-                experts_url_base = "https://experts.mcmaster.ca/individual/";
-                experts_url = data_nodes[j].textContent;
-                mac_id = experts_url.substring(experts_url_base.length, experts_url.length);
-                mac_ids.push(mac_id) ;
-            }
-        }
-    }
-    coauthor_network[member_macid] = mac_ids  // update global variable
-}
 
 function generateProjectFilters(levels) {
     const pf=d3.select('#projectFilter');
@@ -163,8 +78,6 @@ function generateProjectFilters(levels) {
     d3.select('#collapseFilter').attr('style','max-height: '+(+window.innerHeight - margin.top - margin.bottom-100)+'px;');
 }
 
-get_mira_data();
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Visual Elements
@@ -182,7 +95,7 @@ function visuals() {
         domainWidth = width - margin.left - margin.right,
         domainHeight = height - margin.top - margin.bottom;
 
-// Add d3 zoom feature to svg
+    // Add d3 zoom feature to svg
     const zoom=d3.zoom()
         .scaleExtent([1, 40])
         //  .translateExtent([[-margin.left, -margin.top], [width, height]])
@@ -286,43 +199,15 @@ function visuals() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Controlling Dots and Lines
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /*
-    csv file contains macid,position,first_name,last_name,email,mira_url_name,primary_faculty,x_value,y_value
-    Don't need mira_url_name since this can be created using first_name & last_name columns
-     */
 
+    d3.json("shared_assets/mira_members.json").then(function (mira_members) {
 
-    d3.csv(mira_members_csv).then(function (mira_members) {
-        // Prepare data. Coerce the strings for coordinates to numbers.
-
+        // dots is a global variable documented at the top
         mira_members.forEach(function (d) {
-            // this check ensures that faculty who have not properly been filled out in the mira_members.csv file are not imported
-            let check = true
+            dots[d.macid] = d
+        })
 
-            for(let j = 0; j < csv_check_cols.length; j++){
-                if (!(csv_check_cols[j] in d)){
-                    check = false
-                    //console.log("failed check2, element does not contain all fields", d)
-                } else if (d[csv_check_cols[j]].length <= 0){
-                    //console.log("failed check2, required fields are not filled out properly", d)
-                    check = false
-                }
-            }
-
-            if (check){
-                d.x_value = +d.x_value;
-                d.y_value = +d.y_value;
-                d.first_name = d.first_name;
-                d.last_name = d.last_name;
-                d.macid = d.macid;
-                d.faculty2 = d.primary_faculty;
-                d.primary_faculty = d.primary_faculty.replace(/\s+/g, '');
-                dots[d.macid] = d
-                mira_members_list.push(d)
-            }
-        });
-
-        const gDots = g.selectAll("g.dot").data(mira_members_list);
+        const gDots = g.selectAll("g.dot").data(mira_members);
 
         gData = gDots.enter().append('g')
             .attr("id", function (d) {
@@ -396,8 +281,6 @@ function visuals() {
             faculty_filter(active_faculty)
         }
         draw_lines(coauthor_origin)
-
-
     });
 
 
@@ -407,15 +290,15 @@ function visuals() {
         d3.selectAll("circle").remove();  // Remove previous points
         d3.selectAll(".dotText").remove();  // Remove previous names
 
-        const projectKeys=Object.keys(pg); // get all project keys
+        const projectKeys=Object.keys(pg.json); // get all project keys
 
         // function is used to pull a listing of researcher's projects to be displayed in modal window
         function memberProjects(projectKeys, macid) {
             let memberProjectsText="";
             for (projectKey in projectKeys) {
                 var keyvalue=projectKeys[projectKey];
-                if (pg[keyvalue]['members'].includes(macid)) {
-                    memberProjectsText+="<div class='pb-2'>"+pg[keyvalue]['blurb_title']+"</div>";
+                if (pg.json[keyvalue]['members'].includes(macid)) {
+                    memberProjectsText+="<div class='pb-2'>"+pg.json[keyvalue]['blurb_title']+"</div>";
                 }
             }
             return memberProjectsText;
@@ -516,12 +399,11 @@ function visuals() {
         d3.selectAll(".coauthor_line").remove();  // remove former lines
         coauthor_origin = ""
 
+        pg_members = pg.json[projectId]["members"]
+        pg_pi = pg.json[projectId]["pi"]
 
-        pg_members = pg[projectId]["members"]
-        pg_pi = pg[projectId]["pi"]
-
-        var projectInfo="<strong>"+pg[projectId].blurb_title+"</strong>"+
-            "<p>"+pg[projectId].blurb+"</p>";
+        var projectInfo="<strong>"+pg.json[projectId].blurb_title+"</strong>"+
+            "<p>"+pg.json[projectId].blurb+"</p>";
 
         active = gData.filter(function (d) {
             if (pg_members.includes(d.macid)) {
@@ -594,9 +476,7 @@ function visuals() {
                                 return (eventY - 28)+"px";
                             }
                         });
-
                 }
-
             })
 
 
@@ -621,13 +501,11 @@ function visuals() {
         d3.selectAll(".coauthor_line").remove();  // remove former lines
         coauthor_origin = macid;  //set global coauthor variable
 
-
-
         try{
-            for (i = 0; i < coauthor_network[macid].length; i++) {
-                if (coauthor_network[macid][i] in dots) {
-                    if (active_faculty == "All" || active_faculty == dots[coauthor_network[macid][i]].faculty2) {
-                        const end = dots[coauthor_network[macid][i]]
+            for (i = 0; i < coauthor_network.json[macid].length; i++) {
+                if (coauthor_network.json[macid][i] in dots) {
+                    if (active_faculty == "All" || active_faculty == dots[coauthor_network.json[macid][i]].faculty2) {
+                        const end = dots[coauthor_network.json[macid][i]]
 
                         gData_object = gData.filter(function (d) {
                             if (d.macid == end.macid) {
@@ -654,10 +532,8 @@ function visuals() {
                 }
             }
         }catch(e){
-           // console.log('coauthor_network[macid] is undefined at start-up');
+           // console.log('coauthor_network.json[macid] is undefined at start-up');
         }
-
-
 
         d3.selectAll("circle").raise()
         if (macid!=='') {
