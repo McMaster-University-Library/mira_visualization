@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MIRA Visualization - Interdisciplinary Connections - Accessible Version</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <!-- McMaster University's Brighter World Branding CSS -->
+    <link rel="stylesheet" href="https://documents.mcmaster.ca/www/cdn/css/1.0/mcm-bw.css">
+	<link rel="stylesheet" href="assets/css/mira-accessible.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,400i,700,700i|Roboto:300,300i,700,700i');
+    </style>
+</head>
+<body>
+
+    <div class="container" role="main">
+        <h1 class="text-center">MIRA Members Interdisciplinary Connections</h1>
+        <div id="projectInfo" class="mt-3 col-md-6 mx-auto"></div>
+        <div class="row">
+            <div class='col-md-12' id='visualization'>
+                <!-- Suppress heading but for accessibility reasons, add class for screen-readers. -->
+                <div id="miraVis">
+                </div>
+            </div>
+        </div>
+        <div class="filters accordion">
+            <a class="btn btn-secondary collapsed" data-toggle="collapse" href="#collapseFilter" role="button" aria-expanded="false" aria-controls="collapseFilter">
+                Filters
+            </a>
+            <div class="collapse" id="collapseFilter">
+                <div id="filter1">
+                    <div class="filterLabel">Filter by Faculty</div>
+                    <div id="facultyFilter">
+                        <button class="facultyFilter2 All active"><span style='color:pink;'>&#9679;</span>All</button>
+                        <button class="facultyFilter2 Engineering"><span>&#9679;</span>Engineering</button>
+                        <button class="facultyFilter2 HealthSciences"><span>&#9679;</span>Health Sciences</button>
+                        <button class="facultyFilter2 Business"><span>&#9679;</span>Business</button>
+                        <button class="facultyFilter2 SocialSciences"><span>&#9679;</span>Social Sciences</button>
+                        <button class="facultyFilter2 Science"><span>&#9679;</span>Science</button>
+                        <button class="facultyFilter2 Humanities"><span>&#9679;</span>Humanities</button>
+                    </div>
+                </div>
+                <div id="filter2">
+                    <div class="filterLabel">Filter by Project/Grant</div>
+                    <div id="projectFilter">
+                     <button class="projectFilter level1 triggerProjectFilter active" data-project-filter="All">All</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="assets/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script>
+        // Load script
+        function loadScript(src) {
+            var js = document.createElement('script');
+            js.src = src;
+            js.async = false;
+            document.body.appendChild(js);
+        }
+
+        // IE 11 doesn't support promises or csv fetch, therefore the following work-around is needed
+        if (typeof Promise !== "function") {
+            loadScript('assets/js/es6-promise.min.js');
+            loadScript('assets/js/es6-promise.auto.min.js');
+            loadScript('assets/js/fetch.min.js');
+            loadScript('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.10.1/polyfill.min.js');
+        }
+    </script>
+    <script src="assets/js/d3.v5.min.js"></script>
+    <script src="assets/js/mira-accessible.js"></script>
+</body>
+</html>

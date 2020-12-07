@@ -1,0 +1,4 @@
+Notes:
+
+- On the server, these files live in  /var/lib/tomcat/webapps/mira/
+- https://vivovis.mcmaster.ca/mira/mira.html is the URL for the dev server
