@@ -8,7 +8,7 @@ Download the src folder onto your computer then follow the sections below.
 
 ### Determining Co-ordinates on the Visualization
 1.	In the google chrome browser, download the [web-server-for-chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en) browser extension and install.
-2.	Close Chrome.
+2.	Close Chrome..
 3.	Open start (windows) or open search (mac)
 4.	Search for / Type in “web server for chrome” and open it
 5.	Click choose folder, and navigate to the “src” folder
