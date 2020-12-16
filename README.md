@@ -31,3 +31,11 @@ Fairly straight forward to fill out. Just want to include a few guidelines here.
 2. One of those PI rows should have blurb title and blurb filled out. This info appears when you hover over a dot when the project filter is active.
 3. For a group of rows to be a part of the same project, they need the same values in cols: level1, level2, level3
 4. Every cell should NOT start or end with a space
+
+
+# Instructions for Devs
+Daily data transfers are done via python and odbc connection. Setup notes are below:
+1. odbc credentials are in /DATA/creds.yml
+2. create a python virtual env in ./shared_assets called venv
+3. in the virtual env install the following packages: pyyaml, pandas and pyodbc
+4. Set up a cron job triggers run_etl.sh
