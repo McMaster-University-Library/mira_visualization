@@ -8,13 +8,13 @@ MIRA_MEMBERS_CSV_CHECK_COLS = ["email", "first_name", "last_name", "macid", "mir
 DIRECTORY = "/DATA/www/html/mira/shared_assets/"
 
 # ODBC stuff
-with open("/DATA/creds.yml") as file:
+with open("/DATA/creds.yaml") as file:
     ODBC_CREDS = yaml.safe_load(file)
 
-ODBC_USER = ODBC_CREDS["PROD_ODBC_USER"]
-ODBC_PASS = ODBC_CREDS["PROD_ODBC_PASSWORD"]
-SERVER = ODBC_CREDS["PROD_SERVER"]
-DATABASE = ODBC_CREDS["PROD_DATABASE"]
+ODBC_USER = ODBC_CREDS["ODBC_USER"]
+ODBC_PASS = ODBC_CREDS["ODBC_PASSWORD"]
+SERVER = ODBC_CREDS["ODBC_SERVER"]
+DATABASE = ODBC_CREDS["ODBC_DATABASE"]
 
 
 ########################################################################################################################
