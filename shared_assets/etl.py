@@ -11,6 +11,7 @@ DIRECTORY = "/DATA/www/html/mira/shared_assets/"
 with open("/DATA/creds.yaml") as file:
     ODBC_CREDS = yaml.safe_load(file)
 
+ODBC_CREDS = ODBC_CREDS["mira_visualization"]
 ODBC_USER = ODBC_CREDS["ODBC_USER"]
 ODBC_PASS = ODBC_CREDS["ODBC_PASSWORD"]
 SERVER = ODBC_CREDS["ODBC_SERVER"]
