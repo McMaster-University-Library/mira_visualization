@@ -39,3 +39,7 @@ Daily data transfers are done via python and odbc connection. Setup notes are be
 2. create a python virtual env in ./shared_assets called venv
 3. in the virtual env install the following packages: pyyaml, pandas and pyodbc
 4. Set up a cron job triggers run_etl.sh
+
+
+# URL for the outside world:
+https://experts.mcmaster.ca/mira/mira.html
