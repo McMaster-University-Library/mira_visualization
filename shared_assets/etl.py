@@ -120,9 +120,6 @@ with open(DIRECTORY + "pg.json", "w") as file:
 ########################################################################################################################
 # Co-Author Network JSON
 
-
-#conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+SERVER+';DATABASE='+DATABASE+';UID='+ ODBC_USER +';PWD='+ ODBC_PASS+';Integrated_Security=True')
-conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+SERVER+';DATABASE='+DATABASE+';UID='+ ODBC_USER +';PWD='+ ODBC_PASS)
 cursor = conn.cursor()
 
 df = pd.read_csv(DIRECTORY + "mira_members.csv")
