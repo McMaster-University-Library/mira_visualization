@@ -1,7 +1,8 @@
 import pandas as pd
 import json
 import numpy as np
-import pyodbc
+#import pyodbc
+import pymssql
 import yaml
 
 MIRA_MEMBERS_CSV_CHECK_COLS = ["email", "first_name", "last_name", "macid", "mira_bio_url", "position", "primary_faculty", "x_value", "y_value"]
@@ -9,13 +10,29 @@ DIRECTORY = "/DATA/www/html/mira/shared_assets/"
 
 # ODBC stuff
 with open("/DATA/creds.yaml") as file:
-    ODBC_CREDS = yaml.safe_load(file)
+    CREDS = yaml.safe_load(file)
+    CREDS = CREDS["mira_visualization"]
 
-ODBC_CREDS = ODBC_CREDS["mira_visualization"]
-ODBC_USER = ODBC_CREDS["ODBC_USER"]
-ODBC_PASS = ODBC_CREDS["ODBC_PASSWORD"]
-SERVER = ODBC_CREDS["ODBC_SERVER"]
-DATABASE = ODBC_CREDS["ODBC_DATABASE"]
+"""
+# we moved away from ODBC and are using TDS via pymssql as that supports ADS on linux machines 
+ODBC_USER = CREDS["ODBC_USER"]
+ODBC_PASS = CREDS["ODBC_PASSWORD"]
+SERVER = CREDS["ODBC_SERVER"]
+DATABASE = CREDS["ODBC_DATABASE"]
+"""
+
+# Free TDS creds
+TDS_USER = CREDS["TDS_USER"]
+TDS_PASS = CREDS["TDS_PASS"]
+TDS_SERVER = CREDS["TDS_SERVER"]
+TDS_DATABASE = CREDS["TDS_DATABASE"]
+
+# official microsoft odbc driver, left here in the event that we need to revert back to ODBC
+# conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + ODBC_SERVER + ';DATABASE=' + ODBC_DATABASE + ';UID=' + ODBC_USER + ';PWD=' + ODBC_PASS)
+# Free tds connector variant - supports ADS on linux (microsoft driver doesnt)
+conn = pymssql.connect(host=TDS_SERVER, user=TDS_USER, password=TDS_PASS, database=TDS_DATABASE)
+
+
 
 
 ########################################################################################################################
@@ -116,12 +133,12 @@ macids = set(df["macid"])
 
 # query returns a list of tuples. tuple[0] is a macid and tuple[1] is a macid that tuple[0] has coauthored with.
 query = "SELECT DISTINCT U.[Username] as macid1, U2.[Username] as macid2 " \
-        "FROM [elements-mcmaster2-reporting].[dbo].[User] as U " \
-        "INNER JOIN [elements-mcmaster2-reporting].[dbo].[Publication User Relationship] as PUR " \
+        "FROM [dbo].[User] as U " \
+        "INNER JOIN [dbo].[Publication User Relationship] as PUR " \
         "ON PUR.[User ID] = U.[ID] " \
-        "INNER JOIN [elements-mcmaster2-reporting].[dbo].[Publication User Relationship] as PUR2 " \
+        "INNER JOIN [dbo].[Publication User Relationship] as PUR2 " \
         "ON PUR.[Publication ID] = PUR2.[Publication ID] " \
-        "INNER JOIN [elements-mcmaster2-reporting].[dbo].[User] as U2 " \
+        "INNER JOIN [dbo].[User] as U2 " \
         "ON U2.[ID] = PUR2.[User ID] " \
         "WHERE U.[USERNAME] in ('" + "', '".join(macids) + "') " + "AND U2.[USERNAME] in ('" + "', '".join(macids) + "') "
 
