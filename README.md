@@ -42,4 +42,4 @@ Daily data transfers are done via python and odbc connection. Setup notes are be
 
 
 # URL for the outside world:
-https://experts.mcmaster.ca/mira/mira.html
+https://expertsapps.mcmaster.ca/mira/
